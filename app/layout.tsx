@@ -1,26 +1,26 @@
-import "@/app/globals.css";
-import { Poppins } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { Navbar } from "@/components/navigation/Navbar";
-import { ThemeProvider } from "@/components/theme-provider";
+import '@/app/globals.css'
+import { Poppins as FontSans } from 'next/font/google'
+import { cn } from '@/lib/utils'
+import { Navbar } from '@/components/navigation/Navbar'
+import { ThemeProvider } from '@/components/theme-provider'
 
-export const poppins = Poppins({
-    weight: ["200", "200", "300", "400", "500", "600", "700", "800"],
-    subsets: ["latin"],
-    variable: "--font-sans",
-});
+export const fontSans = FontSans({
+    weight: ['200', '200', '300', '400', '500', '600', '700', '800'],
+    subsets: ['latin'],
+    variable: '--font-sans',
+})
 
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: React.ReactNode
 }>) {
     return (
         <html lang="pt-br" suppressHydrationWarning>
             <body
                 className={cn(
-                    "grid grid-cols-1 md:grid-cols-[70px_1fr] min-h-screen bg-background font-sans antialiased",
-                    poppins.variable
+                    'grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-screen bg-background font-sans antialiased',
+                    fontSans.variable
                 )}
             >
                 <ThemeProvider
@@ -30,9 +30,11 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Navbar />
-                    {children}
+                    <main className="flex flex-grow flex-col items-start justify-between p-10">
+                        {children}
+                    </main>
                 </ThemeProvider>
             </body>
         </html>
-    );
+    )
 }

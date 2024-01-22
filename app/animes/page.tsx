@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { EnvelopeOpenIcon } from "@radix-ui/react-icons"
 export default function Animes() {
     return (
-        <section className="flex flex-col p-10 gap-4">
+        <section className="flex flex-col gap-4">
             <div className="flex gap-4">
                 <Button variant={'default'} size={'lg'}>
                     <EnvelopeOpenIcon /> Primary <EnvelopeOpenIcon /> 
