@@ -1,42 +1,57 @@
 'use client'
 import { NavbarItem } from '@/components/navigation/NavbarItem'
-import { Icon } from '@iconify/react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+import { LoveLine, TvTwoFill, TvTwoLine, LoveFill, CalendarLine, CalendarFill, TvOneFill, TvOneLine, PaperLine, PaperFill } from '@/components/ui/icons'
 export function Navbar() {
     const pathname = usePathname()
     const links = [
         {
-            href: '/animes',
-            icon: 'mingcute:tv-2-line',
+            href: '/',
+            icon: TvTwoLine,
+            activeIcon: TvTwoFill,
         },
         {
             href: '/kdrama',
-            icon: 'mingcute:love-line',
+            icon: LoveLine,
+            activeIcon: LoveFill,
         },
         {
             href: '/calendar',
-            icon: 'mingcute:calendar-line',
+            icon: CalendarLine,
+            activeIcon: CalendarFill,
         },
         {
             href: '/movies',
-            icon: 'mingcute:tv-1-line',
+            icon: TvOneLine,
+            activeIcon: TvOneFill,
         },
         {
             href: '/mangas',
-            icon: 'mingcute:paper-line',
+            icon: PaperLine,
+            activeIcon: PaperFill,
         },
     ]
     return (
-        <header className="flex flex-col align-center">
+        <header className="flex flex-col items-center">
+            <Link href={'/'} className="p-4">
+                <Image src="/icon.svg" alt="logo" width={32} height={32} />
+            </Link>
             <div className="flex flex-col p-3 gap-3">
                 {links.map((link, index) => (
                     <NavbarItem
                         key={index}
                         href={link.href}
                         currentPage={pathname}
-                    >
-                        <Icon icon={link.icon} fontSize="20px" />
-                    </NavbarItem>
+                        variant={"icon"}
+                        Icon={() => <link.icon width={24} height={24}/>}
+                        ActiveIcon={
+                            link.activeIcon
+                                ? () => <link.activeIcon width={24} height={24}/>
+                                : undefined
+                        }
+                    ></NavbarItem>
                 ))}
             </div>
         </header>
