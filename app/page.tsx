@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex flex-grow flex-col items-start justify-between p-10">
       <Button>Aperte</Button>
     </main>
   );
