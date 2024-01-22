@@ -1,14 +1,8 @@
 import '@/app/globals.css'
-import { Poppins as FontSans } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { Navbar } from '@/components/navigation/Navbar'
 import { ThemeProvider } from '@/components/theme-provider'
-
-export const fontSans = FontSans({
-    weight: ['200', '200', '300', '400', '500', '600', '700', '800'],
-    subsets: ['latin'],
-    variable: '--font-sans',
-})
+import { fontSans } from '@/components/font'
 
 export default function RootLayout({
     children,
