@@ -1,9 +1,10 @@
 import "@/app/globals.css";
-import { Inter as FontSans } from "next/font/google";
-
+import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Navbar } from "@/components/navigation/Navbar";
 
-export const fontSans = FontSans({
+export const poppins = Poppins({
+    weight: ["200", "200", "300", "400", "500", "600", "700", "800"],
     subsets: ["latin"],
     variable: "--font-sans",
 });
@@ -14,13 +15,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="pt">
             <body
                 className={cn(
                     "min-h-screen bg-background font-sans antialiased",
-                    fontSans.variable
+                    poppins.variable
                 )}
             >
+                <Navbar />
                 {children}
             </body>
         </html>

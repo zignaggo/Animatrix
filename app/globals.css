@@ -4,6 +4,54 @@
  
 @layer base {
   :root {
+    --purple-100: #D9D9F7;
+    --purple-200: #C0BEF2;
+    --purple-300: #A9A3EE;
+    --purple-400: #8069E9;
+    --purple-500: #6F4CE8;
+    --purple-600: #602DE7;
+    --purple-700: #5325CD;
+    --purple-800: #461DB2;
+    --purple-900: #391697;
+    --purple-999: #2D107A;
+
+    --lemon-100: #F0FFA8;
+    --lemon-200: #E5FF7E;
+    --lemon-300: #D7FF5E;
+    --lemon-400: #C7F743;
+    --lemon-500: #B5E62D;
+    --lemon-600: #7CCC25;
+    --lemon-700: #4BB11D;
+    --lemon-800: #239616;
+    --lemon-900: #107A1C;
+
+    --gray-100: #E2E2EB;
+    --gray-200: #CBCBD6;
+    --gray-300: #B5B5C2;
+    --gray-400: #9F9FAD;
+    --gray-500: #8A8A99;
+    --gray-600: #757585;
+    --gray-700: #616170;
+    --gray-800: #4E4E5C;
+    --gray-900: #3C3C47;
+
+    --black-100: #F4F4F6;
+    --black-200: #DFDEE3;
+    --black-300: #CAC8D0;
+    --black-400: #A09CAB;
+    --black-500: #767084;
+    --black-600: #4F4B58;
+    --black-700: #3B3842;
+    --black-800: #27252C;
+    --black-900: #1B1A1F;
+    --black-950: #131316;
+
+    --success: #4CE876;
+    --info: #4C6BE8;
+    --warning: #E8974C;
+    --error: #E84C4C;
+    --white: #FAFAFF;
+    
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
