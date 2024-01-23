@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { LoveLine,  TvTwoFill } from '@/components/ui/icons'
-export default function Home() {
+import { LoveLine, TvTwoFill } from '@/components/ui/icons'
+export default function Animes() {
     return (
         <section className="flex flex-col gap-4">
             <div className="flex gap-4">

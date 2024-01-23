@@ -8,8 +8,8 @@ const navbarItemVariants = cva(
         variants: {
             variant: {
                 default:
-                    'text-primary-foreground hover:bg-black-800 px-4 active:bg-black-700',
-                select: 'bg-black-800 active:bg-black-700 text-purple-500',
+                    'w-full text-primary-foreground hover:bg-black-800 active:bg-black-700',
+                select: 'w-full bg-black-800 active:bg-black-700 text-purple-500',
                 icon: 'text-primary-foreground hover:bg-black-800 active:bg-black-700 max-w-12 max-h-12',
             },
         },
@@ -26,6 +26,7 @@ export interface navbarItemProps
     currentPage?: string
     Icon: () => React.ReactNode
     ActiveIcon?: () => React.ReactNode
+    text?: string
 }
 
 function NavbarItem({
@@ -34,10 +35,13 @@ function NavbarItem({
     currentPage,
     ActiveIcon,
     Icon,
+    text,
     variant,
     ...props
 }: navbarItemProps) {
-    const selectedVariant = currentPage === href.toString() ? 'select' : variant
+    const selectedVariant = currentPage?.includes(href.toString())
+        ? 'select'
+        : variant
     return (
         <Link
             href={href}
@@ -47,6 +51,7 @@ function NavbarItem({
             )}
             {...props}
         >
+            {text ? <p>text</p> : null}
             {selectedVariant === 'select' && ActiveIcon ? (
                 <ActiveIcon />
             ) : (

@@ -8,29 +8,29 @@ export function Navbar() {
     const pathname = usePathname()
     const links = [
         {
-            href: '/',
-            icon: TvTwoLine,
-            activeIcon: TvTwoFill,
+            to: '/animes',
+            Icon: TvTwoLine,
+            ActiveIcon: TvTwoFill,
         },
         {
-            href: '/kdrama',
-            icon: LoveLine,
-            activeIcon: LoveFill,
+            to: '/kdrama',
+            Icon: LoveLine,
+            ActiveIcon: LoveFill,
         },
         {
-            href: '/calendar',
-            icon: CalendarLine,
-            activeIcon: CalendarFill,
+            to: '/calendar',
+            Icon: CalendarLine,
+            ActiveIcon: CalendarFill,
         },
         {
-            href: '/movies',
-            icon: TvOneLine,
-            activeIcon: TvOneFill,
+            to: '/movies',
+            Icon: TvOneLine,
+            ActiveIcon: TvOneFill,
         },
         {
-            href: '/mangas',
-            icon: PaperLine,
-            activeIcon: PaperFill,
+            to: '/mangas',
+            Icon: PaperLine,
+            ActiveIcon: PaperFill,
         },
     ]
     return (
@@ -39,16 +39,16 @@ export function Navbar() {
                 <Image src="/icon.svg" alt="logo" width={32} height={32} />
             </Link>
             <div className="flex flex-col p-3 gap-3">
-                {links.map((link, index) => (
+                {links.map(({ ActiveIcon, to, Icon}, index) => (
                     <NavbarItem
                         key={index}
-                        href={link.href}
+                        href={to}
                         currentPage={pathname}
                         variant={"icon"}
-                        Icon={() => <link.icon width={24} height={24}/>}
+                        Icon={() => <Icon width={24} height={24}/>}
                         ActiveIcon={
-                            link.activeIcon
-                                ? () => <link.activeIcon width={24} height={24}/>
+                            ActiveIcon
+                                ? () => <ActiveIcon width={24} height={24}/>
                                 : undefined
                         }
                     ></NavbarItem>
