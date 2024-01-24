@@ -1,6 +1,8 @@
 import '@/app/globals.css'
 import { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { cn } from '@/lib/utils'
+import { fontSans } from '@/components/font'
 
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
@@ -14,7 +16,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br" suppressHydrationWarning>
-            <body>
+            <body className={cn(
+                'font-sans antialiased',
+                fontSans.variable
+            )}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
