@@ -26,7 +26,7 @@ export interface navbarItemProps
     currentPage?: string
     Icon: () => React.ReactNode
     ActiveIcon?: () => React.ReactNode
-    text?: string
+    title?: string
 }
 
 function NavbarItem({
@@ -35,7 +35,7 @@ function NavbarItem({
     currentPage,
     ActiveIcon,
     Icon,
-    text,
+    title,
     variant,
     ...props
 }: navbarItemProps) {
@@ -51,12 +51,12 @@ function NavbarItem({
             )}
             {...props}
         >
-            {text ? <p>text</p> : null}
             {selectedVariant === 'select' && ActiveIcon ? (
                 <ActiveIcon />
             ) : (
                 <Icon />
             )}
+            {title && variant !== 'icon' ? <p>{title}</p> : null}
         </Link>
     )
 }
