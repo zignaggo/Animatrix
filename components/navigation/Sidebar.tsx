@@ -13,7 +13,7 @@ export function Sidebar() {
     })
     return smallerMd ? null : (
         <header className="hidden md:flex flex-col items-center">
-            <Link href={'/'} className="p-4">
+            <Link href={'/animes'}  className="p-4">
                 <Image
                     src="/icon.svg"
                     priority
