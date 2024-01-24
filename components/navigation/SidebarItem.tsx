@@ -2,7 +2,12 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import Link, { LinkProps } from 'next/link'
-const navbarItemVariants = cva(
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from '@/components/ui/tooltip'
+const sidebarItemVariants = cva(
     'inline-flex items-center gap-2 w-12 h-12 rounded-md px-3 py-3 w-fit text-md font-semibold transition-colors',
     {
         variants: {
@@ -19,17 +24,17 @@ const navbarItemVariants = cva(
     }
 )
 
-export interface navbarItemProps
+export interface SidebarItemProps
     extends React.HTMLAttributes<HTMLAnchorElement>,
         LinkProps,
-        VariantProps<typeof navbarItemVariants> {
+        VariantProps<typeof sidebarItemVariants> {
     currentPage?: string
     Icon: () => React.ReactNode
     ActiveIcon?: () => React.ReactNode
     title?: string
 }
 
-function NavbarItem({
+function SidebarItem({
     className,
     href,
     currentPage,
@@ -38,27 +43,35 @@ function NavbarItem({
     title,
     variant,
     ...props
-}: navbarItemProps) {
+}: SidebarItemProps) {
     const selectedVariant = currentPage?.includes(href.toString())
         ? 'select'
         : variant
     return (
-        <Link
-            href={href}
-            className={cn(
-                navbarItemVariants({ variant: selectedVariant }),
-                className
-            )}
-            {...props}
-        >
-            {selectedVariant === 'select' && ActiveIcon ? (
-                <ActiveIcon />
-            ) : (
-                <Icon />
-            )}
-            {title && variant !== 'icon' ? <p>{title}</p> : null}
-        </Link>
+        <Tooltip>
+            <TooltipTrigger>
+                <Link
+                    href={href}
+                    className={cn(
+                        sidebarItemVariants({ variant: selectedVariant }),
+                        className
+                    )}
+                    {...props}
+                >
+                    {selectedVariant === 'select' && ActiveIcon ? (
+                        <ActiveIcon />
+                    ) : (
+                        <Icon />
+                    )}
+
+                    {title && variant !== 'icon' ? <p>{title}</p> : null}
+                </Link>
+            </TooltipTrigger>
+            <TooltipContent side='right'>
+                <p>{title}</p>
+            </TooltipContent>
+        </Tooltip>
     )
 }
 
-export { NavbarItem, navbarItemVariants }
+export { SidebarItem, sidebarItemVariants }

@@ -5,17 +5,19 @@ import {
     DialogContent,
     DialogTrigger,
 } from '@/components/ui/dialog'
-import { NavbarItem } from './NavbarItem'
+import { SidebarItem } from './SidebarItem'
 import Image from 'next/image'
 import Link from 'next/link'
 import { links } from '@/utils/listLinks'
 import { usePathname } from 'next/navigation'
-import { useMediaQuery } from '@/utils/useMediaQuery'
+import { useMediaQuery } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 
 export function SideBarMobile({ children }: { children: JSX.Element }) {
     const pathname = usePathname()
-    const mobile = useMediaQuery('(max-width: 768px)')
+    const mobile = useMediaQuery('(max-width: 768px)', false, {
+        getInitialValueInEffect: true,
+    })
     const [open, setOpen] = useState(mobile)
     useEffect(() => {
         if (!mobile) setOpen(false)
@@ -34,7 +36,7 @@ export function SideBarMobile({ children }: { children: JSX.Element }) {
                 </Link>
                 <nav className="w-full h-full flex flex-col p-3 gap-3">
                     {links.map(({ ActiveIcon, href, Icon, title }, index) => (
-                        <NavbarItem
+                        <SidebarItem
                             key={index}
                             href={href}
                             currentPage={pathname}
@@ -48,7 +50,7 @@ export function SideBarMobile({ children }: { children: JSX.Element }) {
                                       )
                                     : undefined
                             }
-                        ></NavbarItem>
+                        ></SidebarItem>
                     ))}
                 </nav>
             </DialogContent>
