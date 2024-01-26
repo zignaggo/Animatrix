@@ -22,11 +22,12 @@ export function AnimeCard({
             onClick={onClick}
         >
             <Image
-                className="absolute z-[0] pointer-events-none select-none"
-                layout="fill"
+                className="absolute z-[0] pointer-events-none select-none object-cover"
+                fill
                 alt="anime-image"
-                objectFit="cover"
+                fetchPriority='high'
                 src={url}
+                priority
             />
             <div className="flex items-start gap-1 p-3 z-[1]">
                 <DubLegBadge type="dub" variant={'default'}>
