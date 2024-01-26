@@ -7,7 +7,7 @@ export default function Layout({
     return (
         <main
             className={
-                'grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-svh bg-background'
+                'grid grid-cols-1 md:grid-cols-[auto_1fr] h-svh bg-background overflow-y-scroll'
             }
         >
             <Sidebar />
