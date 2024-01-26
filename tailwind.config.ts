@@ -78,6 +78,7 @@ const config = {
             },
         },
         colors: {
+            transparent: 'transparent',
             purple: {
                 100: '#D9D9F7',
                 200: '#C0BEF2',
