@@ -1,6 +1,6 @@
 import { FloatInput } from '@/components/inputs/float'
 import { Sidebar } from '@/components/navigation/Sidebar'
-import { cookies, headers } from 'next/headers'
+import { headers } from 'next/headers'
 export default function Layout({
     children,
 }: Readonly<{
@@ -14,12 +14,12 @@ export default function Layout({
             }
         >
             <FloatInput
-                className="absolute top-9 right-10 z-50"
+                className="absolute top-9 right-[50%] translate-x-[50%] sm:translate-x-0 sm:top-9 sm:right-10 z-50"
                 placeholder="Pesquisar"
             />
 
             {mobile !== 'mobile' ? <Sidebar /> : <div>Navbar</div>}
-            <section className="flex flex-grow flex-col items-start justify-between p-10">
+            <section className="flex flex-grow flex-col items-start justify-between p-6 sm:p-10">
                 {children}
             </section>
         </main>
