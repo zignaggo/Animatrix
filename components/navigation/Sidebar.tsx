@@ -5,15 +5,11 @@ import { SidebarItem } from '@/components/navigation/SidebarItem'
 import { usePathname } from 'next/navigation'
 import { links } from '@/utils/listLinks'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useMediaQuery } from '@mantine/hooks'
 export function Sidebar() {
     const pathname = usePathname()
-    const smallerMd = useMediaQuery('(max-width: 768px)', false, {
-        getInitialValueInEffect: true,
-    })
-    return smallerMd ? null : (
-        <header className="hidden md:flex flex-col items-center">
-            <Link href={'/animes'}  className="p-4">
+    return (
+        <header className="flex flex-col items-center">
+            <Link href={'/animes'} className="p-4">
                 <Image
                     src="/icon.svg"
                     priority
