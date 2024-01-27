@@ -1,12 +1,12 @@
 import { FloatInput } from '@/components/inputs/float'
 import { Sidebar } from '@/components/navigation/Sidebar'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 export default function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    const mobile = cookies().get('viewport')
+    const mobile = headers().get('viewport')
     return (
         <main
             className={
@@ -18,7 +18,7 @@ export default function Layout({
                 placeholder="Pesquisar"
             />
 
-            {mobile?.value !== 'mobile' ? <Sidebar /> : <div>Navbar</div>}
+            {mobile !== 'mobile' ? <Sidebar /> : <div>Navbar</div>}
             <section className="flex flex-grow flex-col items-start justify-between p-10">
                 {children}
             </section>

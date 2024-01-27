@@ -14,6 +14,6 @@ export function middleware(request: NextRequest) {
     const viewport =
         device.type && mobile.includes(device.type) ? 'mobile' : 'desktop'
     const response = NextResponse.next()
-    response.cookies.set('viewport', viewport)
+    response.headers.set('viewport', viewport)
     return response
 }
