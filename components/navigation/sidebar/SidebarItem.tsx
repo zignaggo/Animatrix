@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -7,6 +8,8 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { useSelectedLayoutSegment } from 'next/navigation'
+import { IconProps } from '@/components/ui/icons/types'
 const sidebarItemVariants = cva(
     'inline-flex items-center gap-2 w-12 h-12 rounded-md px-3 py-3 w-fit text-base/6 font-semibold transition-colors',
     {
@@ -28,25 +31,26 @@ export interface SidebarItemProps
     extends React.HTMLAttributes<HTMLAnchorElement>,
         LinkProps,
         VariantProps<typeof sidebarItemVariants> {
-    currentPage?: string
-    Icon: () => React.ReactNode
-    ActiveIcon?: () => React.ReactNode
-    title?: string
+    Icon: () => React.ElementType<any, any>
+    ActiveIcon?: () => React.ElementType<any, any>
+    title?: string;
+    mobile?: boolean;
+    tooltipSide?: "right" | "top" | "bottom" | "left"
 }
 
 function SidebarItem({
     className,
     href,
-    currentPage,
     ActiveIcon,
     Icon,
     title,
     variant,
+    tooltipSide = "right",
     ...props
 }: SidebarItemProps) {
-    const selectedVariant = currentPage?.includes(href.toString())
-        ? 'select'
-        : variant
+    const segment = useSelectedLayoutSegment()
+    const isActive = href.toString().includes(segment || ''); 
+    const selectedVariant = isActive ? 'select' : variant
     return (
         <Tooltip>
             <TooltipTrigger>
@@ -63,11 +67,10 @@ function SidebarItem({
                     ) : (
                         <Icon />
                     )}
-
                     {title && variant !== 'icon' ? <p>{title}</p> : null}
                 </Link>
             </TooltipTrigger>
-            <TooltipContent side='right'>
+            <TooltipContent side={tooltipSide}>
                 <p>{title}</p>
             </TooltipContent>
         </Tooltip>

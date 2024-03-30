@@ -118,6 +118,18 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
+"@iconify-icon/react@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@iconify-icon/react/-/react-1.0.8.tgz#bbf1695e7550d8b164ac32644d9f9c06b1fb5dd3"
+  integrity sha512-T8Hzz0cQ+08hboS1KFt5t/lBxwpZZuMNVxld2O7vfarPd6mZt9DRRQiM5RIYfB6hxVNddDuzyxbqqfGcMU27pA==
+  dependencies:
+    iconify-icon "^1.0.8"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
@@ -1802,6 +1814,13 @@ hasown@^2.0.0:
   integrity sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==
   dependencies:
     function-bind "^1.1.2"
+
+iconify-icon@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/iconify-icon/-/iconify-icon-1.0.8.tgz#ad7a36731dca0da0204e488ef0b9ebdad2a7d760"
+  integrity sha512-jvbUKHXf8EnGGArmhlP2IG8VqQLFFyTvTqb9LVL2TKTh7/eCCD1o2HHE9thpbJJb6B8hzhcFb6rOKhvo7reNKA==
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 ignore@^5.2.0:
   version "5.3.0"

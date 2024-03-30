@@ -26,7 +26,9 @@ export function AnimeCard({
                 fill
                 alt="anime-image"
                 fetchPriority='high'
+                quality={100}
                 src={url}
+                sizes='(max-width: 768px) 150px, 350px'
                 priority
             />
             <div className="flex items-start gap-1 p-2 sm:p-3 z-[1]">

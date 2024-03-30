@@ -3,8 +3,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { CloseLine, SearchThreeLine } from '@/components/ui/icons'
-import { useKeyDown } from '@/utils/useKeyListener'
-
+import { useEffect } from 'react'
 export interface FloatInput
     extends React.InputHTMLAttributes<HTMLInputElement> {
     onSearchClick?: (...rest: any) => unknown
@@ -13,9 +12,18 @@ export interface FloatInput
 
 const FloatInput = React.forwardRef<HTMLInputElement, FloatInput>(
     ({ onCleanClick, onSearchClick, className, type, ...props }, ref) => {
-        useKeyDown('ControlLeft', () => console.log('ControlLeft'))
-        useKeyDown('ControlRight', () => console.log('ControlRight'))
-        useKeyDown('KeyK', () => console.log('KeyK'))
+        const [open, setOpen] = React.useState(false)
+
+        useEffect(() => {
+            const down = (e: KeyboardEvent) => {
+                if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+                    e.preventDefault()
+                    setOpen((open) => !open)
+                }
+            }
+            document.addEventListener('keydown', down)
+            return () => document.removeEventListener('keydown', down)
+        }, [])
         return (
             <div
                 className={cn(
@@ -29,7 +37,12 @@ const FloatInput = React.forwardRef<HTMLInputElement, FloatInput>(
                     ref={ref}
                     {...props}
                 />
-                <Button className='invisible group-focus-within:visible' variant={'text'} size={'icon'} onClick={onCleanClick}>
+                <Button
+                    className="invisible group-focus-within:visible"
+                    variant={'text'}
+                    size={'icon'}
+                    onClick={onCleanClick}
+                >
                     <CloseLine width={'20px'} />
                 </Button>
                 <Button variant={'text'} size={'icon'} onClick={onSearchClick}>
