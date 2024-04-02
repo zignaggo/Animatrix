@@ -23,7 +23,7 @@ export default async function Layout({
             )}
 
             {mobile !== 'mobile' ? <Sidebar.Root /> : <Navbar/>}
-            <section className="flex flex-grow flex-col items-start justify-between p-6 sm:p-10">
+            <section className="flex flex-grow flex-col items-start justify-between">
                 {children}
             </section>
             {mobile === 'mobile' && <FooterBar/>}
