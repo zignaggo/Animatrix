@@ -12,7 +12,7 @@ export default async function Layout({
     return (
         <main
             className={
-                'grid grid-rows-[auto_1fr_auto] grid-cols-1 md:grid-cols-[auto_1fr] md:grid-rows-1 h-svh bg-background overflow-y-scroll'
+                'grid grid-rows-[auto_1fr_auto] grid-cols-1 md:grid-cols-[auto_1fr] md:grid-rows-1 h-svh bg-background'
             }
         >
             {mobile !== 'mobile' && (
@@ -23,7 +23,7 @@ export default async function Layout({
             )}
 
             {mobile !== 'mobile' ? <Sidebar.Root /> : <Navbar/>}
-            <section className="flex flex-grow flex-col items-start justify-between">
+            <section className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll">
                 {children}
             </section>
             {mobile === 'mobile' && <FooterBar/>}
