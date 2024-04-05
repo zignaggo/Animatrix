@@ -2,8 +2,9 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { CloseLine, SearchThreeLine } from '@/components/ui/icons'
 import { useEffect } from 'react'
+import { IconButton } from '../ui/icon-button'
+import Icon from '../ui/icons'
 export interface FloatInput
     extends React.InputHTMLAttributes<HTMLInputElement> {
     onSearchClick?: (...rest: any) => unknown
@@ -37,17 +38,16 @@ const FloatInput = React.forwardRef<HTMLInputElement, FloatInput>(
                     ref={ref}
                     {...props}
                 />
-                <Button
+                <IconButton
                     className="invisible group-focus-within:visible"
                     variant={'text'}
-                    size={'icon'}
                     onClick={onCleanClick}
                 >
-                    <CloseLine width={'20px'} />
-                </Button>
-                <Button variant={'text'} size={'icon'} onClick={onSearchClick}>
-                    <SearchThreeLine width={'20px'} />
-                </Button>
+                    <Icon width={'20px'} icon={'CloseLine'} />
+                </IconButton>
+                <IconButton variant={'text'} onClick={onSearchClick}>
+                    <Icon width={'20px'} icon={'SearchThreeLine'} />
+                </IconButton>
             </div>
         )
     }

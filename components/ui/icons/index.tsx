@@ -1,14 +1,59 @@
-export { default as TvTwoFill } from "./TvTwoFill"
-export { default as TvTwoLine } from "./TvTwoLine"
-export { default as HeartLine } from "./HeartLine"
-export { default as LoveLine } from "./LoveLine"
-export { default as LoveFill } from "./LoveFill"
-export { default as CalendarLine } from "./CalendarLine"
-export { default as CalendarFill } from "./CalendarFill"
-export { default as TvOneFill } from "./TvOneFill"
-export { default as TvOneLine } from "./TvOneLine"
-export { default as PaperLine } from "./PaperLine"
-export { default as PaperFill } from "./PaperFill"
-export { default as NotificationLine } from "./NotificationLine"
-export { default as SearchThreeLine } from "./SearchThreeLine"
-export { default as CloseLine } from "./CloseLine"
+import { SVGAttributes } from 'react'
+import TvTwoFill from './TvTwoFill'
+import TvTwoLine from './TvTwoLine'
+import HeartLine from './HeartLine'
+import LoveLine from './LoveLine'
+import LoveFill from './LoveFill'
+import CalendarLine from './CalendarLine'
+import CalendarFill from './CalendarFill'
+import TvOneFill from './TvOneFill'
+import TvOneLine from './TvOneLine'
+import PaperLine from './PaperLine'
+import PaperFill from './PaperFill'
+import NotificationLine from './NotificationLine'
+import SearchThreeLine from './SearchThreeLine'
+import CloseLine from './CloseLine'
+
+export type IconType =
+    | 'TvTwoFill'
+    | 'TvTwoLine'
+    | 'HeartLine'
+    | 'LoveLine'
+    | 'LoveFill'
+    | 'CalendarLine'
+    | 'CalendarFill'
+    | 'TvOneFill'
+    | 'TvOneLine'
+    | 'PaperLine'
+    | 'PaperFill'
+    | 'NotificationLine'
+    | 'SearchThreeLine'
+    | 'CloseLine'
+
+export interface IconProps extends SVGAttributes<SVGElement> {
+    children?: never
+    color?: string
+    icon: IconType
+}
+const Icon = (props: IconProps) => {
+    const { icon, ...svgProps } = props
+    const Icons: Record<IconProps['icon'], any> = {
+        TvTwoFill: <TvTwoFill {...svgProps} />,
+        TvTwoLine: <TvTwoLine {...svgProps} />,
+        HeartLine: <HeartLine {...svgProps} />,
+        LoveLine: <LoveLine {...svgProps} />,
+        LoveFill: <LoveFill {...svgProps} />,
+        CalendarLine: <CalendarLine {...svgProps} />,
+        CalendarFill: <CalendarFill {...svgProps} />,
+        TvOneFill: <TvOneFill {...svgProps} />,
+        TvOneLine: <TvOneLine {...svgProps} />,
+        PaperLine: <PaperLine {...svgProps} />,
+        PaperFill: <PaperFill {...svgProps} />,
+        NotificationLine: <NotificationLine {...svgProps} />,
+        SearchThreeLine: <SearchThreeLine {...svgProps} />,
+        CloseLine: <CloseLine {...svgProps} />,
+    }
+    return Icons[icon]
+}
+
+export default Icon

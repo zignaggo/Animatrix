@@ -1,33 +1,39 @@
-import { LoveLine, TvTwoFill, TvTwoLine, LoveFill, CalendarLine, CalendarFill, TvOneFill, TvOneLine, PaperLine, PaperFill } from '@/components/ui/icons'
-export const links = [
+import { IconType } from "@/components/ui/icons"
+
+export const links: {
+    href: string
+    defaultIcon: IconType
+    activeIcon: IconType
+    title: string
+}[] = [
     {
-        href: '/animes',
-        Icon: TvTwoLine,
-        ActiveIcon: TvTwoFill,
-        title: 'Animes'
+        href: 'animes',
+        defaultIcon: 'TvTwoLine',
+        activeIcon: 'TvTwoFill',
+        title: 'Animes',
     },
     {
-        href: '/kdrama',
-        Icon: LoveLine,
-        ActiveIcon: LoveFill,
-        title: 'Doramas'
+        href: 'kdrama',
+        defaultIcon: 'LoveLine',
+        activeIcon: 'LoveFill',
+        title: 'Doramas',
     },
     {
-        href: '/calendar',
-        Icon: CalendarLine,
-        ActiveIcon: CalendarFill,
-        title: 'Calendário'
+        href: 'calendar',
+        defaultIcon: 'CalendarLine',
+        activeIcon: 'CalendarFill',
+        title: 'Calendário',
     },
     {
-        href: '/movies',
-        Icon: TvOneLine,
-        ActiveIcon: TvOneFill,
-        title: 'Filmes'
+        href: 'movies',
+        defaultIcon: 'TvOneLine',
+        activeIcon: 'TvOneFill',
+        title: 'Filmes',
     },
     {
-        href: '/mangas',
-        Icon: PaperLine,
-        ActiveIcon: PaperFill,
-        title: 'Mangás'
+        href: 'mangas',
+        defaultIcon: 'PaperLine',
+        activeIcon: 'PaperFill',
+        title: 'Mangás',
     },
 ]

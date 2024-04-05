@@ -20,9 +20,9 @@ const buttonVariants = cva(
                 success: 'bg-lemon-700 hover:bg-lemon-800 active:bg-lemon-900',
             },
             size: {
-                sm: 'h-7 rounded-md text-xs px-4',
-                default: 'h-10 px-4 py-2',
-                lg: 'h-12 rounded-md px-6 text-md',
+                sm: 'w-8 h-8 rounded-md text-xs',
+                default: 'w-10 h-10 rounded-md',
+                lg: 'w-12 h-12 rounded-md text-md',
             },
         },
         defaultVariants: {
@@ -32,13 +32,13 @@ const buttonVariants = cva(
     }
 )
 
-export interface ButtonProps
+export interface IconButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof buttonVariants> {
     asChild?: boolean,
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     ({ className, variant, size, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button'
         return (
@@ -50,6 +50,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )
     }
 )
-Button.displayName = 'Button'
+IconButton.displayName = 'IconButton'
 
-export { Button, buttonVariants }
+export { IconButton, buttonVariants }

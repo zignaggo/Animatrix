@@ -1,6 +1,5 @@
 'use client'
 import { Sidebar } from '../sidebar'
-import { HeartLine, LoveFill } from '@/components/ui/icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 export function Navbar() {
     return (
@@ -14,15 +13,15 @@ export function Navbar() {
                     href="favorite"
                     title="Favoritos"
                     variant="icon"
-                    Icon={() => <HeartLine />}
-                    ActiveIcon={() => <LoveFill/>}
+                    defaultIcon={"HeartLine"}
+                    activeIcon={"LoveFill"}
                 />
                 <Sidebar.Item
                     href="notification"
                     title="Notificações"
                     variant="icon"
-                    Icon={() => <HeartLine />}
-                    ActiveIcon={() => <LoveFill/>}
+                    defaultIcon={"HeartLine"}
+                    activeIcon={"LoveFill"}
                 />
             </nav>
         </header>

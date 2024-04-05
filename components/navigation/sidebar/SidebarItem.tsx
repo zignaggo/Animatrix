@@ -9,7 +9,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import { IconProps } from '@/components/ui/icons/types'
+import Icon, { IconType } from '@/components/ui/icons'
 const sidebarItemVariants = cva(
     'inline-flex items-center gap-2 w-12 h-12 rounded-md px-3 py-3 w-fit text-base/6 font-semibold transition-colors',
     {
@@ -31,25 +31,25 @@ export interface SidebarItemProps
     extends React.HTMLAttributes<HTMLAnchorElement>,
         LinkProps,
         VariantProps<typeof sidebarItemVariants> {
-    Icon: () => React.ElementType<any, any>
-    ActiveIcon?: () => React.ElementType<any, any>
-    title?: string;
-    mobile?: boolean;
-    tooltipSide?: "right" | "top" | "bottom" | "left"
+    defaultIcon: IconType
+    activeIcon?: IconType
+    title?: string
+    mobile?: boolean
+    tooltipSide?: 'right' | 'top' | 'bottom' | 'left'
 }
 
 function SidebarItem({
     className,
     href,
-    ActiveIcon,
-    Icon,
+    activeIcon,
+    defaultIcon,
     title,
     variant,
-    tooltipSide = "right",
+    tooltipSide = 'right',
     ...props
 }: SidebarItemProps) {
     const segment = useSelectedLayoutSegment()
-    const isActive = href.toString().includes(segment || ''); 
+    const isActive = href.toString().includes(segment || '')
     const selectedVariant = isActive ? 'select' : variant
     return (
         <Tooltip>
@@ -62,11 +62,13 @@ function SidebarItem({
                     )}
                     {...props}
                 >
-                    {selectedVariant === 'select' && ActiveIcon ? (
-                        <ActiveIcon />
-                    ) : (
-                        <Icon />
-                    )}
+                    <Icon
+                        icon={
+                            selectedVariant === 'select' && activeIcon
+                                ? activeIcon
+                                : defaultIcon
+                        }
+                    />
                     {title && variant !== 'icon' ? <p>{title}</p> : null}
                 </Link>
             </TooltipTrigger>

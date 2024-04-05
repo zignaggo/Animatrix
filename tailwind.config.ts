@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-
+import plugin from 'tailwindcss/plugin'
 const config = {
     darkMode: ['class'],
     content: [
@@ -76,6 +76,11 @@ const config = {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
             },
+            textShadow: {
+                sm: '2px 1px 1px rgb(var(--black-900))',
+                DEFAULT: '2px 2px 4px rgb(var(--black-900))',
+                lg: '4px 8px 16px rgb(var(--black-900))',
+            },
         },
         colors: {
             transparent: 'transparent',
@@ -132,7 +137,19 @@ const config = {
             white: '#FAFAFF',
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [
+        require('tailwindcss-animate'),
+        plugin(({ matchUtilities, theme }) => {
+            matchUtilities(
+                {
+                    'text-shadow': (value) => ({
+                        textShadow: value,
+                    }),
+                },
+                { values: theme('textShadow') }
+            )
+        }),
+    ],
 } satisfies Config
 
 export default config
