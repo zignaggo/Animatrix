@@ -6,6 +6,8 @@ type AnimeCardProps = {
     subtitle: string
     highlight: string
     url: string
+    sub?: boolean
+    dub?: boolean
     onClick?: () => unknown
 }
 
@@ -15,6 +17,8 @@ export function AnimeCard({
     url,
     highlight,
     onClick,
+    sub,
+    dub
 }: AnimeCardProps) {
     return (
         <div
@@ -25,22 +29,28 @@ export function AnimeCard({
                 className="absolute z-[0] pointer-events-none select-none object-cover"
                 fill
                 alt="anime-image"
-                fetchPriority='high'
+                fetchPriority="high"
                 quality={100}
                 src={url}
-                sizes='(max-width: 768px) 150px, 350px'
+                sizes="(max-width: 768px) 150px, 350px"
                 priority
             />
             <div className="flex items-start gap-1 p-2 sm:p-3 z-[1]">
-                <DubLegBadge type="dub" variant={'default'}>
-                    DUB
-                </DubLegBadge>
-                <DubLegBadge type="leg">LEG</DubLegBadge>
+                {dub && (
+                    <DubLegBadge type="dub" variant={'default'}>
+                        DUB
+                    </DubLegBadge>
+                )}
+                {sub && <DubLegBadge type="leg">LEG</DubLegBadge>}
             </div>
             <div className="flex flex-col p-2 sm:p-3 items-start justify-end min-h-[80px] sm:min-h-[120px] w-full bg-gradient-to-t from-black-950 from-10% select-none z-[1]">
-                <h4 className="w-full text-xs/4 sm:text-lg/6  font-bold text-ellipsis line-clamp-2">{title}</h4>
+                <h4 className="w-full text-xs/4 sm:text-lg/6  font-bold text-ellipsis line-clamp-2">
+                    {title}
+                </h4>
                 <div className="text-[10px] sm:text-base/6 flex justify-between w-full">
-                    <p className="text-black-400 text-ellipsis line-clamp-1">{subtitle}</p>
+                    <p className="text-black-400 text-ellipsis line-clamp-1">
+                        {subtitle}
+                    </p>
                     <p className="text-lemon-300">{highlight}</p>
                 </div>
             </div>

@@ -1,8 +1,7 @@
-import { AnimeCard } from '@/components/cards/anime'
-import Image from 'next/image'
 import Banner from './banner'
+import ListAnimes from './ListAnimes'
 
-export default function Animes() {
+export default async function Animes() {
     return (
         <section className="w-full flex flex-col">
             <Banner
@@ -12,38 +11,7 @@ export default function Animes() {
                 avaliation={2}
             />
             <section className="flex flex-wrap justify-center sm:justify-start gap-6 sm:gap-4 w-full p-6 sm:p-10">
-                <AnimeCard
-                    title="Vinland Sadasdadsddsadasdsadasdsdd  dsad sadasdasdga 2"
-                    subtitle={'Temporada 2'}
-                    highlight={'12 eps'}
-                    url={
-                        'https://br.web.img3.acsta.net/pictures/19/09/16/17/09/4903250.jpg'
-                    }
-                />
-                <AnimeCard
-                    title="Vinland Saga 2"
-                    subtitle={'Temporada 2'}
-                    highlight={'12 eps'}
-                    url={
-                        'https://br.web.img3.acsta.net/pictures/19/09/16/17/09/4903250.jpg'
-                    }
-                />
-                <AnimeCard
-                    title="Vinland Saga 2"
-                    subtitle={'Temporada 2'}
-                    highlight={'12 eps'}
-                    url={
-                        'https://br.web.img3.acsta.net/pictures/19/09/16/17/09/4903250.jpg'
-                    }
-                />
-                <AnimeCard
-                    title="Vinland Saga 2"
-                    subtitle={'Temporada 2'}
-                    highlight={'12 eps'}
-                    url={
-                        'https://br.web.img3.acsta.net/pictures/19/09/16/17/09/4903250.jpg'
-                    }
-                />
+                <ListAnimes anime='dragon_ball' page={1}/>
             </section>
         </section>
     )
