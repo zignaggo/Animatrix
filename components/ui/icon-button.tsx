@@ -12,11 +12,11 @@ const buttonVariants = cva(
                 default:
                     'bg-primary text-primary-foreground hover:bg-purple-800 active:bg-purple-999',
                 secondary:
-                    'bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70',
+                    'bg-secondary text-secondary-foreground hover:bg-black-700 active:bg-black-600',
                 outline:
                     'border-2 border-purple-500 bg-background hover:bg-purple-600 active:bg-purple-999 hover:text-accent-foreground',
                 danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/80 active:bg-destructive/70',
-                text: 'hover:bg-black-800/40 active:bg-black-800/50',
+                text: 'hover:bg-black-800 active:bg-black-700',
                 success: 'bg-lemon-700 hover:bg-lemon-800 active:bg-lemon-900',
             },
             size: {

@@ -3,6 +3,7 @@ import { IconButton } from '@/components/ui/icon-button'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icons'
 import Image from 'next/image'
+import { Toggle } from '@/components/ui/toggle'
 
 interface Banner {
     image: string
@@ -32,19 +33,27 @@ export default function Banner({ title, description, image }: Banner) {
                         </p>
                         <h1 className="text-h3">{title}</h1>
                     </div>
-                    <p className="text-subtitle-2 max-w-[750px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
+                    <p className="text-subtitle-2 max-w-[600px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
                         {description}
                     </p>
                     <div className="flex items-center gap-2">
                         <Button size={'lg'} className="w-fit">
                             Assitir Agora <Icon icon="TvTwoLine" />
                         </Button>
-                        <IconButton size={'lg'} variant={'secondary'}>
+                        <Toggle
+                            size={'lg'}
+                            variant={'secondary'}
+                            activeIcon={<Icon icon="LoveFill" color='rgb(var(--error))'/>}
+                        >
                             <Icon icon="HeartLine" />
-                        </IconButton>
-                        <IconButton size={'lg'} variant={'secondary'}>
-                            <Icon icon="TvTwoLine" />
-                        </IconButton>
+                        </Toggle>
+                        <Toggle
+                            size={'lg'}
+                            variant={'secondary'}
+                            activeIcon={<Icon icon="NotificationOffLine" />}
+                        >
+                            <Icon icon="NotificationLine" />
+                        </Toggle>
                     </div>
                 </div>
             </section>

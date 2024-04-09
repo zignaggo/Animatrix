@@ -4,6 +4,10 @@ import Link from 'next/link'
 import { SidebarItem } from '@/components/navigation/sidebar/SidebarItem'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { links } from '@/utils/listLinks'
+import { Toggle } from '@/components/ui/toggle'
+import Icon from '@/components/ui/icons'
+import { Button } from '@/components/ui/button'
+import { IconButton } from '@/components/ui/icon-button'
 export function SidebarRoot() {
     return (
         <header className="flex flex-col items-center">
@@ -30,9 +34,19 @@ export function SidebarRoot() {
                     )
                 )}
             </nav>
-            <div className="p-4">
+            <div className="flex flex-col gap-4 py-4 items-center">
+                <IconButton variant={'text'} size={'lg'}>
+                    <Icon icon="NotificationLine" />
+                </IconButton>
+                <SidebarItem
+                    href={'/favorite'}
+                    title={'Favoritos'}
+                    variant="icon"
+                    defaultIcon={'HeartLine'}
+                    activeIcon={'HeartLine'}
+                />
                 <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
             </div>

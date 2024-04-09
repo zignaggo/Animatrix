@@ -1,3 +1,3 @@
-export default function Favorite() {
-    return <div>Favorite</div>
+export default function Notification() {
+    return <div>Notification</div>
 }

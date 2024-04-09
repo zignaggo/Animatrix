@@ -24,7 +24,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <NextTopLoader color='#602DE7' shadow={'0 0 20px #fff,0 0 10px #fff'} height={4}/>
+                    <NextTopLoader color='#602DE7' shadow={'0 0 20px #fff,0 0 10px #fff'} height={4} showSpinner={false} />
                     <TooltipProvider delayDuration={500}>{children}</TooltipProvider>
                 </ThemeProvider>
             </body>
