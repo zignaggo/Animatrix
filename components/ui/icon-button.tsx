@@ -18,6 +18,7 @@ const buttonVariants = cva(
                 danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/80 active:bg-destructive/70',
                 text: 'hover:bg-black-800 active:bg-black-700',
                 success: 'bg-lemon-700 hover:bg-lemon-800 active:bg-lemon-900',
+                unstyle: 'bg-transparent',
             },
             size: {
                 sm: 'w-8 h-8 rounded-md text-xs',

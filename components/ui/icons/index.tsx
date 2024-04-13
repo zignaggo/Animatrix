@@ -14,6 +14,10 @@ import NotificationLine from './NotificationLine'
 import SearchThreeLine from './SearchThreeLine'
 import CloseLine from './CloseLine'
 import NotificationOffLine from './NotificationOffLine'
+import NotificationFill from './NotificationFill'
+import HeartFill from './HeartFill'
+import RightLine from './RightLine'
+import LeftLine from './LeftLine'
 
 export type IconType =
     | 'TvTwoFill'
@@ -31,6 +35,10 @@ export type IconType =
     | 'SearchThreeLine'
     | 'CloseLine'
     | 'NotificationOffLine'
+    | 'NotificationFill'
+    | 'HeartFill'
+    | 'RightLine'
+    | 'LeftLine'
 
 export interface IconProps extends SVGAttributes<SVGElement> {
     children?: never
@@ -55,6 +63,10 @@ const Icon = (props: IconProps) => {
         SearchThreeLine: <SearchThreeLine {...svgProps} />,
         CloseLine: <CloseLine {...svgProps} />,
         NotificationOffLine: <NotificationOffLine {...svgProps} />,
+        NotificationFill: <NotificationFill {...svgProps} />,
+        HeartFill: <HeartFill {...svgProps} />,
+        RightLine: <RightLine {...svgProps} />,
+        LeftLine: <LeftLine {...svgProps} />,
     }
     return Icons[icon]
 }

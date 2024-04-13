@@ -1,5 +1,5 @@
-import Banner from './banner'
-import ListAnimes from './ListAnimes'
+import CategoryAnime from '@/components/pages/animes/category-anime'
+import Banner from '@/components/pages/animes/banner'
 
 export default async function Animes() {
     return (
@@ -11,7 +11,8 @@ export default async function Animes() {
                 avaliation={2}
             />
             <section className="flex flex-wrap justify-center sm:justify-start gap-6 sm:gap-4 w-full p-6 sm:p-10">
-                <ListAnimes anime='dragon_ball' page={1}/>
+                <CategoryAnime category="romance" />
+                <CategoryAnime category="action" title="Ação" />
             </section>
         </section>
     )

@@ -1,5 +1,4 @@
 import { Header } from '@/components/navigation/Header'
-import { IconButton } from '@/components/ui/icon-button'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icons'
 import Image from 'next/image'
@@ -43,14 +42,24 @@ export default function Banner({ title, description, image }: Banner) {
                         <Toggle
                             size={'lg'}
                             variant={'secondary'}
-                            activeIcon={<Icon icon="LoveFill" color='rgb(var(--error))'/>}
+                            activeIcon={
+                                <Icon
+                                    icon="HeartFill"
+                                    color="rgb(var(--error))"
+                                />
+                            }
                         >
                             <Icon icon="HeartLine" />
                         </Toggle>
                         <Toggle
                             size={'lg'}
                             variant={'secondary'}
-                            activeIcon={<Icon icon="NotificationOffLine" />}
+                            activeIcon={
+                                <Icon
+                                    icon="NotificationFill"
+                                    color="rgb(var(--lemon-500))"
+                                />
+                            }
                         >
                             <Icon icon="NotificationLine" />
                         </Toggle>
