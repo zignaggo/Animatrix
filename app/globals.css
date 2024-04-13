@@ -132,28 +132,28 @@
     .text-h5 {
         @apply font-semibold text-[1.125rem] leading-[26px];
     }
-    .subtitle-1 {
+    .text-subtitle-1 {
         @apply text-[1.5rem] leading-8;
     }
-    .subtitle-2 {
+    .text-subtitle-2 {
         @apply text-[1.125rem] leading-[26px];
     }
-    .p-1 {
+    .text-p-1 {
         @apply text-[1rem] leading-6;
     }
-    .p-2 {
+    .text-p-2 {
         @apply font-medium text-[1rem] leading-6;
     }
-    .p-3 {
+    .text-p-3 {
         @apply text-[0.878rem] leading-6;
     }
-    .p-4 {
+    .text-p-4 {
         @apply font-medium text-[0.878rem] leading-6;
     }
-    .p-5 {
+    .text-p-5 {
         @apply text-[0.75rem] leading-5;
     }
-    .p-6 {
+    .text-p-6 {
         @apply font-medium text-[0.75rem] leading-5;
     }
 }

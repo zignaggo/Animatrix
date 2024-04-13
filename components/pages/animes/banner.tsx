@@ -1,8 +1,14 @@
+'use client'
 import { Header } from '@/components/navigation/Header'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icons'
 import Image from 'next/image'
 import { Toggle } from '@/components/ui/toggle'
+import {
+    TooltipTrigger,
+    TooltipContent,
+    Tooltip,
+} from '@/components/ui/tooltip'
 
 interface Banner {
     image: string
@@ -14,7 +20,7 @@ interface Banner {
 
 export default function Banner({ title, description, image }: Banner) {
     return (
-        <section className="w-full md:aspect-video  h-fit md:max-h-[70svh] min-h-[50svh] relative banner-shadow main-banner">
+        <section className="w-full md:aspect-video h-fit md:max-h-[70svh] min-h-[50svh] relative banner-shadow main-banner">
             <Image
                 src={image}
                 alt="banner"
@@ -23,7 +29,7 @@ export default function Banner({ title, description, image }: Banner) {
                 className="object-cover"
                 priority
             />
-            <section className="relative h-fit z-[2] text-gray-100 p-10">
+            <section className="relative h-fit z-[2] text-gray-100 p-6 sm:p-10">
                 <Header title="Animes" subtitle="Principal" />
                 <div className="flex flex-col gap-6 mt-6">
                     <div>
@@ -39,30 +45,40 @@ export default function Banner({ title, description, image }: Banner) {
                         <Button size={'lg'} className="w-fit">
                             Assitir Agora <Icon icon="TvTwoLine" />
                         </Button>
-                        <Toggle
-                            size={'lg'}
-                            variant={'secondary'}
-                            activeIcon={
-                                <Icon
-                                    icon="HeartFill"
-                                    color="rgb(var(--error))"
-                                />
-                            }
-                        >
-                            <Icon icon="HeartLine" />
-                        </Toggle>
-                        <Toggle
-                            size={'lg'}
-                            variant={'secondary'}
-                            activeIcon={
-                                <Icon
-                                    icon="NotificationFill"
-                                    color="rgb(var(--lemon-500))"
-                                />
-                            }
-                        >
-                            <Icon icon="NotificationLine" />
-                        </Toggle>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Toggle
+                                    size={'lg'}
+                                    variant={'secondary'}
+                                    activeIcon={
+                                        <Icon
+                                            icon="HeartFill"
+                                            color="rgb(var(--error))"
+                                        />
+                                    }
+                                >
+                                    <Icon icon="HeartLine" />
+                                </Toggle>
+                            </TooltipTrigger>
+                            <TooltipContent>Favoritar</TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Toggle
+                                    size={'lg'}
+                                    variant={'secondary'}
+                                    activeIcon={
+                                        <Icon
+                                            icon="NotificationFill"
+                                            color="rgb(var(--lemon-500))"
+                                        />
+                                    }
+                                >
+                                    <Icon icon="NotificationLine" />
+                                </Toggle>
+                            </TooltipTrigger>
+                            <TooltipContent>Notificar</TooltipContent>
+                        </Tooltip>
                     </div>
                 </div>
             </section>
