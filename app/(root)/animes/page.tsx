@@ -1,6 +1,6 @@
-import Banner from './banner'
-import ListAnimes from './ListAnimes'
-
+import Banner from '@/containers/animes/banner'
+import CategoryAnime from '@/containers/animes/category-anime'
+import { Suspense } from 'react'
 export default async function Animes() {
     return (
         <section className="w-full flex flex-col">
@@ -10,8 +10,9 @@ export default async function Animes() {
                 description="Solo Leveling é uma adaptação de uma webtoon sul-coreana de mesmo nome, idealizada por Chugong e lançada em 2016, que conquistou milhões de fãs ao redor do mundo. Ou seja, a obra já tinha muitos fãs antes mesmo de virar anime e a ansiedade por parte dos leitores para ver Solo Leveling nas telinhas era enorme"
                 avaliation={2}
             />
-            <section className="flex flex-wrap justify-center sm:justify-start gap-6 sm:gap-4 w-full p-6 sm:p-10">
-                <ListAnimes anime='dragon_ball' page={1}/>
+            <section className="flex flex-wrap justify-center sm:justify-start gap-8 sm:gap-4 w-full p-6 sm:p-10">
+                <CategoryAnime category="romance" />
+                <CategoryAnime category="Action" title="Ação" />
             </section>
         </section>
     )
