@@ -5,7 +5,7 @@ type AnimeCardProps = {
     title: string
     subtitle: string
     highlight: string
-    image: string
+    image?: string
     sub?: boolean
     dub?: boolean
     onClick?: () => unknown
@@ -31,7 +31,7 @@ export function AnimeCard({
                 alt="anime-image"
                 fetchPriority="high"
                 quality={100}
-                src={image}
+                src={image || ''}
                 sizes="(max-width: 768px) 150px, 350px"
                 priority
             />

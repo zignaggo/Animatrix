@@ -1,4 +1,5 @@
 import { AnimeCard } from '@/components/cards/anime'
+import { IAnimeResult } from '@consumet/extensions';
 import {
     Carousel,
     CarouselContent,
@@ -6,46 +7,33 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/components/ui/carousel'
-import { ANIME } from '@consumet/extensions'
 
-async function getAnimes(category: string) {
-    const searchEngine = new ANIME.Gogoanime()
-    const response = await searchEngine.fetchGenreInfo(category)
-    return response
+type CategoryAnimeProps = {
+    category: string;
+    animes: IAnimeResult[]
 }
-
-type CategoryAnimeProps = { category: string; title?: string }
-
-export default async function CategoryAnime({
-    category,
-    title,
-}: CategoryAnimeProps) {
-    const response = await getAnimes(category)
+export default function CategoryAnime({ animes, category }: CategoryAnimeProps) {
     return (
         <section className="w-full">
-            <h1 className="text-h3 capitalize">{title || category}</h1>
+            <h1 className="text-h3 capitalize">{category}</h1>
             <Carousel
                 className="w-full"
                 opts={{
                     axis: 'x',
-                    breakpoints: { '767px': { containScroll: 'trimSnaps' } },
                     dragFree: true,
                     startIndex: 0,
                 }}
             >
-                <CarouselContent className='pl-1'>
-                    {response.results.map((anime, i) => (
-                        <CarouselItem
-                            className="basis-62 py-2"
-                            key={anime.id}
-                        >
+                <CarouselContent className="pl-1">
+                    {animes.map((anime) => (
+                        <CarouselItem className="basis-62 py-2" key={anime.id}>
                             <AnimeCard
                                 title={anime.title.toString()}
                                 subtitle={
-                                    anime.releaseDate?.split(':')[1] || ''
+                                    anime.subtitle
                                 }
-                                highlight={anime.subOrDub}
-                                image={anime.image || ''}
+                                highlight={anime.highlight}
+                                image={anime.image}
                                 sub={anime.subOrDub === 'sub'}
                                 dub={anime.subOrDub === 'dub'}
                             />
