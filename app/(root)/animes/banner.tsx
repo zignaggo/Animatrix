@@ -50,9 +50,9 @@ export default function Banner({ title, description, image }: Banner) {
                         <Toggle
                             size={'lg'}
                             variant={'secondary'}
-                            activeIcon={<Icon icon="NotificationLine" />}
+                            activeIcon={<Icon icon="NotificationOffLine" />}
                         >
-                            <Icon icon="NotificationOffLine" />
+                            <Icon icon="NotificationLine" />
                         </Toggle>
                     </div>
                 </div>
