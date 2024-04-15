@@ -11,7 +11,9 @@ export default async function Animes() {
                 avaliation={2}
             />
             <section className="flex flex-wrap justify-center sm:justify-start gap-6 sm:gap-4 w-full p-6 sm:p-10">
-                <Categories categories={['action', 'adventure', 'drama', 'romance']}/>
+                <Categories
+                    categories={['romance', 'action', 'adventure', 'drama']}
+                />
             </section>
         </section>
     )

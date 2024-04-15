@@ -13,5 +13,7 @@ export const genders = {
     'slice of life': 'slice of life',
     'sports': 'esportes',
     'supernatural': 'sobrenatural',
-    'thriller': 'thriller'
+    'thriller': 'thriller',
+    'yaoi': 'yaoi',
+    'yuri': 'yuri'
 };

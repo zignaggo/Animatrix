@@ -1,5 +1,5 @@
 import { AnimeCard } from '@/components/cards/anime'
-import { IAnimeResult } from '@consumet/extensions';
+import { IAnimeResult } from '@consumet/extensions'
 import {
     Carousel,
     CarouselContent,
@@ -9,13 +9,23 @@ import {
 } from '@/components/ui/carousel'
 
 type CategoryAnimeProps = {
-    category: string;
+    category: string
     animes: IAnimeResult[]
+    total?: number
 }
-export default function CategoryAnime({ animes, category }: CategoryAnimeProps) {
+export default function CategoryAnime({
+    animes,
+    category,
+    total,
+}: CategoryAnimeProps) {
     return (
         <section className="w-full">
-            <h1 className="text-h3 capitalize">{category}</h1>
+            <div className="flex gap-2 items-center">
+                <h1 className="text-h3 capitalize">{category}</h1>
+                {total && (
+                    <h1 className="text-subtitle-2 text-gray-400">{total}</h1>
+                )}
+            </div>
             <Carousel
                 className="w-full"
                 opts={{
@@ -24,18 +34,25 @@ export default function CategoryAnime({ animes, category }: CategoryAnimeProps) 
                     startIndex: 0,
                 }}
             >
-                <CarouselContent className="pl-1">
+                <CarouselContent className="px-1 py-2">
                     {animes.map((anime) => (
-                        <CarouselItem className="basis-62 py-2" key={anime.id}>
+                        <CarouselItem
+                            className={'basis-62'}
+                            key={anime.id}
+                        >
                             <AnimeCard
                                 title={anime.title.toString()}
-                                subtitle={
-                                    anime.subtitle
-                                }
+                                subtitle={anime.subtitle}
                                 highlight={anime.highlight}
                                 image={anime.image}
-                                sub={anime.subOrDub === 'sub'}
-                                dub={anime.subOrDub === 'dub'}
+                                sub={anime.title
+                                    .toString()
+                                    .toLowerCase()
+                                    .includes('sub')}
+                                dub={anime.title
+                                    .toString()
+                                    .toLowerCase()
+                                    .includes('dub')}
                             />
                         </CarouselItem>
                     ))}

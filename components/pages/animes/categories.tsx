@@ -17,6 +17,8 @@ type categories = (
     | 'sports'
     | 'supernatural'
     | 'thriller'
+    | 'yaoi'
+    | 'yuri'
 )[]
 type CategoryAnimeProps = { categories: categories }
 
@@ -27,6 +29,13 @@ export default async function Categories({ categories }: CategoryAnimeProps) {
     }))
     const allCategories = await Promise.all(response)
     return allCategories.map(({ category, animes }) => {
-        return <CategoryAnime key={category} animes={animes.results} category={genders[category]} />
+        return (
+            <CategoryAnime
+                key={category}
+                total={animes.totalResults}
+                animes={animes.results}
+                category={genders[category]}
+            />
+        )
     })
 }

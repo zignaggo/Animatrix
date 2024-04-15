@@ -4,9 +4,7 @@ import Link from 'next/link'
 import { SidebarItem } from '@/components/navigation/sidebar/SidebarItem'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { links } from '@/utils/listLinks'
-import { Toggle } from '@/components/ui/toggle'
 import Icon from '@/components/ui/icons'
-import { Button } from '@/components/ui/button'
 import { IconButton } from '@/components/ui/icon-button'
 export function SidebarRoot() {
     return (
@@ -43,7 +41,7 @@ export function SidebarRoot() {
                     title={'Favoritos'}
                     variant="icon"
                     defaultIcon={'HeartLine'}
-                    activeIcon={'HeartLine'}
+                    activeIcon={'HeartFill'}
                 />
                 <Avatar>
                     <AvatarImage />
