@@ -1,5 +1,7 @@
+'use client'
 import Image from 'next/image'
 import { DubLegBadge } from './dub-leg-badge'
+import Link from 'next/link'
 
 type AnimeCardProps = {
     title: string
@@ -8,7 +10,7 @@ type AnimeCardProps = {
     image?: string
     sub?: boolean
     dub?: boolean
-    onClick?: () => unknown
+    id: string;
 }
 
 export function AnimeCard({
@@ -16,14 +18,14 @@ export function AnimeCard({
     subtitle,
     image,
     highlight,
-    onClick,
     sub,
     dub,
+    id
 }: AnimeCardProps) {
     return (
-        <div
+        <Link
             className="relative flex flex-col justify-between w-[130px] h-[210px] sm:w-[250px] sm:h-[350px] rounded-lg bg-cover hover:outline outline-purple-500 cursor-pointer shadow-lg "
-            onClick={onClick}
+            href={`animes/${id}`}
         >
             <Image
                 className="absolute z-[0] pointer-events-none select-none object-cover rounded-lg"
@@ -35,9 +37,10 @@ export function AnimeCard({
                 sizes="(max-width: 768px) 150px, 350px"
                 priority
             />
+            
             <div className="flex items-start gap-1 p-2 sm:p-3 z-[1]">
                 {dub && (
-                    <DubLegBadge type="dub" variant={'default'}>
+                    <DubLegBadge type="dub">
                         DUB
                     </DubLegBadge>
                 )}
@@ -54,6 +57,6 @@ export function AnimeCard({
                     <p className="text-lemon-300">{highlight}</p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

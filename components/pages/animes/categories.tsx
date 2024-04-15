@@ -1,7 +1,7 @@
 import { getAnimesByCategory } from '@/search'
 import { genders } from '@/search/translations'
 import CategoryAnime from './category-anime'
-type categories = (
+export type genders = (
     | 'romance'
     | 'action'
     | 'adventure'
@@ -20,7 +20,7 @@ type categories = (
     | 'yaoi'
     | 'yuri'
 )[]
-type CategoryAnimeProps = { categories: categories }
+type CategoryAnimeProps = { categories: genders }
 
 export default async function Categories({ categories }: CategoryAnimeProps) {
     const response = Array.from(new Set(categories)).map(async (category) => ({

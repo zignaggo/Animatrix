@@ -7,31 +7,31 @@ export const links: {
     title: string
 }[] = [
     {
-        href: 'animes',
+        href: '/animes',
         defaultIcon: 'TvTwoLine',
         activeIcon: 'TvTwoFill',
         title: 'Animes',
     },
     {
-        href: 'kdrama',
+        href: '/kdrama',
         defaultIcon: 'LoveLine',
         activeIcon: 'LoveFill',
         title: 'Doramas',
     },
     {
-        href: 'calendar',
+        href: '/calendar',
         defaultIcon: 'CalendarLine',
         activeIcon: 'CalendarFill',
         title: 'Calendário',
     },
     {
-        href: 'movies',
+        href: '/movies',
         defaultIcon: 'TvOneLine',
         activeIcon: 'TvOneFill',
         title: 'Filmes',
     },
     {
-        href: 'mangas',
+        href: '/mangas',
         defaultIcon: 'PaperLine',
         activeIcon: 'PaperFill',
         title: 'Mangás',

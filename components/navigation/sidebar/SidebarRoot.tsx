@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { links } from '@/utils/listLinks'
 import Icon from '@/components/ui/icons'
 import { IconButton } from '@/components/ui/icon-button'
+import { Notification } from '@/components/ui/notification'
 export function SidebarRoot() {
     return (
         <header className="flex flex-col items-center">
@@ -33,9 +34,11 @@ export function SidebarRoot() {
                 )}
             </nav>
             <div className="flex flex-col gap-4 py-4 items-center">
-                <IconButton variant={'text'} size={'lg'}>
-                    <Icon icon="NotificationLine" />
-                </IconButton>
+                <Notification text={'1'}>
+                    <IconButton variant={'text'} size={'lg'}>
+                        <Icon icon="NotificationLine" />
+                    </IconButton>
+                </Notification>
                 <SidebarItem
                     href={'/favorite'}
                     title={'Favoritos'}

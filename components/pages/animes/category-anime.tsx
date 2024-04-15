@@ -21,9 +21,9 @@ export default function CategoryAnime({
     return (
         <section className="w-full">
             <div className="flex gap-2 items-center">
-                <h1 className="text-h3 capitalize">{category}</h1>
+                <h1 className="textsize-h3 capitalize">{category}</h1>
                 {total && (
-                    <h1 className="text-subtitle-2 text-gray-400">{total}</h1>
+                    <h1 className="textsize-subtitle2 text-gray-400">{total}</h1>
                 )}
             </div>
             <Carousel
@@ -42,7 +42,7 @@ export default function CategoryAnime({
                         >
                             <AnimeCard
                                 title={anime.title.toString()}
-                                subtitle={anime.subtitle}
+                                subtitle={anime.released}
                                 highlight={anime.highlight}
                                 image={anime.image}
                                 sub={anime.title
@@ -53,6 +53,7 @@ export default function CategoryAnime({
                                     .toString()
                                     .toLowerCase()
                                     .includes('dub')}
+                                id={anime.id}
                             />
                         </CarouselItem>
                     ))}

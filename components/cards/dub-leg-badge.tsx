@@ -7,13 +7,13 @@ type DubLegBadgeProps = {
     children: ReactNode
 } & BadgeProps
 
-export function DubLegBadge({ type, children, ...rest }: DubLegBadgeProps) {
+export function DubLegBadge({ type, children, ...props }: DubLegBadgeProps) {
     const style =
         type === 'dub'
-            ? 'text-lemon-300'
-            : 'bg-lemon-500 hover:bg-lemon-500/80 text-purple-500'
+            ? 'bg-primary text-lemon-300 hover:text-lemon-300'
+            : 'bg-lemon-500 hover:bg-lemon-500 text-purple-500'
     return (
-        <Badge size={'default'} variant={'unstyled'} className={cn('px-2 text-xs sm:text-sm', style)} {...rest}>
+        <Badge size={'default'} variant={'unstyled'} className={cn('px-2 textsize-p4 py-0', style)} {...props}>
             {children}
         </Badge>
     )

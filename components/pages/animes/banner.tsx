@@ -4,11 +4,6 @@ import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icons'
 import Image from 'next/image'
 import { Toggle } from '@/components/ui/toggle'
-import {
-    TooltipTrigger,
-    TooltipContent,
-    Tooltip,
-} from '@/components/ui/tooltip'
 
 interface Banner {
     image: string
@@ -33,12 +28,12 @@ export default function Banner({ title, description, image }: Banner) {
                 <Header title="Animes" subtitle="Principal" />
                 <div className="flex flex-col gap-6 mt-6">
                     <div>
-                        <p className="text-h4 text-lemon-500">
+                        <p className="textsize-h4 text-lemon-500">
                             Destaque da Semana
                         </p>
-                        <h1 className="text-h3">{title}</h1>
+                        <h1 className="textsize-h3">{title}</h1>
                     </div>
-                    <p className="text-subtitle-2 max-w-[600px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
+                    <p className="textsize-subtitle2 max-w-[600px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
                         {description}
                     </p>
                     <div className="flex items-center gap-2 flex-wrap">
