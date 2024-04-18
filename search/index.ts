@@ -7,6 +7,7 @@ export async function getAnimesByCategory(category: string) {
     // AnimeUnity
     // Zoro ( but retorn nothing )
     const response = await gogoEngine.fetchGenreInfo(category)
+    console.log(response);
     return response
 }
 export async function getAnimesDetails(id: string) {
