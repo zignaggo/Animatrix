@@ -97,7 +97,7 @@
         --primary-foreground: var(--white);
 
         --secondary: var(--black-800);
-        --secondary-foreground: var(--white);
+        --secondary-foreground: var(--purple-100);
 
         --muted: var(--purple-100);
         --muted-foreground: var(--gray-500);
@@ -133,7 +133,7 @@
         @apply font-semibold text-[1.125rem] leading-[26px];
     }
     .textsize-subtitle1 {
-        @apply text-[1.5rem] leading-8;
+        @apply text-[1.25rem] leading-8;
     }
     .textsize-subtitle2 {
         @apply text-[1.125rem] leading-[26px];

@@ -18,6 +18,7 @@ import NotificationFill from './NotificationFill'
 import HeartFill from './HeartFill'
 import RightLine from './RightLine'
 import LeftLine from './LeftLine'
+import Google from './Google'
 
 export type IconType =
     | 'TvTwoFill'
@@ -39,6 +40,7 @@ export type IconType =
     | 'HeartFill'
     | 'RightLine'
     | 'LeftLine'
+    | 'Google'
 
 export interface IconProps extends SVGAttributes<SVGElement> {
     children?: never
@@ -67,6 +69,7 @@ const Icon = (props: IconProps) => {
         HeartFill: <HeartFill {...svgProps} />,
         RightLine: <RightLine {...svgProps} />,
         LeftLine: <LeftLine {...svgProps} />,
+        Google: <Google {...svgProps} />,
     }
     return Icons[icon]
 }
