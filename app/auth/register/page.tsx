@@ -1,5 +1,6 @@
 'use client'
 import { auth } from '@/app/firabase/config'
+import { PasswordInput } from '@/components/inputs/password'
 import { AuthLayout } from '@/components/pages/animes/auth/layout'
 import { Input } from '@/components/ui/input'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
@@ -7,8 +8,10 @@ import { useRef } from 'react'
 import { toast } from 'sonner'
 
 export default function Register() {
+    const name = useRef<HTMLInputElement | null>(null)
     const email = useRef<HTMLInputElement | null>(null)
     const password = useRef<HTMLInputElement | null>(null)
+    const confirmPassword = useRef<HTMLInputElement | null>(null)
     const createUser = async () => {
         if (!email.current?.value || !password.current?.value) return
         await createUserWithEmailAndPassword(
@@ -28,18 +31,22 @@ export default function Register() {
             register={true}
             onClick={createUser}
         >
-            {/* <Input className="mb-4" placeholder="ex: cleberson" /> */}
+            <Input
+                className="mb-4"
+                placeholder="ex: Jorge@gmail.com"
+                ref={name}
+            />
             <Input
                 className="mb-4"
                 placeholder="ex: Jorge@gmail.com"
                 ref={email}
             />
-            <Input
+            <PasswordInput
                 className="mb-4"
                 placeholder="ex: coxinha123"
                 ref={password}
             />
-            {/* <Input placeholder="ex: coxinha123" /> */}
+            <PasswordInput placeholder="ex: coxinha123" ref={confirmPassword} />
         </AuthLayout>
     )
 }
