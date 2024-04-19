@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import { fontSans } from '@/components/font'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { Toaster } from "@/components/ui/sonner"
 import NextTopLoader from 'nextjs-toploader';
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
@@ -26,6 +27,7 @@ export default function RootLayout({
                 >
                     <NextTopLoader color='#602DE7' shadow={'0 0 20px #fff,0 0 10px #fff'} height={4} showSpinner={false} />
                     <TooltipProvider delayDuration={500}>{children}</TooltipProvider>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

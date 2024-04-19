@@ -7,9 +7,10 @@ import { ReactNode } from 'react'
 type LayoutProps = {
     subtitle: string
     children: ReactNode
-    hasAccount: boolean
+    register?: boolean
+    onClick?: () => unknown;
 }
-export function AuthLayout({ children, subtitle, hasAccount }: LayoutProps) {
+export function AuthLayout({ children, subtitle, register = false, onClick }: LayoutProps) {
     return (
         <div className="w-full flex flex-col max-w-[395px] gap-6 h-fit">
             <div className=" text-center">
@@ -23,14 +24,14 @@ export function AuthLayout({ children, subtitle, hasAccount }: LayoutProps) {
             </div>
             <div>{children}</div>
             <div className="w-full">
-                <Button className="w-full" size={'lg'}>
-                    Entrar
+                <Button className="w-full" size={'lg'} onClick={onClick}>
+                    {register ? "Cadastrar" : "Entrar"}
                 </Button>
             </div>
             <span className="textsize-p1">
-                {!hasAccount ? "Ainda não tem conta? " : "Já tem conta? "}
-                <Link href={`/auth/${hasAccount ? 'sign': 'register'}`} className="text-purple-500">
-                    {!hasAccount ? "Crie aqui" : "Entrar"}
+                {!register ? "Ainda não tem conta? " : "Já tem conta? "}
+                <Link href={`/auth/${register ? 'sign': 'register'}`} className="text-purple-500">
+                    {!register ? "Crie aqui" : "Entrar"}
                 </Link>
             </span>
             <div className="flex gap-2 w-full items-center text-black-600">

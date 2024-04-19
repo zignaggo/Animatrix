@@ -5,7 +5,6 @@ export default function Sign() {
     return (
         <AuthLayout
             subtitle=" Entre em sua conta e veja seus animes preferidos"
-            hasAccount={false}
         >
             <Input className="mb-4" placeholder="ex: Jorge@gmail.com" />
             <Input placeholder="ex: coxinha123" />
