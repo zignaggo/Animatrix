@@ -2,7 +2,7 @@
 import { PasswordInput } from '@/components/inputs/password'
 import { AuthLayout } from '@/components/pages/animes/auth/layout'
 import { Input } from '@/components/ui/input'
-import { createSafeUser, registerSchema } from '@/server/actions/auth/register'
+import { createSafeUser } from '@/server/actions/auth/register'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -16,6 +16,7 @@ import {
 import { useAction } from 'next-safe-action/hooks'
 import { useToast } from '@/components/ui/use-toast'
 import * as z from 'zod'
+import { registerSchema } from '@/server/actions/auth/register/schema'
 export default function Register() {
     const { toast } = useToast()
     const form = useForm<z.infer<typeof registerSchema>>({
@@ -27,19 +28,19 @@ export default function Register() {
             confirmPassword: '',
         },
     })
-    const { status, execute } = useAction(createSafeUser, {
-        onSuccess({ success }) {
-            if (!success) return
+    const { status, execute, reset } = useAction(createSafeUser, {
+        onSuccess() {
             toast({
                 title: 'Usuário criado com sucesso!',
                 description: 'Bem vindo a plataforma',
             })
+            reset()
         },
-        onExecute(data) {
-            console.log('creating user')
+        onError({ serverError }) {
             toast({
-                title: 'Usuário criado com sucesso!',
-                description: 'Bem vindo a plataforma',
+                title: 'Ocorreu um erro',
+                description: serverError,
+                variant: 'destructive',
             })
         },
     })

@@ -1,7 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/app/firabase/config'
 import * as z from 'zod'
-import { createSafeActionClient } from 'next-safe-action'
 
 export const registerSchema = z
     .object({
@@ -34,14 +31,3 @@ export const registerSchema = z
         message: 'As senhas não conferem',
         path: ['confirmPassword'],
     })
-
-export const action = createSafeActionClient()
-export const createSafeUser = action(registerSchema, async (data) => {
-    if (!data) return { error: 'Não foi possível se cadastrar.' }
-    const response = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-    )
-    return { success: response }
-})

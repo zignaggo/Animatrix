@@ -12,7 +12,8 @@ import {
 import Icon from '@/components/ui/icons'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
-import { signInSafer, signSchema } from '@/server/actions/auth/sign'
+import { signInSafer } from '@/server/actions/auth/sign'
+import { signSchema } from '@/server/actions/auth/sign/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
@@ -28,18 +29,17 @@ export default function Sign() {
         },
     })
     const { status, execute } = useAction(signInSafer, {
-        onSuccess({ error }) {
-            if (error) {
-                toast({
-                    title: 'Ocorreu um erro',
-                    description: error,
-                    variant: 'destructive',
-                })
-                return
-            }
+        onSuccess() {
             toast({
                 title: 'Bem vindo ao animatrix',
                 description: 'test',
+            })
+        },
+        onError({ serverError }) {
+            toast({
+                title: 'Ocorreu um erro',
+                description: serverError,
+                variant: 'destructive',
             })
         },
     })
