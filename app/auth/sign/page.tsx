@@ -16,6 +16,7 @@ import { signInSafer } from '@/server/actions/auth/sign'
 import { signSchema } from '@/server/actions/auth/sign/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAction } from 'next-safe-action/hooks'
+import { cookies } from 'next/headers'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 

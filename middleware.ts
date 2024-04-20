@@ -1,19 +1,28 @@
-import { NextResponse, userAgent } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
+import { setMobileChecker } from './utils/isMobile'
+import { cookies } from 'next/headers'
+
+const protectedRoutes = ['/animes', '/calendar', '/profiles']
+const publicRoutes = ['/auth/sign', '/auth/register']
 
 export function middleware(request: NextRequest) {
-    const url = request.nextUrl
-    /*Redirect to /Animes */
     const path = request.nextUrl.pathname
-    if (path === '/') {
-        NextResponse.rewrite(url)
-        return NextResponse.redirect(new URL('/animes', url))
+    const isProtectedRoute = protectedRoutes.includes(path)
+    const isPublicRoute = publicRoutes.includes(path)
+
+    const cookie = cookies().get('session')?.value
+
+    if (isProtectedRoute && !cookie) {
+        return NextResponse.redirect(new URL('/auth/sign', request.nextUrl))
     }
-    const { device } = userAgent(request)
-    const mobile = ['mobile', 'tablet']
-    const viewport =
-        device.type && mobile.includes(device.type) ? 'mobile' : 'desktop'
-    const response = NextResponse.next()
-    response.headers.set('viewport', viewport)
+    if (isPublicRoute && cookie) {
+        return NextResponse.redirect(new URL('/animes', request.nextUrl))
+    }
+
+    const response = setMobileChecker(request)
     return response
+}
+
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 }
