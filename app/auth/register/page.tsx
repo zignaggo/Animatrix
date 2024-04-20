@@ -52,7 +52,7 @@ export default function Register() {
             <AuthLayout
                 subtitle="Crie sua conta e desfrute da plataforma"
                 register={true}
-                disabled={status === 'executing'}
+                loading={status === 'executing'}
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                 <FormField

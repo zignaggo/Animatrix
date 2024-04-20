@@ -50,7 +50,7 @@ export default function Sign() {
         <Form {...form}>
             <AuthLayout
                 subtitle="Entre em sua conta e veja seus animes preferidos"
-                disabled={status === 'executing'}
+                loading={status === 'executing'}
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                 <FormField

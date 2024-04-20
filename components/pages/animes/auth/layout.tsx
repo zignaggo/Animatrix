@@ -8,13 +8,13 @@ type LayoutProps = {
     subtitle: string
     children: ReactNode
     register?: boolean
-    disabled?: boolean
+    loading?: boolean
 } & DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
 export function AuthLayout({
     children,
     subtitle,
     register = false,
-    disabled = false,
+    loading = false,
     action,
     ...props
 }: LayoutProps) {
@@ -38,7 +38,8 @@ export function AuthLayout({
                     className="w-full"
                     size={'lg'}
                     type="submit"
-                    disabled={disabled}
+                    loading={loading}
+                    loadingText='Carregando'
                 >
                     {register ? 'Cadastrar' : 'Entrar'}
                 </Button>

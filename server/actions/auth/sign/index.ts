@@ -10,5 +10,5 @@ export const signInSafer = action(signSchema, async (data) => {
         data.email,
         data.password
     )
-    return response
+    return JSON.stringify(response)
 })
