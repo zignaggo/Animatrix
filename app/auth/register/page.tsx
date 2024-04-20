@@ -1,52 +1,124 @@
 'use client'
-import { auth } from '@/app/firabase/config'
 import { PasswordInput } from '@/components/inputs/password'
 import { AuthLayout } from '@/components/pages/animes/auth/layout'
 import { Input } from '@/components/ui/input'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { useRef } from 'react'
-import { toast } from 'sonner'
-
+import { createSafeUser, registerSchema } from '@/server/actions/auth/register'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form'
+import { useAction } from 'next-safe-action/hooks'
+import { useToast } from '@/components/ui/use-toast'
+import * as z from 'zod'
 export default function Register() {
-    const name = useRef<HTMLInputElement | null>(null)
-    const email = useRef<HTMLInputElement | null>(null)
-    const password = useRef<HTMLInputElement | null>(null)
-    const confirmPassword = useRef<HTMLInputElement | null>(null)
-    const createUser = async () => {
-        if (!email.current?.value || !password.current?.value) return
-        await createUserWithEmailAndPassword(
-            auth,
-            email.current.value,
-            password.current.value
-        )
-        toast('Usuário criado com sucesso', {
-            closeButton: true,
-            duration: 10000,
-            description: 'Você já pode acessar a plataforma!',
-        })
+    const { toast } = useToast()
+    const form = useForm<z.infer<typeof registerSchema>>({
+        resolver: zodResolver(registerSchema),
+        defaultValues: {
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+        },
+    })
+    const { status, execute } = useAction(createSafeUser, {
+        onSuccess({ success }) {
+            if (!success) return
+            toast({
+                title: 'Usuário criado com sucesso!',
+                description: 'Bem vindo a plataforma',
+            })
+        },
+        onExecute(data) {
+            console.log('creating user')
+            toast({
+                title: 'Usuário criado com sucesso!',
+                description: 'Bem vindo a plataforma',
+            })
+        },
+    })
+    const onSubmit = (values: z.infer<typeof registerSchema>) => {
+        execute(values)
     }
     return (
-        <AuthLayout
-            subtitle="Crie sua conta e desfrute da plataforma"
-            register={true}
-            onClick={createUser}
-        >
-            <Input
-                className="mb-4"
-                placeholder="ex: Jorge@gmail.com"
-                ref={name}
-            />
-            <Input
-                className="mb-4"
-                placeholder="ex: Jorge@gmail.com"
-                ref={email}
-            />
-            <PasswordInput
-                className="mb-4"
-                placeholder="ex: coxinha123"
-                ref={password}
-            />
-            <PasswordInput placeholder="ex: coxinha123" ref={confirmPassword} />
-        </AuthLayout>
+        <Form {...form}>
+            <AuthLayout
+                subtitle="Crie sua conta e desfrute da plataforma"
+                register={true}
+                disabled={status === 'executing'}
+                onSubmit={form.handleSubmit(onSubmit)}
+            >
+                <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Nome de usuário</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="ex: Spam Caxota"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>E-mail</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="ex: Jorge@gmail.com"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Senha</FormLabel>
+                            <FormControl>
+                                <PasswordInput
+                                    placeholder="ex: coxinha123"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="confirmPassword"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Confirmar senha</FormLabel>
+                            <FormControl>
+                                <PasswordInput
+                                    placeholder="ex: coxinha123"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </AuthLayout>
+        </Form>
     )
 }

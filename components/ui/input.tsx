@@ -9,7 +9,7 @@ export interface InputProps
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, leftIcon, rightIcon, ...props }, ref) => {
+    ({ className, leftIcon, rightIcon, ...props }, ref) => {
         return (
             <div
                 className={cn(
@@ -20,7 +20,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 {leftIcon}
                 <input
                     className="w-full h-full bg-transparent focus:outline-none "
-                    type={type}
                     ref={ref}
                     {...props}
                 />

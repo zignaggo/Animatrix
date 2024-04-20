@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import { fontSans } from '@/components/font'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/toaster"
 import NextTopLoader from 'nextjs-toploader';
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
