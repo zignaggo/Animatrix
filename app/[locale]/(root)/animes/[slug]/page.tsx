@@ -6,20 +6,20 @@ import { notFound } from 'next/navigation'
 
 type AnimeDetailsType = { params: { slug: number } }
 export default async function AnimeDetails({ params }: AnimeDetailsType) {
-    const response = await getAnimeDetails(params.slug);
+    const response = await getAnimeDetails(params.slug)
     if (response.error) {
-        console.log('error')
         return notFound()
     }
+    const anime = response.data
     return (
         <section className="p-10 flex w-full flex-col gap-4">
-            <Breadcrumbs slug={response.data.title} />
+            <Breadcrumbs slug={anime.title} />
             <Details
-                image={response.data.main_picture.large}
-                genders={response.data.genres.map((genre) => genre.name)}
-                title={response.data.title}
-                description={response.data.synopsis}
-                releaseDate={response.data.title}
+                image={anime.main_picture.large}
+                genders={anime.genres.map((genre) => genre.name)}
+                title={anime.title}
+                description={anime.synopsis}
+                releaseDate={anime.start_season.year.toString()}
             />
             <Episodes />
         </section>

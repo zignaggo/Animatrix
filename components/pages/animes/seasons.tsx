@@ -1,7 +1,7 @@
 import { getSeasonalAnime } from '@/myanimelist'
 import { ListAnime } from './list-anime'
 import { getI18n } from '@/locales/server'
-export type seasons = 'winter' | 'spring' | 'summer' | 'fall'
+import { seasons } from '@/myanimelist/types'
 type SeasonAnimeProps = { seasons: seasons[] }
 
 export async function Seasons({ seasons }: SeasonAnimeProps) {

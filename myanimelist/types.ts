@@ -1,3 +1,4 @@
+export type seasons = 'winter' | 'spring' | 'summer' | 'fall'
 export type genders = (
     | 'romance'
     | 'action'
@@ -33,6 +34,12 @@ export type Anime = {
         en: string
         ja: string
     }
+    start_season: {
+        year: number
+        season: seasons
+    }
+    start_date: string;
+    end_date: string;
     genres: { id: number; name: genders }[]
     status: 'finished_airing' | 'currently_airing' | 'not_yet_aired' // Finalizado, Ocorrendo, Vai lançar
 }

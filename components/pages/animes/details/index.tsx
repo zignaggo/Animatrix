@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import { genders } from '../categories'
 import { Badge } from '@/components/ui/badge'
 import { Toggle } from '@/components/ui/toggle'
 import { Icon } from '@/components/ui/icons'
+import { genders } from '@/myanimelist/types'
 
 type DetailsProps = {
     image: string
     title: string
     releaseDate: string
     description: string
-    genders: genders
+    genders: genders[]
 }
 export default function Details({
     image,
@@ -21,22 +21,24 @@ export default function Details({
     return (
         <section className="grid grid-cols-1 sm:grid-cols-[250px_1fr] gap-6">
             {image && (
-                <Image
-                    className="rounded-lg"
-                    alt="anime-image"
-                    fetchPriority="high"
-                    quality={100}
-                    src={image || ''}
-                    width={250}
-                    height={370}
-                    priority
-                />
+                <div className="relative w-[250px] h-[350px]">
+                    <Image
+                        className="rounded-lg"
+                        alt="anime-image"
+                        fetchPriority="high"
+                        quality={100}
+                        src={image}
+                        fill
+                        sizes="250px"
+                        priority
+                    />
+                </div>
             )}
             <div className="flex flex-col gap-2">
                 {genders.length > 0 && (
                     <div className="flex gap-2">
                         {genders.map((gender) => (
-                            <Badge key={gender} variant={'secondary'}>
+                            <Badge key={gender} variant="secondary">
                                 {gender}
                             </Badge>
                         ))}
@@ -50,8 +52,8 @@ export default function Details({
                     </p>
                     <div className="flex gap-2">
                         <Toggle
-                            size={'lg'}
-                            variant={'secondary'}
+                            size="lg"
+                            variant="secondary"
                             activeIcon={
                                 <Icon
                                     icon="HeartFill"
@@ -64,8 +66,8 @@ export default function Details({
                             <Icon icon="HeartLine" />
                         </Toggle>
                         <Toggle
-                            size={'lg'}
-                            variant={'secondary'}
+                            size="lg"
+                            variant="secondary"
                             activeIcon={
                                 <Icon
                                     icon="NotificationFill"
