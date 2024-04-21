@@ -1,25 +1,7 @@
+import { genders } from '@/myanimelist/types'
 import { ListAnime } from './list-anime'
-export type genders = (
-    | 'romance'
-    | 'action'
-    | 'adventure'
-    | 'comedy'
-    | 'drama'
-    | 'fantasy'
-    | 'horror'
-    | 'magic'
-    | 'mystery'
-    | 'psychological'
-    | 'sci-fi'
-    | 'slice of life'
-    | 'sports'
-    | 'supernatural'
-    | 'thriller'
-    | 'yaoi'
-    | 'yuri'
-    | 'winter'
-)[]
-type CategoryAnimeProps = { categories: genders }
+
+type CategoryAnimeProps = { categories: genders[] }
 
 export default async function Categories({ categories }: CategoryAnimeProps) {
     const response = Array.from(new Set(categories)).map(async (category) => ({
