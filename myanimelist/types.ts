@@ -1,5 +1,13 @@
+export type Days =
+    | 'sunday'
+    | 'monday'
+    | 'tuesday'
+    | 'thursday'
+    | 'wednesday'
+    | 'friday'
+    | 'saturday'
 export type seasons = 'winter' | 'spring' | 'summer' | 'fall'
-export type genders = (
+export type genders =
     | 'romance'
     | 'action'
     | 'adventure'
@@ -18,14 +26,18 @@ export type genders = (
     | 'yaoi'
     | 'yuri'
     | 'winter'
-)
-export type Anime = {
+type picture = {
+    medium: string
+    large: string
+}
+type status = 'finished_airing' | 'currently_airing' | 'not_yet_aired'
+type Studio = { id: number; name: string }
+export type BaseAnime = {
     id: number
     title: string
-    main_picture: {
-        medium: string
-        large: string
-    }
+    main_picture: picture
+}
+export type Anime = BaseAnime & {
     popularity: number
     num_episodes: number
     synopsis: string
@@ -38,10 +50,15 @@ export type Anime = {
         year: number
         season: seasons
     }
-    start_date: string;
-    end_date: string;
+    start_date: string
+    end_date: string
     genres: { id: number; name: genders }[]
-    status: 'finished_airing' | 'currently_airing' | 'not_yet_aired' // Finalizado, Ocorrendo, Vai lançar
+    status: status // Finalizado, Ocorrendo, Vai lançar
+    pictures: picture[]
+    mean: number // avaliação 7.87
+    broadcast: { day_of_the_week: Days; start_time: string } // Dia e hora do lançamento do anime no japão
+    recommendations: { node: BaseAnime; num_recommendations: number }
+    studios: Studio[]
 }
 export type ResponseSeasonalAnime = {
     data: { node: Anime }[]
