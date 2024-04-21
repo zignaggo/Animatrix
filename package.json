@@ -33,6 +33,7 @@
     "framer-motion": "^11.0.3",
     "lucide-react": "^0.314.0",
     "next": "14.1.0",
+    "next-international": "^1.2.4",
     "next-safe-action": "^6.2.0",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.4",

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { genders } from '../categories'
 import { Badge } from '@/components/ui/badge'
 import { Toggle } from '@/components/ui/toggle'
-import Icon from '@/components/ui/icons'
+import { Icon } from '@/components/ui/icons'
 
 type DetailsProps = {
     image: string

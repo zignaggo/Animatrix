@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import Icon from '@/components/ui/icons'
+import { Icon } from '@/components/ui/icons'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import { DetailedHTMLProps, FormHTMLAttributes, ReactNode } from 'react'

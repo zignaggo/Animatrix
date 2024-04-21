@@ -1,10 +1,9 @@
 'use client'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { useEffect } from 'react'
 import { IconButton } from '../ui/icon-button'
-import Icon from '../ui/icons'
+import { Icon } from '../ui/icons'
 export interface FloatInput
     extends React.InputHTMLAttributes<HTMLInputElement> {
     onSearchClick?: (...rest: any) => unknown

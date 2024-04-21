@@ -47,7 +47,7 @@ export interface IconProps extends SVGAttributes<SVGElement> {
     color?: string
     icon: IconType
 }
-const Icon = (props: IconProps) => {
+export const Icon = (props: IconProps) => {
     const { icon, ...svgProps } = props
     const Icons: Record<IconProps['icon'], any> = {
         TvTwoFill: <TvTwoFill {...svgProps} />,
@@ -74,4 +74,4 @@ const Icon = (props: IconProps) => {
     return Icons[icon]
 }
 
-export default Icon
+

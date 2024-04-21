@@ -9,7 +9,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import Icon, { IconType } from '@/components/ui/icons'
+import { IconType, Icon } from '@/components/ui/icons'
 const sidebarItemVariants = cva(
     'inline-flex items-center gap-2 w-12 h-12 rounded-md px-3 py-3 w-fit text-base/6 font-semibold transition-colors',
     {

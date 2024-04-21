@@ -2,7 +2,7 @@
 import { IconButton } from '@/components/ui/icon-button'
 import { Sidebar } from '../sidebar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import Icon from '@/components/ui/icons'
+import { Icon } from '@/components/ui/icons'
 export function Navbar() {
     return (
         <header className="px-6 py-3 flex gap-2 w-100 flex-row">

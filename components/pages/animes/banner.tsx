@@ -1,7 +1,7 @@
 'use client'
 import { Header } from '@/components/navigation/Header'
 import { Button } from '@/components/ui/button'
-import Icon from '@/components/ui/icons'
+import { Icon } from '@/components/ui/icons'
 import Image from 'next/image'
 import { Toggle } from '@/components/ui/toggle'
 

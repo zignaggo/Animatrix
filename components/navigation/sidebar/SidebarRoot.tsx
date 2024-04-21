@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { SidebarItem } from '@/components/navigation/sidebar/SidebarItem'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { links } from '@/utils/listLinks'
-import Icon from '@/components/ui/icons'
+import { Icon } from '@/components/ui/icons'
 import { IconButton } from '@/components/ui/icon-button'
 import { Notification } from '@/components/ui/notification'
 export function SidebarRoot() {

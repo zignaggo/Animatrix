@@ -6,7 +6,7 @@ import useEmblaCarousel, {
 } from 'embla-carousel-react'
 import { cn } from '@/lib/utils'
 import { IconButton } from './icon-button'
-import Icon from './icons'
+import { Icon } from './icons'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -162,7 +162,9 @@ const CarouselContent = React.forwardRef<
                 ref={ref}
                 className={cn(
                     'flex',
-                    orientation === 'horizontal' ? '-ml-4 mr-1' : '-mt-4 flex-col',
+                    orientation === 'horizontal'
+                        ? '-ml-4 mr-1'
+                        : '-mt-4 flex-col',
                     className
                 )}
                 {...props}
