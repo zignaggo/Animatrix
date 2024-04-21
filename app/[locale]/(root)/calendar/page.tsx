@@ -1,4 +1,4 @@
-import CategoryAnime from '@/components/pages/animes/list-anime'
+import { ListAnime } from '@/components/pages/animes/list-anime'
 import { getSeasonalAnime } from '@/myanimelist'
 
 export default async function Calendar() {
@@ -8,8 +8,8 @@ export default async function Calendar() {
     }
     console.log(response.data)
     return (
-        <section className='w-full p-10'>
-            <CategoryAnime
+        <section className="w-full p-10">
+            <ListAnime
                 category="Winter"
                 animes={response.data.map((anime) => ({
                     id: String(anime.node.id),

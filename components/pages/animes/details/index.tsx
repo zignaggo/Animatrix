@@ -21,7 +21,7 @@ export default function Details({
     return (
         <section className="grid grid-cols-1 sm:grid-cols-[250px_1fr] gap-6">
             {image && (
-                <div className="relative w-[250px] h-[350px]">
+                <div className="relative w-full sm:w-[250px] aspect-[0.71428571428/1]">
                     <Image
                         className="rounded-lg"
                         alt="anime-image"
@@ -34,9 +34,9 @@ export default function Details({
                     />
                 </div>
             )}
-            <div className="flex flex-col gap-2">
+            <div className="w-full flex flex-col gap-2">
                 {genders.length > 0 && (
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                         {genders.map((gender) => (
                             <Badge key={gender} variant="secondary">
                                 {gender}

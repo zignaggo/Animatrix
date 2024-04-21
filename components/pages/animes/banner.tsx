@@ -15,7 +15,7 @@ interface Banner {
 
 export default function Banner({ title, description, image }: Banner) {
     return (
-        <section className="w-full md:aspect-video h-fit md:max-h-[70svh] min-h-[50svh] relative banner-shadow main-banner">
+        <section className="w-full md:aspect-video h-fit md:max-h-[70svh] min-h-[60svh] relative banner-shadow main-banner">
             <Image
                 src={image}
                 alt="banner"

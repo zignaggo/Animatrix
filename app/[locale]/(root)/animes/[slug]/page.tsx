@@ -12,7 +12,7 @@ export default async function AnimeDetails({ params }: AnimeDetailsType) {
     }
     const anime = response.data
     return (
-        <section className="p-10 flex w-full flex-col gap-4">
+        <section className="p-6 sm:p-10 flex w-full flex-col gap-4">
             <Breadcrumbs slug={anime.title} />
             <Details
                 image={anime.main_picture.large}
