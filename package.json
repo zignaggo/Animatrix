@@ -1,6 +1,6 @@
 {
   "name": "animatrix",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@consumet/extensions": "^1.5.6",
     "@hookform/resolvers": "^3.3.4",
     "@mantine/core": "^7.4.2",
     "@mantine/hooks": "^7.4.2",

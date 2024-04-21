@@ -1,5 +1,4 @@
-import { AnimeCard } from '@/components/cards/anime'
-import { IAnimeResult } from '@consumet/extensions'
+import { AnimeCard, AnimeCardProps } from '@/components/cards/anime'
 import {
     Carousel,
     CarouselContent,
@@ -10,7 +9,7 @@ import {
 
 type CategoryAnimeProps = {
     category: string
-    animes: IAnimeResult[]
+    animes: AnimeCardProps[]
     total?: number
 }
 export default function CategoryAnime({
@@ -23,7 +22,9 @@ export default function CategoryAnime({
             <div className="flex gap-2 items-center">
                 <h1 className="textsize-h3 capitalize">{category}</h1>
                 {total && (
-                    <h1 className="textsize-subtitle2 text-gray-400">{total}</h1>
+                    <h1 className="textsize-subtitle2 text-gray-400">
+                        {total}
+                    </h1>
                 )}
             </div>
             <Carousel
@@ -36,13 +37,10 @@ export default function CategoryAnime({
             >
                 <CarouselContent className="px-1 py-2">
                     {animes.map((anime) => (
-                        <CarouselItem
-                            className={'basis-62'}
-                            key={anime.id}
-                        >
+                        <CarouselItem className={'basis-62'} key={anime.id}>
                             <AnimeCard
                                 title={anime.title.toString()}
-                                subtitle={anime.released}
+                                subtitle={anime.subtitle}
                                 highlight={anime.highlight}
                                 image={anime.image}
                                 sub={anime.title

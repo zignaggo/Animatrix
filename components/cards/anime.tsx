@@ -3,14 +3,14 @@ import Image from 'next/image'
 import { DubLegBadge } from './dub-leg-badge'
 import Link from 'next/link'
 
-type AnimeCardProps = {
+export type AnimeCardProps = {
+    id: string;
     title: string
-    subtitle: string
-    highlight: string
+    highlight?: string
+    subtitle?: string
     image?: string
     sub?: boolean
     dub?: boolean
-    id: string;
 }
 
 export function AnimeCard({
