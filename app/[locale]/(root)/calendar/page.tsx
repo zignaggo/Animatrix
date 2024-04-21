@@ -1,4 +1,4 @@
-import CategoryAnime from '@/components/pages/animes/category-anime'
+import CategoryAnime from '@/components/pages/animes/list-anime'
 import { getSeasonalAnime } from '@/myanimelist'
 
 export default async function Calendar() {

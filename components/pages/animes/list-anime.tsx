@@ -12,7 +12,7 @@ type CategoryAnimeProps = {
     animes: AnimeCardProps[]
     total?: number
 }
-export default function CategoryAnime({
+export function ListAnime({
     animes,
     category,
     total,

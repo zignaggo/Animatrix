@@ -1,4 +1,4 @@
-import CategoryAnime from './category-anime'
+import { ListAnime } from './list-anime'
 export type genders = (
     | 'romance'
     | 'action'
@@ -28,12 +28,6 @@ export default async function Categories({ categories }: CategoryAnimeProps) {
     }))
     const allCategories = await Promise.all([])
     return allCategories.map(({ category, animes }) => {
-        return (
-            <CategoryAnime
-                key={category}
-                animes={[]}
-                category={category}
-            />
-        )
+        return <ListAnime key={category} animes={[]} category={category} />
     })
 }
