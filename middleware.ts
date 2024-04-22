@@ -1,25 +1,18 @@
-import { NextResponse, type NextRequest } from 'next/server'
-import { setMobileChecker } from './utils/isMobile'
-import { cookies } from 'next/headers'
-
-const protectedRoutes = ['/animes', '/calendar', '/profiles']
-const publicRoutes = ['/auth/sign', '/auth/register']
-
-export function middleware(request: NextRequest) {
+import { NextRequest, NextResponse } from 'next/server'
+import { Home, isAuthenticated, isNotAuthenticated, publicRoutes, updateSession } from '@/supabase/middleware'
+export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
-    const isProtectedRoute = protectedRoutes.includes(path)
     const isPublicRoute = publicRoutes.includes(path)
-
-    const cookie = cookies().get('session')?.value
-
-    if (isProtectedRoute && !cookie) {
-        return NextResponse.redirect(new URL('/auth/sign', request.nextUrl))
+    const { auth, response } = await updateSession(request)
+    if (auth.error && !isPublicRoute) {
+        return isNotAuthenticated(request);
     }
-    if (isPublicRoute && cookie) {
-        return NextResponse.redirect(new URL('/animes', request.nextUrl))
+    if (auth.data.user && isPublicRoute) {
+        return isAuthenticated(request);
     }
-
-    const response = setMobileChecker(request)
+    if (path === '/') {
+        return Home(request)
+    }
     return response
 }
 
