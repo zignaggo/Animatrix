@@ -9,18 +9,19 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form'
-import Icon from '@/components/ui/icons'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { signInSafer } from '@/server/actions/auth/sign'
 import { signSchema } from '@/server/actions/auth/sign/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAction } from 'next-safe-action/hooks'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
 export default function Sign() {
-    const { toast } = useToast()
+    const { toast } = useToast();
+    const route = useRouter();
     const form = useForm<z.infer<typeof signSchema>>({
         resolver: zodResolver(signSchema),
         defaultValues: {
@@ -32,8 +33,9 @@ export default function Sign() {
         onSuccess() {
             toast({
                 title: 'Bem vindo ao animatrix',
-                description: 'test',
+                description: 'Sessão iniciada!',
             })
+            route.push('/animes')
         },
         onError({ serverError }) {
             toast({

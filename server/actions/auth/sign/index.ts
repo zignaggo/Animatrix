@@ -18,5 +18,4 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
             response.error.code
         )
     }
-    redirect('/animes')
 })

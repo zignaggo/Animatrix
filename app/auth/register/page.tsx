@@ -17,8 +17,10 @@ import { useAction } from 'next-safe-action/hooks'
 import { useToast } from '@/components/ui/use-toast'
 import * as z from 'zod'
 import { registerSchema } from '@/server/actions/auth/register/schema'
+import { useRouter } from 'next/navigation'
 export default function Register() {
     const { toast } = useToast()
+    const route = useRouter();
     const form = useForm<z.infer<typeof registerSchema>>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -35,6 +37,7 @@ export default function Register() {
                 description: 'Bem vindo a plataforma',
             })
             reset()
+            route.push('/animes')
         },
         onError({ serverError }) {
             toast({
