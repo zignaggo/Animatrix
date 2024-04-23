@@ -2,6 +2,7 @@ import { FloatInput } from '@/components/inputs/float'
 import { FooterBar } from '@/components/navigation/mobile/FooterBar'
 import { Navbar } from '@/components/navigation/mobile/Navbar'
 import { Sidebar } from '@/components/navigation/sidebar'
+import { SelectProfile } from '@/components/pages/auth/select-profile'
 import { headers } from 'next/headers'
 export default async function Layout({
     children,
@@ -21,7 +22,7 @@ export default async function Layout({
                     placeholder="Pesquisar"
                 />
             )}
-
+            <SelectProfile />
             {mobile !== 'mobile' ? <Sidebar.Root /> : <Navbar/>}
             <section className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll">
                 {children}

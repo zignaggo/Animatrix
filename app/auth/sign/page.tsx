@@ -1,6 +1,6 @@
 'use client'
 import { PasswordInput } from '@/components/inputs/password'
-import { AuthLayout } from '@/components/pages/animes/auth/layout'
+import { AuthLayout } from '@/components/pages/auth/layout'
 import {
     Form,
     FormControl,
