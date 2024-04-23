@@ -7,7 +7,7 @@ export async function updateSession(request: NextRequest) {
             headers: request.headers,
         },
     })
-
+    const secureOptions = { httpOnly: true, secure: true }
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -21,11 +21,18 @@ export async function updateSession(request: NextRequest) {
                         name,
                         value,
                         ...options,
+                        ...secureOptions,
                     })
                     response = NextResponse.next({
                         request: {
                             headers: request.headers,
                         },
+                    })
+                    response.cookies.set({
+                        name,
+                        value,
+                        ...options,
+                        ...secureOptions,
                     })
                 },
                 remove(name: string, options: CookieOptions) {
@@ -33,17 +40,23 @@ export async function updateSession(request: NextRequest) {
                         name,
                         value: '',
                         ...options,
+                        ...secureOptions,
                     })
                     response = NextResponse.next({
                         request: {
                             headers: request.headers,
                         },
                     })
+                    response.cookies.set({
+                        name,
+                        value: '',
+                        ...options,
+                        ...secureOptions,
+                    })
                 },
             },
         }
     )
-
     const auth = await supabase.auth.getUser()
     return { response, auth }
 }

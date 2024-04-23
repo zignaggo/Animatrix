@@ -6,11 +6,16 @@ import { AuthApiError } from '@supabase/supabase-js'
 
 export const createSafeUser = action(
     registerSchema,
-    async ({ email, password }) => {
+    async ({ email, password, username }) => {
         const supabase = createClient()
         const response = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: {
+                    username,
+                },
+            },
         })
         if (response.error) {
             throw new AuthApiError(

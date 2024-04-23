@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { Home, isAuthenticated, isNotAuthenticated, publicRoutes, updateSession } from '@/supabase/middleware'
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname

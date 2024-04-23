@@ -1,7 +1,7 @@
 import Banner from '@/components/pages/animes/banner'
 import { Seasons } from '@/components/pages/animes/seasons'
-
 export default async function Animes() {
+
     return (
         <section className="w-full flex flex-col">
             <Banner
