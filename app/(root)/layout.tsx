@@ -3,6 +3,7 @@ import { FooterBar } from '@/components/navigation/mobile/FooterBar'
 import { Navbar } from '@/components/navigation/mobile/Navbar'
 import { Sidebar } from '@/components/navigation/sidebar'
 import { createClient } from '@/supabase/server'
+import { Profiles } from '@/components/pages/auth/profile'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 export default async function Layout({
@@ -12,7 +13,6 @@ export default async function Layout({
 }>) {
     const mobile = headers().get('viewport')
     const supabase = createClient()
-
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
         redirect('/auth/sign')
@@ -29,10 +29,9 @@ export default async function Layout({
                     placeholder="Pesquisar"
                 />
             )}
-
             {mobile !== 'mobile' ? <Sidebar.Root /> : <Navbar />}
             <section className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll">
-                {children}
+                <Profiles>{children}</Profiles>
             </section>
             {mobile === 'mobile' && <FooterBar />}
         </main>
