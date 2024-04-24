@@ -3,7 +3,7 @@ import { FooterBar } from '@/components/navigation/mobile/FooterBar'
 import { Navbar } from '@/components/navigation/mobile/Navbar'
 import { Sidebar } from '@/components/navigation/sidebar'
 import { createClient } from '@/supabase/server'
-import { Profiles } from '@/components/pages/auth/profile'
+import { Profiles } from '@/components/pages/profiles'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 export default async function Layout({

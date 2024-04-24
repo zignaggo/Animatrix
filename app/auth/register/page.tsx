@@ -17,7 +17,7 @@ import { useAction } from 'next-safe-action/hooks'
 import { useToast } from '@/components/ui/use-toast'
 import * as z from 'zod'
 import { registerSchema } from '@/server/actions/auth/register/schema'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next-nprogress-bar';
 export default function Register() {
     const { toast } = useToast()
     const route = useRouter();
