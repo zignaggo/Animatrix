@@ -10,7 +10,6 @@ export function createClient() {
         },
         set(name: string, value: string, options: CookieOptions) {
             try {
-                console.log(options)
                 cookieStore.set({
                     name,
                     value,

@@ -6,7 +6,6 @@ export default async function Calendar() {
     if (response.error) {
         return <div>Error ao buscar os animes</div>
     }
-    console.log(response.data)
     return (
         <section className='w-full p-10'>
             <CategoryAnime

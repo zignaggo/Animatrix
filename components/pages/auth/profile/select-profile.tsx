@@ -10,7 +10,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
         const expiresAt = new Date(Date.now() + 2 * 60 * 60 * 1000)
         setCookie('profile', profile, {
             expires: expiresAt,
-            sameSite: true,
+            sameSite: 'lax',
         })
         router.refresh()
     }

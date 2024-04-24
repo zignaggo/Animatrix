@@ -7,8 +7,6 @@ export default async function Profiles() {
     if (user.error) {
         return <></>
     }
-    console.log(user.data.user.id)
     const response = await getProfiles(user.data.user.id, supabase)
-    console.log(response)
     return response.map((profile) => <div key={profile.id}>{profile.name}</div>)
 }
