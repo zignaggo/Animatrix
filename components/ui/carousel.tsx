@@ -162,7 +162,7 @@ const CarouselContent = React.forwardRef<
                 ref={ref}
                 className={cn(
                     'flex',
-                    orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+                    orientation === 'horizontal' ? '-ml-4 mr-1' : '-mt-4 flex-col',
                     className
                 )}
                 {...props}
@@ -206,12 +206,12 @@ const CarouselPrevious = React.forwardRef<
             variant={variant}
             size={size as 'lg' | 'sm'}
             className={cn(
-                'absolute h-full w-14 bg-gradient-to-r from-black-950 flex items-center justify-center hover:bg-gradient-to-r hover:from-black-800',
+                'absolute h-full w-14 bg-gradient-to-r from-black-950 hidden sm:flex items-center justify-center hover:bg-gradient-to-r hover:from-black-800',
                 orientation === 'horizontal'
                     ? 'left-0 top-1/2 -translate-y-1/2'
                     : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
                 className,
-                !canScrollPrev ? 'hidden' : ''
+                !canScrollPrev ? 'sm:hidden' : ''
             )}
             disabled={!canScrollPrev}
             onClick={scrollPrev}
@@ -236,12 +236,12 @@ const CarouselNext = React.forwardRef<
             variant={variant}
             size={size as 'lg' | 'sm'}
             className={cn(
-                'absolute h-full w-14 bg-gradient-to-l from-black-950 flex items-center justify-center hover:bg-gradient-to-l hover:from-black-800',
+                'absolute h-full w-14 bg-gradient-to-l from-black-950 hidden sm:flex items-center justify-center hover:bg-gradient-to-l hover:from-black-800',
                 orientation === 'horizontal'
                     ? 'right-0 top-1/2 -translate-y-1/2'
                     : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
                 className,
-                !canScrollNext ? 'hidden' : ''
+                !canScrollNext ? 'sm:hidden' : ''
             )}
             disabled={!canScrollNext}
             onClick={scrollNext}

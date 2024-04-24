@@ -97,19 +97,19 @@
         --primary-foreground: var(--white);
 
         --secondary: var(--black-800);
-        --secondary-foreground: var(--white);
+        --secondary-foreground: var(--purple-100);
 
-        --muted: 217.2 32.6% 17.5%;
+        --muted: var(--purple-100);
         --muted-foreground: var(--gray-500);
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent: var(--purple-500);
+        --accent-foreground: var(--purple-500);
 
         --destructive: var(--error);
         --destructive-foreground: var(--white);
 
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
+        --border: var(--purple-100);
+        --input: var(--purple-100);
         --ring: var(--purple-100);
     }
 
@@ -117,43 +117,43 @@
         @apply bg-background text-foreground;
     }
 
-    .text-h1 {
+    .textsize-h1 {
         @apply font-bold text-[3rem] leading-[56px];
     }
-    .text-h2 {
+    .textsize-h2 {
         @apply font-semibold text-[2rem] leading-10;
     }
-    .text-h3 {
+    .textsize-h3 {
         @apply font-semibold text-[1.5rem] leading-8;
     }
-    .text-h4 {
+    .textsize-h4 {
         @apply font-semibold text-[1.25rem] leading-7;
     }
-    .text-h5 {
+    .textsize-h5 {
         @apply font-semibold text-[1.125rem] leading-[26px];
     }
-    .text-subtitle-1 {
-        @apply text-[1.5rem] leading-8;
+    .textsize-subtitle1 {
+        @apply text-[1.25rem] leading-8;
     }
-    .text-subtitle-2 {
+    .textsize-subtitle2 {
         @apply text-[1.125rem] leading-[26px];
     }
-    .text-p-1 {
+    .textsize-p1 {
         @apply text-[1rem] leading-6;
     }
-    .text-p-2 {
+    .textsize-p2 {
         @apply font-medium text-[1rem] leading-6;
     }
-    .text-p-3 {
+    .textsize-p3 {
         @apply text-[0.878rem] leading-6;
     }
-    .text-p-4 {
+    .textsize-p4 {
         @apply font-medium text-[0.878rem] leading-6;
     }
-    .text-p-5 {
+    .textsize-p5 {
         @apply text-[0.75rem] leading-5;
     }
-    .text-p-6 {
+    .textsize-p6 {
         @apply font-medium text-[0.75rem] leading-5;
     }
 }

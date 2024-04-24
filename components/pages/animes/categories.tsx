@@ -1,7 +1,5 @@
-import { getAnimesByCategory } from '@/search'
-import { genders } from '@/search/translations'
 import CategoryAnime from './category-anime'
-type categories = (
+export type genders = (
     | 'romance'
     | 'action'
     | 'adventure'
@@ -17,16 +15,25 @@ type categories = (
     | 'sports'
     | 'supernatural'
     | 'thriller'
+    | 'yaoi'
+    | 'yuri'
+    | 'winter'
 )[]
-type CategoryAnimeProps = { categories: categories }
+type CategoryAnimeProps = { categories: genders }
 
 export default async function Categories({ categories }: CategoryAnimeProps) {
     const response = Array.from(new Set(categories)).map(async (category) => ({
         category,
-        animes: await getAnimesByCategory(category),
+        animes: [],
     }))
-    const allCategories = await Promise.all(response)
+    const allCategories = await Promise.all([])
     return allCategories.map(({ category, animes }) => {
-        return <CategoryAnime key={category} animes={animes.results} category={genders[category]} />
+        return (
+            <CategoryAnime
+                key={category}
+                animes={[]}
+                category={category}
+            />
+        )
     })
 }

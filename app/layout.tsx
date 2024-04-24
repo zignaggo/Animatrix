@@ -4,7 +4,8 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import { fontSans } from '@/components/font'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from '@/components/ui/toaster'
+import { ProgressProvider } from '@/components/progress-bar'
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
     description: 'Stream anime app',
@@ -24,8 +25,10 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <NextTopLoader color='#602DE7' shadow={'0 0 20px #fff,0 0 10px #fff'} height={4} showSpinner={false} />
-                    <TooltipProvider delayDuration={500}>{children}</TooltipProvider>
+                    <TooltipProvider delayDuration={500}>
+                        <ProgressProvider>{children}</ProgressProvider>
+                    </TooltipProvider>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

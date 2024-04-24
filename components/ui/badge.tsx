@@ -1,9 +1,10 @@
+'use client'
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const badgeVariants = cva(
-    'inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+    'w-fit inline-flex items-center rounded-md px-2 py-1.5 textsize-p3 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
     {
         variants: {
             variant: {
@@ -17,7 +18,7 @@ const badgeVariants = cva(
                 unstyled: ''
             },
             size: {
-                default: 'h-12 rounded-md px-6 text-md',
+                default: 'h-12 rounded-md px-6',
                 icon: 'h-5 w-5',
             },
         },

@@ -4,11 +4,6 @@ import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icons'
 import Image from 'next/image'
 import { Toggle } from '@/components/ui/toggle'
-import {
-    TooltipTrigger,
-    TooltipContent,
-    Tooltip,
-} from '@/components/ui/tooltip'
 
 interface Banner {
     image: string
@@ -33,52 +28,46 @@ export default function Banner({ title, description, image }: Banner) {
                 <Header title="Animes" subtitle="Principal" />
                 <div className="flex flex-col gap-6 mt-6">
                     <div>
-                        <p className="text-h4 text-lemon-500">
+                        <p className="textsize-h4 text-lemon-500">
                             Destaque da Semana
                         </p>
-                        <h1 className="text-h3">{title}</h1>
+                        <h1 className="textsize-h3">{title}</h1>
                     </div>
-                    <p className="text-subtitle-2 max-w-[600px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
+                    <p className="textsize-subtitle2 max-w-[600px] text-shadow-sm overflow-hidden text-ellipsis line-clamp-5">
                         {description}
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                         <Button size={'lg'} className="w-fit">
                             Assitir Agora <Icon icon="TvTwoLine" />
                         </Button>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Toggle
-                                    size={'lg'}
-                                    variant={'secondary'}
-                                    activeIcon={
-                                        <Icon
-                                            icon="HeartFill"
-                                            color="rgb(var(--error))"
-                                        />
-                                    }
-                                >
-                                    <Icon icon="HeartLine" />
-                                </Toggle>
-                            </TooltipTrigger>
-                            <TooltipContent>Favoritar</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Toggle
-                                    size={'lg'}
-                                    variant={'secondary'}
-                                    activeIcon={
-                                        <Icon
-                                            icon="NotificationFill"
-                                            color="rgb(var(--lemon-500))"
-                                        />
-                                    }
-                                >
-                                    <Icon icon="NotificationLine" />
-                                </Toggle>
-                            </TooltipTrigger>
-                            <TooltipContent>Notificar</TooltipContent>
-                        </Tooltip>
+                        <Toggle
+                            size={'lg'}
+                            variant={'secondary'}
+                            activeIcon={
+                                <Icon
+                                    icon="HeartFill"
+                                    color="rgb(var(--error))"
+                                />
+                            }
+                            tooltip='Favoritar'
+                            activeTooltip='Desfavoritar'
+                        >
+                            <Icon icon="HeartLine" />
+                        </Toggle>
+                        <Toggle
+                            size={'lg'}
+                            variant={'secondary'}
+                            activeIcon={
+                                <Icon
+                                    icon="NotificationFill"
+                                    color="rgb(var(--lemon-500))"
+                                />
+                            }
+                            tooltip='Notificar'
+                            activeTooltip='Não notificar'
+                        >
+                            <Icon icon="NotificationLine" />
+                        </Toggle>
                     </div>
                 </div>
             </section>

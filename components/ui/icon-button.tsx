@@ -15,8 +15,8 @@ const buttonVariants = cva(
                     'bg-secondary text-secondary-foreground hover:bg-black-700 active:bg-black-600',
                 outline:
                     'border-2 border-purple-500 bg-background hover:bg-purple-600 active:bg-purple-999 hover:text-accent-foreground',
-                danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/80 active:bg-destructive/70',
-                text: 'hover:bg-black-800 active:bg-black-700',
+                danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80',
+                text: 'hover:bg-black-800/60 active:bg-black-700/60',
                 success: 'bg-lemon-700 hover:bg-lemon-800 active:bg-lemon-900',
                 unstyle: 'bg-transparent',
             },

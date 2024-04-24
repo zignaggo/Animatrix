@@ -1,19 +1,21 @@
-import { NextResponse, userAgent } from 'next/server'
-import type { NextRequest } from 'next/server'
-
-export function middleware(request: NextRequest) {
-    const url = request.nextUrl
-    /*Redirect to /Animes */
+import { NextRequest } from 'next/server'
+import { Home, isAuthenticated, isNotAuthenticated, publicRoutes, updateSession } from '@/supabase/middleware'
+export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
-    if (path === '/') {
-        NextResponse.rewrite(url)
-        return NextResponse.redirect(new URL('/animes', url))
+    const isPublicRoute = publicRoutes.includes(path)
+    const { auth, response } = await updateSession(request)
+    if (auth.error && !isPublicRoute) {
+        return isNotAuthenticated(request);
     }
-    const { device } = userAgent(request)
-    const mobile = ['mobile', 'tablet']
-    const viewport =
-        device.type && mobile.includes(device.type) ? 'mobile' : 'desktop'
-    const response = NextResponse.next()
-    response.headers.set('viewport', viewport)
+    if (auth.data.user && isPublicRoute) {
+        return isAuthenticated(request);
+    }
+    if (path === '/') {
+        return Home(request)
+    }
     return response
+}
+
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 }
