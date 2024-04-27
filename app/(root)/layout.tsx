@@ -11,7 +11,7 @@ export default async function Layout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    const mobile = headers().get('viewport')
+    const mobile = headers().get('layout')
     const supabase = createClient()
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
