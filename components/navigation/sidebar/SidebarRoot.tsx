@@ -1,4 +1,3 @@
-'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SidebarItem } from '@/components/navigation/sidebar/SidebarItem'
@@ -7,7 +6,9 @@ import { links } from '@/utils/listLinks'
 import Icon from '@/components/ui/icons'
 import { IconButton } from '@/components/ui/icon-button'
 import { Notification } from '@/components/ui/notification'
+import { useProfile } from '@/hooks/profile'
 export function SidebarRoot() {
+    const profile = useProfile()
     return (
         <header className="flex flex-col items-center">
             <Link href={'/animes'} className="p-4">
@@ -46,10 +47,14 @@ export function SidebarRoot() {
                     defaultIcon={'HeartLine'}
                     activeIcon={'HeartFill'}
                 />
-                <Avatar>
-                    <AvatarImage />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                {profile && (
+                    <Avatar>
+                        <AvatarImage />
+                        <AvatarFallback>
+                            {profile.name.slice(0, 2)}
+                        </AvatarFallback>
+                    </Avatar>
+                )}
             </div>
         </header>
     )

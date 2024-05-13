@@ -9,7 +9,8 @@ export type seasons = (
 type SeasonAnimeProps = { seasons: seasons }
 
 export async function Seasons({ seasons }: SeasonAnimeProps) {
-    const response = Array.from(new Set(seasons)).map(async (season) => ({
+    const setSeasons = Array.from(new Set(seasons))
+    const response = setSeasons.map(async (season) => ({
         season,
         animes: await getSeasonalAnime(2024, season),
     }))
@@ -22,7 +23,7 @@ export async function Seasons({ seasons }: SeasonAnimeProps) {
                     id: String(anime.node.id),
                     title: anime.node.title,
                     image: anime.node.main_picture.large,
-                    highlight: anime.node.num_episodes > 0 ? `${anime.node.num_episodes} Episódios` : undefined,
+                    highlight: anime.node.num_episodes > 0 ? `${anime.node.num_episodes} Eps` : undefined,
                     subtitle: anime.node.status,
                 }))}
                 category={`Temporada de ${season}`}

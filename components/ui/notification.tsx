@@ -34,7 +34,7 @@ const notificationVariants = cva(
 
 const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
     (
-        { className, children, text, variant, size, hide = false, ...props },
+        { className, children, text, variant, size, hide = true, ...props },
         ref
     ) => (
         <div className="relative">

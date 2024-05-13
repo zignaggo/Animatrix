@@ -4,7 +4,7 @@ export async function getProfiles(supabase: SupabaseClient) {
         data: { user },
     } = await supabase.auth.getUser()
     if (!user) return []
-    const countriesWithCitiesQuery = supabase
+    const profiles = supabase
         .from('profile')
         .select(
             `
@@ -14,7 +14,7 @@ export async function getProfiles(supabase: SupabaseClient) {
 `
         )
         .filter('userID', 'eq', user.id)
-    const { data, error } = await countriesWithCitiesQuery
+    const { data, error } = await profiles
     if (error) throw error
     return data
 }
