@@ -62,9 +62,9 @@ export async function updateSession(request: NextRequest) {
 }
 
 export const publicRoutes = ['/auth/sign', '/auth/register']
-export const isNotAuthenticated = (request: NextRequest) =>
+export const redirectToLogin = (request: NextRequest) =>
     NextResponse.redirect(new URL('/auth/sign', request.nextUrl))
-export const isAuthenticated = (request: NextRequest) =>
+export const redirectToHome = (request: NextRequest) =>
     NextResponse.redirect(new URL('/animes', request.nextUrl))
-export const Home = (request: NextRequest) =>
-    NextResponse.redirect(new URL('/animes', request.nextUrl))
+export const redirectToCProfile = (request: NextRequest) =>
+    NextResponse.redirect(new URL('/choose-profile', request.nextUrl))

@@ -12,7 +12,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
             expires: expiresAt,
             sameSite: 'lax',
         })
-        router.refresh()
+        router.push('/animes')
     }
     return (
         <div className="position z-[100] absolute w-full h-full top-0 left-0 bg-black-950 flex items-center justify-center gap-6 p-10 flex-col">

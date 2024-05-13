@@ -7,8 +7,10 @@ import Icon from '@/components/ui/icons'
 import { IconButton } from '@/components/ui/icon-button'
 import { Notification } from '@/components/ui/notification'
 import { useProfile } from '@/hooks/profile'
+import { getInitials } from '@/utils'
 export function SidebarRoot() {
     const profile = useProfile()
+    const initials = getInitials(profile.name);
     return (
         <header className="flex flex-col items-center">
             <Link href={'/animes'} className="p-4">
@@ -47,14 +49,10 @@ export function SidebarRoot() {
                     defaultIcon={'HeartLine'}
                     activeIcon={'HeartFill'}
                 />
-                {profile && (
-                    <Avatar>
-                        <AvatarImage />
-                        <AvatarFallback>
-                            {profile.name.slice(0, 2)}
-                        </AvatarFallback>
-                    </Avatar>
-                )}
+                <Avatar>
+                    <AvatarImage />
+                    <AvatarFallback>{initials}</AvatarFallback>
+                </Avatar>
             </div>
         </header>
     )

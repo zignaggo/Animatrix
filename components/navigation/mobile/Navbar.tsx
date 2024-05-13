@@ -3,16 +3,16 @@ import { Sidebar } from '../sidebar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Icon from '@/components/ui/icons'
 import { useProfile } from '@/hooks/profile'
+import { getInitials } from '@/utils'
 export function Navbar() {
     const profile = useProfile()
+    const initials = getInitials(profile.name);
     return (
         <header className="px-6 py-3 flex gap-2 w-100 flex-row">
-            {profile && (
-                <Avatar>
-                    <AvatarImage />
-                    <AvatarFallback>{profile.name.slice(0, 2)}</AvatarFallback>
-                </Avatar>
-            )}
+            <Avatar>
+                <AvatarImage />
+                <AvatarFallback>{initials}</AvatarFallback>
+            </Avatar>
             <nav className="flex flex-1 justify-end gap-2">
                 <Sidebar.Item
                     href="favorite"

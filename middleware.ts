@@ -1,22 +1,38 @@
 import { NextRequest } from 'next/server'
 import { getLayoutApp } from './utils/isMobile'
-import { Home, isAuthenticated, isNotAuthenticated, publicRoutes, updateSession } from '@/supabase/middleware'
+import {
+    publicRoutes,
+    redirectToCProfile,
+    redirectToHome,
+    redirectToLogin,
+    updateSession,
+} from '@/supabase/middleware'
+import { cookies } from 'next/headers'
 export async function middleware(request: NextRequest) {
-    
     const path = request.nextUrl.pathname
     const isPublicRoute = publicRoutes.includes(path)
     const layout = getLayoutApp(request)
     const { auth, response } = await updateSession(request)
-    response.headers.set('layout', layout)
+    const isSelectedProfile = cookies().get('profile')?.value
+    const isAuth = auth.data.user
     if (auth.error && !isPublicRoute) {
-        return isNotAuthenticated(request);
+        return redirectToLogin(request)
     }
-    if (auth.data.user && isPublicRoute) {
-        return isAuthenticated(request);
+    if (isAuth) {
+        if (isPublicRoute) {
+            return redirectToHome(request)
+        }
+        if (!isSelectedProfile && path !== '/choose-profile') {
+            return redirectToCProfile(request)
+        }
+        if (isSelectedProfile && path === '/choose-profile') {
+            return redirectToHome(request)
+        }
+        if (path === '/') {
+            return redirectToHome(request)
+        }
     }
-    if (path === '/') {
-        return Home(request)
-    }
+    response.headers.set('layout', layout)
     return response
 }
 

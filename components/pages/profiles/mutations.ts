@@ -1,3 +1,4 @@
+import { TProfile } from '@/types/profile'
 import { SupabaseClient } from '@supabase/supabase-js'
 export async function getProfiles(supabase: SupabaseClient) {
     const {
@@ -16,5 +17,5 @@ export async function getProfiles(supabase: SupabaseClient) {
         .filter('userID', 'eq', user.id)
     const { data, error } = await profiles
     if (error) throw error
-    return data
+    return data as TProfile[]
 }
