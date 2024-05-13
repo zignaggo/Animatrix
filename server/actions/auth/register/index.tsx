@@ -3,7 +3,6 @@ import { createClient } from '@/supabase/server'
 import { registerSchema } from './schema'
 import { action } from '@/server/safeactions'
 import { AuthApiError } from '@supabase/supabase-js'
-import { redirect } from 'next/navigation'
 
 export const createSafeUser = action(
     registerSchema,

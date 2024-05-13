@@ -1,7 +1,6 @@
 'use server'
 import { action } from '@/server/safeactions'
 import { signSchema } from './schema'
-import { redirect } from 'next/navigation'
 import { createClient } from '@/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
 

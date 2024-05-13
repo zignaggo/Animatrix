@@ -57,6 +57,7 @@ export default function Register() {
                 register={true}
                 loading={status === 'executing'}
                 onSubmit={form.handleSubmit(onSubmit)}
+                disabled={form.formState.isSubmitted}
             >
                 <FormField
                     control={form.control}
