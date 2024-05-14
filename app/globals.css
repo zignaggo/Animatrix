@@ -166,7 +166,7 @@
 } */
 
 .custom-scroll::-webkit-scrollbar-thumb {
-    background-color: rgb(var(--purple-500));
+    background-color: rgb(var(--black-600));
     border: 2px solid rgb(var(--black-950));
     border-radius: 999px;
 }

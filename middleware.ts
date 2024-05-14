@@ -11,6 +11,7 @@ import { cookies } from 'next/headers'
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     const isPublicRoute = publicRoutes.includes(path)
+    const isProfileRoute = path.includes('-profile')
     const layout = getLayoutApp(request)
     const { auth, response } = await updateSession(request)
     const isSelectedProfile = cookies().get('profile')?.value
@@ -22,7 +23,7 @@ export async function middleware(request: NextRequest) {
         if (isPublicRoute) {
             return redirectToHome(request)
         }
-        if (!isSelectedProfile && path !== '/choose-profile') {
+        if (!isSelectedProfile && !isProfileRoute) {
             return redirectToCProfile(request)
         }
         if (isSelectedProfile && path === '/choose-profile') {
@@ -37,5 +38,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+    matcher: [
+        '/((?!api|_next/static|_next/image|.*\\.png|favicon.ico$).*)',
+        '/((?!_next/static|_next/image|favicon.ico).*)',
+    ],
 }

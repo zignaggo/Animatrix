@@ -1,3 +1,4 @@
+import { envServerSchema } from '@/types/serverEnvSchema'
 import { createServerClient, CookieOptions, CookieMethods } from '@supabase/ssr'
 import { cookies as nextCookies } from 'next/headers'
 
@@ -30,8 +31,8 @@ export function createClient() {
         },
     }
     return createServerClient(
-        process.env.SUPABASE_URL!,
-        process.env.SUPABASE_ANON_KEY!,
+        envServerSchema.SUPABASE_URL,
+        envServerSchema.SUPABASE_ANON_KEY,
         {
             cookies,
         }
