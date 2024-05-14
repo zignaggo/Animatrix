@@ -12,7 +12,6 @@ export const envServer = envSchema.safeParse({
     X_MAL_CLIENT_ID: process.env.X_MAL_CLIENT_ID,
 });
 
-console.log(envServer);
 if (!envServer.success) {
     throw new Error('Missing enviroment variables or enviroment variables type is incorrect: ');
 }

@@ -19,7 +19,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
             <h2 className="textsize-h2 text-purple-100 text-center sm:text-start">
                 Quem está assistindo?
             </h2>
-            <div className="flex flex-wrap gap-12 items-center justify-center">
+            <div className="flex flex-wrap gap-12 items-start justify-center">
                 {profiles.map((profile) => (
                     <ProfileAvatar
                         key={profile.id}
