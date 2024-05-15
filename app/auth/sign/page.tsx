@@ -54,7 +54,7 @@ export default function Sign() {
                 subtitle="Entre em sua conta e veja seus animes preferidos"
                 loading={status === 'executing'}
                 onSubmit={form.handleSubmit(onSubmit)}
-                disabled={form.formState.isSubmitSuccessful}
+                disabled={status === 'hasSucceeded'}
             >
                 <FormField
                     control={form.control}

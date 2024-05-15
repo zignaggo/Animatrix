@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
     const layout = getLayoutApp(request)
     const { auth, response } = await updateSession(request)
     const isSelectedProfile = cookies().get('profile')?.value
-    const isAuth = auth.data.user
+    const isAuth = auth.data?.user
     if (auth.error && !isPublicRoute) {
         return redirectToLogin(request)
     }

@@ -23,7 +23,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus, X } from 'lucide-react'
 import { useRouter } from 'next-nprogress-bar'
 import { useAction } from 'next-safe-action/hooks'
-import { revalidatePath } from 'next/cache'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -130,7 +129,7 @@ export default function AddProfile() {
                         loading={status === 'executing'}
                         loadingText="Carregando"
                         type="submit"
-                        disabled={form.formState.isSubmitSuccessful}
+                        disabled={status === 'hasSucceeded'}
                     >
                         <Plus /> Criar
                     </Button>
