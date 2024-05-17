@@ -1,6 +1,7 @@
+import { createClient } from '@/supabase/server';
 import { TProfile } from '@/types/profile'
-import { SupabaseClient } from '@supabase/supabase-js'
-export async function getProfiles(supabase: SupabaseClient) {
+export async function getProfiles() {
+    const supabase = createClient();
     const {
         data: { user },
     } = await supabase.auth.getUser()

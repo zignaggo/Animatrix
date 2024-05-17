@@ -99,11 +99,11 @@
         --secondary: var(--black-800);
         --secondary-foreground: var(--purple-100);
 
-        --muted: var(--purple-100);
+        --muted: var(--black-600);
         --muted-foreground: var(--gray-500);
 
-        --accent: var(--purple-500);
-        --accent-foreground: var(--purple-500);
+        --accent: var(--black-700);
+        --accent-foreground: var(--purple-100);
 
         --destructive: var(--error);
         --destructive-foreground: var(--white);

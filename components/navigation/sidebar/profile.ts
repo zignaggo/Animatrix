@@ -2,7 +2,7 @@ import { TProfile } from "@/types/profile"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-export async function getProfile() {
+export async function getSelectedProfile() {
     const cookieStore = cookies()
     const cookie = cookieStore.get('profile')
     if (!cookie){
