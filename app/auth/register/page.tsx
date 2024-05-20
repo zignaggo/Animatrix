@@ -1,6 +1,6 @@
 'use client'
 import { PasswordInput } from '@/components/inputs/password'
-import { AuthLayout } from '@/components/pages/auth/layout'
+import { AuthLayout } from '@/components/pages/auth/auth-layout'
 import { Input } from '@/components/ui/input'
 import { createSafeUser } from '@/server/actions/auth/register'
 import { useForm } from 'react-hook-form'

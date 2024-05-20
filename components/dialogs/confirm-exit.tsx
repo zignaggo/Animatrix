@@ -9,6 +9,7 @@ import {
     AlertDialogTitle,
 } from '../ui/alert-dialog'
 import { AlertDialogProps } from '@radix-ui/react-alert-dialog'
+import { signOut } from '@/server/actions/auth/sign'
 type ConfirmExitProps = AlertDialogProps
 export function ConfirmExit(props: ConfirmExitProps) {
     return (
@@ -23,9 +24,11 @@ export function ConfirmExit(props: ConfirmExitProps) {
                         você voltar!!
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                    <AlertDialogAction variant={'danger'}>
+                <AlertDialogFooter action={signOut}>
+                    <AlertDialogCancel type="button">
+                        Cancelar
+                    </AlertDialogCancel>
+                    <AlertDialogAction variant={'danger'} type="submit">
                         Sair
                     </AlertDialogAction>
                 </AlertDialogFooter>

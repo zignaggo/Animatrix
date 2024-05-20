@@ -12,7 +12,7 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { LogOut, User, User2 } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 import { TProfile } from '@/types/profile'
 import { getInitials } from '@/utils'
 import { ConfirmExit } from './dialogs/confirm-exit'
@@ -28,7 +28,7 @@ export function Menu({
 }) {
     const [profile, setProfile] = useState(String(currentProfileID))
     const [confirmOpen, setConfirmOpen] = useState(false)
-    const handleExit = () => {
+    const handleExit = async () => {
         setConfirmOpen(true);
     }
     return (

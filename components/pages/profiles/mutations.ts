@@ -15,7 +15,7 @@ export async function getProfiles() {
   language
 `
         )
-        .filter('userID', 'eq', user.id)
+        .filter('user_id', 'eq', user.id)
     const { data, error } = await profiles
     if (error) throw error
     return data as TProfile[]

@@ -21,10 +21,7 @@ export function AuthLayout({
     ...props
 }: LayoutProps) {
     return (
-        <form
-            {...props}
-            className="w-full flex flex-col max-w-[395px] gap-6 h-fit"
-        >
+        <div className="w-full flex flex-col max-w-[395px] gap-6 h-fit">
             <div className="text-center">
                 <h1 className="textsize-h2 text-white">
                     Bem vindo ao{' '}
@@ -34,19 +31,19 @@ export function AuthLayout({
                     {subtitle}
                 </p>
             </div>
-            <div className="flex flex-col gap-2">{children}</div>
-            <div className="w-full">
+            <form className="flex flex-col gap-6" {...props}>
+                <div className="flex flex-col gap-2">{children}</div>
                 <Button
                     className="w-full"
                     size={'lg'}
                     type="submit"
                     loading={loading}
-                    loadingText='Carregando'
+                    loadingText="Carregando"
                     disabled={disabled}
                 >
                     {register ? 'Cadastrar' : 'Entrar'}
                 </Button>
-            </div>
+            </form>
             <span className="textsize-p1">
                 {!register ? 'Ainda não tem conta? ' : 'Já tem conta? '}
                 <Link
@@ -61,10 +58,15 @@ export function AuthLayout({
                 <span>ou</span>
                 <Separator className="shrink bg-black-600" />
             </div>
-            <Button className="w-full" variant={'secondary'} size={'lg'} type='button'>
+            <Button
+                className="w-full"
+                variant={'secondary'}
+                size={'lg'}
+                type="button"
+            >
                 <Icon icon="Google" />
                 Entrar com google
             </Button>
-        </form>
+        </div>
     )
 }
