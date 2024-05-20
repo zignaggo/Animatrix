@@ -1,6 +1,7 @@
+import { createClient } from '@/lib/supabase/server';
 import { TProfile } from '@/types/profile'
-import { SupabaseClient } from '@supabase/supabase-js'
-export async function getProfiles(supabase: SupabaseClient) {
+export async function getProfiles() {
+    const supabase = createClient();
     const {
         data: { user },
     } = await supabase.auth.getUser()
@@ -14,7 +15,7 @@ export async function getProfiles(supabase: SupabaseClient) {
   language
 `
         )
-        .filter('userID', 'eq', user.id)
+        .filter('user_id', 'eq', user.id)
     const { data, error } = await profiles
     if (error) throw error
     return data as TProfile[]

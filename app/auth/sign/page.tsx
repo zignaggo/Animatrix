@@ -1,6 +1,6 @@
 'use client'
 import { PasswordInput } from '@/components/inputs/password'
-import { AuthLayout } from '@/components/pages/auth/layout'
+import { AuthLayout } from '@/components/pages/auth/auth-layout'
 import {
     Form,
     FormControl,
@@ -54,7 +54,7 @@ export default function Sign() {
                 subtitle="Entre em sua conta e veja seus animes preferidos"
                 loading={status === 'executing'}
                 onSubmit={form.handleSubmit(onSubmit)}
-                disabled={form.formState.isSubmitted}
+                disabled={status === 'hasSucceeded'}
             >
                 <FormField
                     control={form.control}

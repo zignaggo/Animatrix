@@ -1,9 +1,10 @@
+import { envServerSchema } from '@/types/serverEnvSchema'
 import { createServerClient, CookieOptions, CookieMethods } from '@supabase/ssr'
 import { cookies as nextCookies } from 'next/headers'
 
 export function createClient() {
     const cookieStore = nextCookies()
-    const secureOptions = { httpOnly: true, secure: true }
+    const secureOptions = { }
     const cookies: CookieMethods = {
         get(name: string) {
             return cookieStore.get(name)?.value
@@ -30,8 +31,8 @@ export function createClient() {
         },
     }
     return createServerClient(
-        process.env.SUPABASE_URL!,
-        process.env.SUPABASE_ANON_KEY!,
+        envServerSchema.NEXT_PUBLIC_SUPABASE_URL,
+        envServerSchema.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         {
             cookies,
         }

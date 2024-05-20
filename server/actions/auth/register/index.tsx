@@ -1,5 +1,5 @@
 'use server'
-import { createClient } from '@/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { registerSchema } from './schema'
 import { action } from '@/server/safeactions'
 import { AuthApiError } from '@supabase/supabase-js'

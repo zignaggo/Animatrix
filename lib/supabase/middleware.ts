@@ -7,52 +7,44 @@ export async function updateSession(request: NextRequest) {
             headers: request.headers,
         },
     })
-    const secureOptions = { httpOnly: true, secure: true }
+    const secureOptions = { }
     const supabase = createServerClient(
-        process.env.SUPABASE_URL!,
-        process.env.SUPABASE_ANON_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         {
             cookies: {
                 get(name: string) {
                     return request.cookies.get(name)?.value
                 },
                 set(name: string, value: string, options: CookieOptions) {
-                    request.cookies.set({
+                    const cookieSetValues = {
                         name,
                         value,
                         ...options,
                         ...secureOptions,
-                    })
+                    }
+                    request.cookies.set(cookieSetValues)
                     response = NextResponse.next({
                         request: {
                             headers: request.headers,
                         },
                     })
-                    response.cookies.set({
-                        name,
-                        value,
-                        ...options,
-                        ...secureOptions,
-                    })
+                    response.cookies.set(cookieSetValues)
                 },
                 remove(name: string, options: CookieOptions) {
-                    request.cookies.set({
+                    const cookieSetValue = {
                         name,
                         value: '',
                         ...options,
                         ...secureOptions,
-                    })
+                    }
+                    request.cookies.set(cookieSetValue)
                     response = NextResponse.next({
                         request: {
                             headers: request.headers,
                         },
                     })
-                    response.cookies.set({
-                        name,
-                        value: '',
-                        ...options,
-                        ...secureOptions,
-                    })
+                    response.cookies.set(cookieSetValue)
                 },
             },
         }

@@ -3,7 +3,7 @@ import { TProfile } from '@/types/profile'
 import { Add } from './add'
 import { ProfileAvatar } from './profile-avatar'
 import { setCookie } from 'cookies-next'
-import { useRouter } from 'next-nprogress-bar';
+import { useRouter } from 'next-nprogress-bar'
 export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
     const router = useRouter()
     const saveProfile = (profile: TProfile) => {
@@ -15,11 +15,11 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
         router.push('/animes')
     }
     return (
-        <div className="position z-[100] absolute w-full h-full top-0 left-0 bg-black-950 flex items-center justify-center gap-6 p-10 flex-col">
+        <div className="w-full h-full bg-black-950 flex items-center justify-center gap-6 p-10 flex-col">
             <h2 className="textsize-h2 text-purple-100 text-center sm:text-start">
                 Quem está assistindo?
             </h2>
-            <div className="flex flex-wrap gap-12 items-center justify-center">
+            <div className="flex flex-wrap gap-12 items-start justify-center">
                 {profiles.map((profile) => (
                     <ProfileAvatar
                         key={profile.id}
@@ -27,7 +27,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
                         onSubmit={() => saveProfile(profile)}
                     />
                 ))}
-                <Add />
+                <Add onClick={() => router.push('/add-profile')} />
             </div>
         </div>
     )

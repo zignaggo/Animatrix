@@ -1,8 +1,10 @@
 'use server'
 import { action } from '@/server/safeactions'
 import { signSchema } from './schema'
-import { createClient } from '@/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export const signInSafer = action(signSchema, async ({ email, password }) => {
     const supabase = createClient()
@@ -18,3 +20,10 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
         )
     }
 })
+
+export const signOut = async () => {
+    const client = createClient()
+    await client.auth.signOut()
+    revalidatePath('/auth/sign')
+    redirect('/auth/sign')
+}

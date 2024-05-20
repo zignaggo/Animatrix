@@ -1,5 +1,5 @@
 import CategoryAnime from '@/components/pages/animes/category-anime'
-import { getSeasonalAnime } from '@/myanimelist'
+import { getSeasonalAnime } from '@/lib/myanimelist'
 
 export default async function Calendar() {
     const response = await getSeasonalAnime(2024, 'winter')
