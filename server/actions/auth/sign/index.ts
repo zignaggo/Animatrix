@@ -1,7 +1,7 @@
 'use server'
 import { action } from '@/server/safeactions'
 import { signSchema } from './schema'
-import { createClient } from '@/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
 
 export const signInSafer = action(signSchema, async ({ email, password }) => {

@@ -5,7 +5,7 @@ import {
     redirectToHome,
     redirectToLogin,
     updateSession,
-} from '@/supabase/middleware'
+} from '@/lib/supabase/middleware'
 import { cookies } from 'next/headers'
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname

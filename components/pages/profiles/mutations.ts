@@ -1,4 +1,4 @@
-import { createClient } from '@/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { TProfile } from '@/types/profile'
 export async function getProfiles() {
     const supabase = createClient();

@@ -1,4 +1,4 @@
-import { ResponseSeasonalAnime } from '@/myanimelist/types'
+import { ResponseSeasonalAnime } from './types'
 import { envServerSchema } from '@/types/serverEnvSchema'
 const api = 'https://api.myanimelist.net/v2'
 export async function getSeasonalAnime(

@@ -1,6 +1,6 @@
 'use server'
 import { action } from '@/server/safeactions'
-import { createClient } from '@/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
 import { createProfileSchema } from './schema'
 import { revalidatePath } from 'next/cache'

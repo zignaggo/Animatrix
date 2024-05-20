@@ -1,4 +1,4 @@
-import { getSeasonalAnime } from '@/myanimelist'
+import { getSeasonalAnime } from '@/lib/myanimelist'
 import CategoryAnime from './category-anime'
 export type seasons = (
     | 'winter'
