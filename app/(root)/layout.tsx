@@ -12,10 +12,8 @@ export default async function Layout({
             }
         >
             <Sidebar />
-            <section className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll">
-                {children}
-            </section>
-            <Footer/>
+            {children}
+            <Footer />
         </main>
     )
 }
