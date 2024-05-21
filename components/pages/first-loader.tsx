@@ -1,8 +1,8 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import Loading from './loading'
-export default function Template({ children }: { children: React.ReactNode }) {
+import { Loader } from './loader'
+export function FirstLoading({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -24,7 +24,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 },
             }}
         >
-            {loading ? <Loading /> : children}
+            {loading ? <Loader /> : children}
         </motion.section>
     )
 }
