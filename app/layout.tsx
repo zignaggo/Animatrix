@@ -6,8 +6,7 @@ import { fontSans } from '@/components/font'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/toaster'
 import { ProgressProvider } from '@/components/progress-bar'
-import { Loader } from '@/components/pages/loader'
-import FirstLoading from '@/components/pages/first-loader'
+import { FirstLoading } from '@/components/pages/first-loader'
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
     description: 'Stream anime app',

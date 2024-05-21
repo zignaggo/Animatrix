@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Loader } from './loader'
-export default function FirstLoading({ children }: { children: React.ReactNode }) {
+export function FirstLoading({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const timeout = setTimeout(() => {
