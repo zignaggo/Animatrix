@@ -1,7 +1,8 @@
 import Banner from '@/components/pages/animes/banner'
 import { Seasons } from '@/components/pages/animes/seasons'
+import useTranslation from 'next-translate/useTranslation'
 export default async function Animes() {
-
+    const { t, lang } = useTranslation('common')
     return (
         <section className="w-full flex flex-col">
             <Banner
