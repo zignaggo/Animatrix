@@ -1,3 +1,16 @@
 {
-    
+    "seasons": {
+        "season": "Season",
+        "fall": "Fall season",
+        "winter": "Winter season",
+        "spring": "Spring season",
+        "summer": "Summer season"
+    },
+    "anime": {
+        "status": {
+            "finished_airing": "Finished",
+            "currently_airing": "Airing",
+            "not_yet_aired": "Not Aired"
+        }
+    }
 }

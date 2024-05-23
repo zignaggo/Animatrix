@@ -17,7 +17,6 @@ export async function middleware(request: NextRequest) {
     if (auth.error && !isPublicRoute) {
         return redirectToLogin(request)
     }
-    console.log('path', path)
     if (isAuth) {
         if (
             isPublicRoute ||
