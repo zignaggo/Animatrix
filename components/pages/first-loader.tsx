@@ -2,7 +2,11 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Loader } from './loader'
+import { usePathname } from 'next/navigation'
+import { publicRoutes } from '@/lib/supabase/middleware'
 export function FirstLoading({ children }: { children: React.ReactNode }) {
+    const path = usePathname()
+    const isPublicRoute = publicRoutes.includes(path)
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -24,7 +28,12 @@ export function FirstLoading({ children }: { children: React.ReactNode }) {
                 },
             }}
         >
-            {loading ? <Loader /> : children}
+             {loading && !isPublicRoute ? <Loader /> : children}
+            {/* 
+                load page in background
+                {loading && !isPublicRoute && <Loader />}
+                {children} 
+            */}
         </motion.section>
     )
 }
