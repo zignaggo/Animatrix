@@ -1,26 +1,53 @@
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
-import { DetailedHTMLProps, FormHTMLAttributes, ReactNode } from 'react'
-import { GoogleButton } from './google-button'
-import { signWithGoogleSafer } from '@/server/actions/auth/sign'
+import {
+    DetailedHTMLProps,
+    FormHTMLAttributes,
+    MouseEvent,
+    ReactNode,
+} from 'react'
+import { signSocialAuthSafer } from '@/server/actions/auth/sign'
+import { socialAuthSchema } from '@/server/actions/auth/sign/schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useAction } from 'next-safe-action/hooks'
+import { FieldValues, UseFormReturn, useForm } from 'react-hook-form'
 
-type LayoutProps = {
+import * as z from 'zod'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Provider } from '@supabase/supabase-js'
+import Icon from '@/components/ui/icons'
+type LayoutProps<T extends FieldValues> = {
     subtitle: string
     children: ReactNode
     register?: boolean
     loading?: boolean
     disabled?: boolean
+    form: UseFormReturn<T>
 } & DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
-export function AuthLayout({
+export function AuthLayout<T extends FieldValues>({
     children,
     subtitle,
     register = false,
     loading = false,
     disabled = false,
     action,
+    form,
     ...props
-}: LayoutProps) {
+}: LayoutProps<T>) {
+    const socialForm = useForm<z.infer<typeof socialAuthSchema>>({
+        resolver: zodResolver(socialAuthSchema),
+        defaultValues: {
+            provider: 'google',
+        },
+    })
+    const onSubmit = (provider: Provider) => {
+        execute({ provider })
+    }
+    const { status, execute } = useAction(signSocialAuthSafer)
+    const handleProviderClick = (e: MouseEvent<HTMLButtonElement>) => {
+        onSubmit(e.currentTarget.value as Provider) // Submit the form
+    }
     return (
         <div className="w-full flex flex-col max-w-[395px] gap-6 h-fit">
             <div className="text-center">
@@ -32,19 +59,21 @@ export function AuthLayout({
                     {subtitle}
                 </p>
             </div>
-            <form className="flex flex-col gap-6" {...props}>
-                <div className="flex flex-col gap-2">{children}</div>
-                <Button
-                    className="w-full"
-                    size={'lg'}
-                    type="submit"
-                    loading={loading}
-                    loadingText="Carregando"
-                    disabled={disabled}
-                >
-                    {register ? 'Cadastrar' : 'Entrar'}
-                </Button>
-            </form>
+            <Form {...form}>
+                <form className="flex flex-col gap-6" {...props}>
+                    <div className="flex flex-col gap-2">{children}</div>
+                    <Button
+                        className="w-full"
+                        size={'lg'}
+                        type="submit"
+                        loading={loading}
+                        loadingText="Carregando"
+                        disabled={disabled}
+                    >
+                        {register ? 'Cadastrar' : 'Entrar'}
+                    </Button>
+                </form>
+            </Form>
             <span className="textsize-p1">
                 {!register ? 'Ainda não tem conta? ' : 'Já tem conta? '}
                 <Link
@@ -59,9 +88,55 @@ export function AuthLayout({
                 <span>ou</span>
                 <Separator className="shrink bg-black-600" />
             </div>
-            <form action={signWithGoogleSafer}>
-                <GoogleButton className="w-full" />
-            </form>
+            <Form {...socialForm}>
+                <form>
+                    <FormField
+                        control={socialForm.control}
+                        name="provider"
+                        render={({ field }) => (
+                            <FormItem className="flex space-y-0 gap-2 items-center">
+                                <FormControl>
+                                    <>
+                                        <Button
+                                            name={field.name}
+                                            value="google"
+                                            variant={'secondary'}
+                                            size={'lg'}
+                                            className="w-full"
+                                            loading={status === 'executing'}
+                                            onClick={handleProviderClick}
+                                        >
+                                            <Icon icon="Google" />
+                                        </Button>
+                                        <Button
+                                            variant={'secondary'}
+                                            size={'lg'}
+                                            name={field.name}
+                                            value="discord"
+                                            className="w-full"
+                                            loading={status === 'executing'}
+                                            onClick={handleProviderClick}
+                                        >
+                                            <Icon icon="Discord" />
+                                        </Button>
+                                        <Button
+                                            name={field.name}
+                                            value="github"
+                                            variant={'secondary'}
+                                            size={'lg'}
+                                            className="w-full"
+                                            loading={status === 'executing'}
+                                            onClick={handleProviderClick}
+                                        >
+                                            <Icon icon="Github" />
+                                        </Button>
+                                    </>
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+                </form>
+            </Form>
         </div>
     )
 }

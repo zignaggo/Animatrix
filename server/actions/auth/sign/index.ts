@@ -1,6 +1,6 @@
 'use server'
 import { action } from '@/server/safeactions'
-import { signSchema } from './schema'
+import { signSchema, socialAuthSchema } from './schema'
 import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
 import { revalidatePath } from 'next/cache'
@@ -22,11 +22,11 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
         )
     }
 })
-export const signWithGoogleSafer = async () => {
+export const signSocialAuthSafer = action(socialAuthSchema, async ({ provider }) => {
     const supabase = createClient()
     const host = getURL()
-    const { data } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: provider,
         options: {
             redirectTo: `${host}api/auth/callback`,
         },
@@ -34,8 +34,24 @@ export const signWithGoogleSafer = async () => {
     if (data.url) {
         redirect(data.url)
     }
-}
-
+    if (error) {
+        throw new AuthApiError(error.message, error.status!, error.code)
+    }
+})
+// export const signWithGoogle = async () => {
+//     const supabase = createClient()
+//     const host = getURL()
+//     const { data, error } = await supabase.auth.signInWithOAuth({
+//         provider: 'google',
+//         options: {
+//             redirectTo: `${host}api/auth/callback`,
+//         },
+//     })
+//     if (data.url) {
+//         redirect(data.url)
+//     }
+//     return error
+// }
 export const signOut = async () => {
     const client = createClient()
     const cookie = cookies()
