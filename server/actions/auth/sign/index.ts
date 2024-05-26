@@ -7,6 +7,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { cookies, headers } from 'next/headers'
 import { envServerSchema } from '@/types/serverEnvSchema'
+import { getURL } from '@/utils'
 
 export const signInSafer = action(signSchema, async ({ email, password }) => {
     const supabase = createClient()
@@ -24,13 +25,11 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
 })
 export const signWithGoogleSafer = action(googleSignSchema, async () => {
     const supabase = createClient()
-    const headersList = headers()
-    const host = headersList.get('host')
-    const protocol = envServerSchema.PRODUCTION === 'true'? 'https' : 'http'
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const host = getURL()
+    const { data } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: `${protocol}://${host}/api/auth/callback`,
+            redirectTo: `${host}/api/auth/callback`,
         },
     })
     if (data.url) {
