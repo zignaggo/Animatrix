@@ -10,4 +10,3 @@ export const signSchema = z.object({
         .string({ required_error: 'Senha é obrigatório' })
         .max(256, { message: 'Máximo de 256 caracteres' }),
 })
-export const googleSignSchema = z.object({})
