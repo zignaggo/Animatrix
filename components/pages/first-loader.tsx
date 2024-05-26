@@ -2,7 +2,12 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Loader } from './loader'
+import { usePathname } from 'next/navigation'
+import { publicRoutes } from '@/utils'
+
 export function FirstLoading({ children }: { children: React.ReactNode }) {
+    const path = usePathname()
+    const isPublicRoute = publicRoutes.includes(path)
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -24,7 +29,7 @@ export function FirstLoading({ children }: { children: React.ReactNode }) {
                 },
             }}
         >
-            {loading ? <Loader /> : children}
+            {loading && !isPublicRoute ? <Loader /> : children}
         </motion.section>
     )
 }

@@ -52,11 +52,3 @@ export async function updateSession(request: NextRequest) {
     const auth = await supabase.auth.getUser()
     return { response, auth }
 }
-
-export const publicRoutes = ['/auth/sign', '/auth/register']
-export const redirectToLogin = (request: NextRequest) =>
-    NextResponse.redirect(new URL('/auth/sign', request.nextUrl))
-export const redirectToHome = (request: NextRequest) =>
-    NextResponse.redirect(new URL('/animes', request.nextUrl))
-export const redirectToCProfile = (request: NextRequest) =>
-    NextResponse.redirect(new URL('/choose-profile', request.nextUrl))

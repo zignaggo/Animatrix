@@ -35,7 +35,7 @@ export default function Sign() {
                 title: 'Bem vindo ao animatrix',
                 description: 'Sessão iniciada!',
             })
-            route.push('/animes')
+            route.replace('/animes')
         },
         onError({ serverError }) {
             toast({

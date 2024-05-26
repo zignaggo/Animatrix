@@ -1,11 +1,7 @@
 import { getSeasonalAnime } from '@/lib/myanimelist'
 import CategoryAnime from './category-anime'
-export type seasons = (
-    | 'winter'
-    | 'spring'
-    | 'summer'
-    | 'fall'
-)[]
+import { translations } from '@/utils'
+type seasons = ('winter' | 'spring' | 'summer' | 'fall')[]
 type SeasonAnimeProps = { seasons: seasons }
 
 export async function Seasons({ seasons }: SeasonAnimeProps) {
@@ -23,10 +19,17 @@ export async function Seasons({ seasons }: SeasonAnimeProps) {
                     id: String(anime.node.id),
                     title: anime.node.title,
                     image: anime.node.main_picture.large,
-                    highlight: anime.node.num_episodes > 0 ? `${anime.node.num_episodes} Eps` : undefined,
-                    subtitle: anime.node.status,
+                    highlight:
+                        anime.node.num_episodes > 0
+                            ? `${anime.node.num_episodes} Eps`
+                            : undefined,
+                    subtitle:
+                        translations['anime']['status'][anime.node.status] ||
+                        anime.node.status,
                 }))}
-                category={`Temporada de ${season}`}
+                category={
+                    translations['seasons'][season] || 'Temporada desconhecida'
+                }
             />
         )
     })
