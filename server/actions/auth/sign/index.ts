@@ -22,10 +22,26 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
     }
 })
 
+export const signWithGoogle = async () => {
+    const supabase = createClient()
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: 'http://localhost:4000/api/auth/callback',
+        },
+    })
+    if (data.url) {
+        redirect(data.url)
+    }
+    if (error) {
+        throw new AuthApiError(error.message, error.status!, error.code)
+    }
+}
+
 export const signOut = async () => {
     const client = createClient()
     const cookie = cookies()
-    cookie.delete('profile');
+    cookie.delete('profile')
     await client.auth.signOut()
     revalidatePath('/auth/sign')
     redirect('/auth/sign')
