@@ -1,3 +1,4 @@
+import { Provider } from '@supabase/supabase-js'
 import z from 'zod'
 export const signSchema = z.object({
     email: z
@@ -9,4 +10,7 @@ export const signSchema = z.object({
     password: z
         .string({ required_error: 'Senha é obrigatório' })
         .max(256, { message: 'Máximo de 256 caracteres' }),
+})
+export const socialAuthSchema = z.object({
+    provider: z.custom<Provider>(),
 })

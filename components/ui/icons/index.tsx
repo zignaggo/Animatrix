@@ -20,6 +20,8 @@ import RightLine from './RightLine'
 import LeftLine from './LeftLine'
 import Google from './Google'
 import LogoLoading from './LogoLoading'
+import Discord from './Discord'
+import Github from './Github'
 
 export type IconType =
     | 'TvTwoFill'
@@ -42,6 +44,8 @@ export type IconType =
     | 'RightLine'
     | 'LeftLine'
     | 'Google'
+    | 'Discord'
+    | 'Github'
     | 'LogoLoading'
 
 export interface IconProps extends SVGAttributes<SVGElement> {
@@ -73,6 +77,8 @@ const Icon = (props: IconProps) => {
         LeftLine: <LeftLine {...svgProps} />,
         Google: <Google {...svgProps} />,
         LogoLoading: <LogoLoading {...svgProps} />,
+        Discord: <Discord {...svgProps} />,
+        Github: <Github {...svgProps} />,
     }
     return Icons[icon]
 }
