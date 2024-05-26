@@ -1,13 +1,28 @@
-const nextTranslate = require('next-translate-plugin')
-
-module.exports = nextTranslate({
+const remotePatterns = [
+    {
+        protocol: "https",
+        hostname: "cdn.myanimelist.net",
+        pathname: '/images/**'
+    },
+    {
+        protocol: "https",
+        hostname: "blogger.googleusercontent.com",
+        pathname: '/img/**'
+    },
+]
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
-        remotePatterns: [
+        remotePatterns
+    },
+    async redirects() {
+        return [
             {
-                protocol: "https",
-                hostname: "**",
+                source: '/',
+                destination: '/animes',
+                permanent: true,
             },
-        ],
+        ]
     },
 }
-)
+module.exports = nextConfig

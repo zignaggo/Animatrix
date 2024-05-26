@@ -1,12 +1,10 @@
 import { NextRequest } from 'next/server'
 import {
-    publicRoutes,
-    redirectToCProfile,
-    redirectToHome,
-    redirectToLogin,
     updateSession,
 } from '@/lib/supabase/middleware'
 import { cookies } from 'next/headers'
+import { redirectTo, publicRoutes } from '@/utils'
+
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     const isPublicRoute = publicRoutes.includes(path)
@@ -15,18 +13,17 @@ export async function middleware(request: NextRequest) {
     const isSelectedProfile = cookies().get('profile')?.value
     const isAuth = auth.data?.user
     if (auth.error && !isPublicRoute) {
-        return redirectToLogin(request)
+        return redirectTo(request, '/auth/sign')
     }
     if (isAuth) {
         if (
             isPublicRoute ||
-            path === '/' ||
             (isSelectedProfile && path === '/choose-profile')
         ) {
-            return redirectToHome(request)
+            return redirectTo(request, '/animes')
         }
         if (!isSelectedProfile && !isProfileRoute) {
-            return redirectToCProfile(request)
+            return redirectTo(request, '/choose-profile')
         }
     }
     return response
@@ -35,5 +32,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/((?!api|_next/static|_next/image|.*\\.png|favicon.ico$).*)',
+        '/icon.svg',
     ],
 }
