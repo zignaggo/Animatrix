@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button'
-import Icon from '@/components/ui/icons'
 import { Separator } from '@/components/ui/separator'
-import { signWithGoogle } from '@/server/actions/auth/sign'
 import Link from 'next/link'
 import { DetailedHTMLProps, FormHTMLAttributes, ReactNode } from 'react'
+import { GoogleButton } from './google-button'
+import { signWithGoogleSafer } from '@/server/actions/auth/sign'
 
 type LayoutProps = {
     subtitle: string
@@ -59,11 +59,8 @@ export function AuthLayout({
                 <span>ou</span>
                 <Separator className="shrink bg-black-600" />
             </div>
-            <form action={signWithGoogle}>
-                <Button className="w-full" variant={'secondary'} size={'lg'}>
-                    <Icon icon="Google" />
-                    Entrar com google
-                </Button>
+            <form action={signWithGoogleSafer}>
+                <GoogleButton className="w-full" />
             </form>
         </div>
     )

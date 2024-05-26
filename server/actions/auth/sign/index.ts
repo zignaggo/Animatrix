@@ -1,11 +1,12 @@
 'use server'
 import { action } from '@/server/safeactions'
-import { signSchema } from './schema'
+import { googleSignSchema, signSchema } from './schema'
 import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
+import { envServerSchema } from '@/types/serverEnvSchema'
 
 export const signInSafer = action(signSchema, async ({ email, password }) => {
     const supabase = createClient()
@@ -21,22 +22,21 @@ export const signInSafer = action(signSchema, async ({ email, password }) => {
         )
     }
 })
-
-export const signWithGoogle = async () => {
+export const signWithGoogleSafer = action(googleSignSchema, async () => {
     const supabase = createClient()
+    const headersList = headers()
+    const host = headersList.get('host')
+    const protocol = envServerSchema.PRODUCTION === 'true'? 'https' : 'http'
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: 'http://localhost:4000/api/auth/callback',
+            redirectTo: `${protocol}://${host}/api/auth/callback`,
         },
     })
     if (data.url) {
         redirect(data.url)
     }
-    if (error) {
-        throw new AuthApiError(error.message, error.status!, error.code)
-    }
-}
+})
 
 export const signOut = async () => {
     const client = createClient()
