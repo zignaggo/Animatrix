@@ -1,11 +1,11 @@
 import { getSeasonalAnime } from '@/lib/myanimelist'
 import CategoryAnime from './category-anime'
 import { translations } from '@/utils'
-export type seasons = ('winter' | 'spring' | 'summer' | 'fall')[]
+import { seasons } from '@/lib/myanimelist/types' 
 type SeasonAnimeProps = { seasons: seasons }
 
 export async function Seasons({ seasons }: SeasonAnimeProps) {
-    const setSeasons = Array.from(new Set(seasons))
+    const setSeasons = Array.from(new Set(seasons)) as seasons[]
     const response = setSeasons.map(async (season) => ({
         season,
         animes: await getSeasonalAnime(2024, season),

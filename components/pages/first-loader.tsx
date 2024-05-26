@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Loader } from './loader'
 import { usePathname } from 'next/navigation'
 import { publicRoutes } from '@/utils'
+
 export function FirstLoading({ children }: { children: React.ReactNode }) {
     const path = usePathname()
     const isPublicRoute = publicRoutes.includes(path)
@@ -28,7 +29,7 @@ export function FirstLoading({ children }: { children: React.ReactNode }) {
                 },
             }}
         >
-             {loading && !isPublicRoute ? <Loader /> : children}
+            {loading && !isPublicRoute ? <Loader /> : children}
         </motion.section>
     )
 }
