@@ -31,7 +31,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, FloatInput>(
                 )}
             >
                 <input
-                    className="h-full w-full bg-transparent caret-shape-block focus:bg-transparent focus-visible:outline-none group-focus-within:placeholder:text-white/50 animate-caret-blink"
+                    className="h-full w-full bg-transparent caret-shape-block focus:bg-transparent focus-visible:outline-none group-focus-within:placeholder:text-white/50 animate-caret-blink mr-2"
                     type={type}
                     ref={ref}
                     value={search}

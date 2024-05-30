@@ -5,11 +5,10 @@ export default async function Search({
 }: {
     searchParams: { query: string }
 }) {
-    console.log(searchParams)
     return (
-        <section className="h-full flex flex-col justify-center sm:justify-start gap-6 sm:gap-4 w-full p-6 sm:p-10">
+        <section className="h-full flex flex-col justify-center sm:justify-start gap-2 w-full p-6 sm:p-10">
             <SearchBar />
-            <SearchAnimes anime={searchParams.query}/>
+            <SearchAnimes query={searchParams.query} />
         </section>
     )
 }

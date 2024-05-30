@@ -71,3 +71,7 @@ export type ResponseAnimeDetails = {
     data: Anime
     error: false
 }
+export type ResponseAnimeList = {
+    data: { node: Anime }[]
+    error: false
+}
