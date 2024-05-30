@@ -3,26 +3,40 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { IconButton } from '@/components/ui/icon-button'
 import Icon from '@/components/ui/icons'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useRouter } from 'next-nprogress-bar'
 import { useKeyboard } from '@/hooks/useKeyboard'
 import { createQueryString } from '@/utils'
 export interface FloatInput
     extends React.InputHTMLAttributes<HTMLInputElement> {
     onSearchClick?: (...rest: any) => unknown
+    reset?: boolean
 }
 
 const SearchInput = React.forwardRef<HTMLInputElement, FloatInput>(
-    ({ onSearchClick, className, type, value, ...props }, ref) => {
+    (
+        { onSearchClick, className, type, value, reset = false, ...props },
+        ref
+    ) => {
         const [search, setSearch] = React.useState('')
         const router = useRouter()
+        const pathname = usePathname()
         const searchParams = useSearchParams()
-        const to = '/search?' + createQueryString('query', search, searchParams)
-        useKeyboard('Enter', 'keydown', () => {
-            if (!search.length) return;
-            onSearchClick && onSearchClick()
+        const redirectToSearch = (to: string) => {
+            if (pathname === '/search') {
+                router.replace(to)
+                return
+            }
             router.push(to)
-        }, false)
+        }
+        const handleSubmit = () => {
+            if (!search.length) return
+            onSearchClick && onSearchClick()
+            redirectToSearch(to)
+            reset && setSearch(''); 
+        }
+        const to = '/search?' + createQueryString('query', search, searchParams)
+        useKeyboard('Enter', 'keydown', handleSubmit, false)
         return (
             <div
                 className={cn(
@@ -49,10 +63,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, FloatInput>(
                     <Icon
                         width={'20px'}
                         icon={'SearchThreeLine'}
-                        onClick={() => {
-                            router.push(to)
-                            onSearchClick && onSearchClick();
-                        }}
+                        onClick={handleSubmit}
                     />
                 </IconButton>
             </div>
