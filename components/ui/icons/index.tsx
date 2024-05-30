@@ -22,6 +22,7 @@ import Google from './Google'
 import LogoLoading from './LogoLoading'
 import Discord from './Discord'
 import Github from './Github'
+import SearchThreeFill from './SearchThreeFill'
 
 export type IconType =
     | 'TvTwoFill'
@@ -47,6 +48,7 @@ export type IconType =
     | 'Discord'
     | 'Github'
     | 'LogoLoading'
+    | 'SearchThreeFill'
 
 export interface IconProps extends SVGAttributes<SVGElement> {
     children?: never
@@ -79,6 +81,7 @@ const Icon = (props: IconProps) => {
         LogoLoading: <LogoLoading {...svgProps} />,
         Discord: <Discord {...svgProps} />,
         Github: <Github {...svgProps} />,
+        SearchThreeFill: <SearchThreeFill {...svgProps} />,
     }
     return Icons[icon]
 }
