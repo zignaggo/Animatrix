@@ -18,6 +18,7 @@ export default async function Layout({
             <SearchInput
                 className="hidden md:flex md:absolute top-6 right-6 z-10"
                 placeholder="Pesquisar animes"
+                reset
             />
             {children}
             <Footer />

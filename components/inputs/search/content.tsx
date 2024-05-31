@@ -1,12 +1,13 @@
+import { SearchAnimes } from '@/components/pages/search/animes'
 import { cn } from '@/lib/utils'
 import { TextSearch } from 'lucide-react'
 type SearchProps = React.HTMLAttributes<HTMLDivElement> & {
-    items?: number
+    query?: string
 }
 const SearchContent = ({
     className,
-    items = 0,
     children,
+    query,
     ...props
 }: SearchProps) => (
     <div
@@ -18,18 +19,8 @@ const SearchContent = ({
     >
         <div className="flex gap-2">
             <TextSearch />
-            {!!items ? (
-                <>
-                    {items}
-                    <p>Items encontrados </p>
-                </>
-            ) : (
-                <>
-                    <p>Nenhum item encontrado </p>
-                </>
-            )}
+            {query}
         </div>
-        {children}
     </div>
 )
 SearchContent.displayName = 'SearchContent'
