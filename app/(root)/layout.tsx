@@ -14,7 +14,6 @@ export default async function Layout({
             }
         >
             <Sidebar />
-            <SearchCommand />
             <SearchInput
                 className="hidden md:flex md:absolute top-6 right-6 z-10"
                 placeholder="Pesquisar animes"
