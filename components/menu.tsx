@@ -49,6 +49,7 @@ export function Menu({
                                 value={String(profile.id)}
                                 key={profile.id}
                                 initials={getInitials(profile.name)}
+                                className='mt-1'
                             >
                                 {profile.name}
                             </DropdownMenuProfileItem>

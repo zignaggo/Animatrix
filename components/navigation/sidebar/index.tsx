@@ -38,13 +38,13 @@ export function Sidebar() {
                     <Icon icon="NotificationLine" />
                 </IconButton>
             </Notification>
-            <SidebarItem
+            {/* <SidebarItem
                 href={'/favorite'}
                 title={'Favoritos'}
                 variant="icon"
                 defaultIcon={'HeartLine'}
                 activeIcon={'HeartFill'}
-            />
+            /> */}
             <UserInfo className="mr-auto md:mr-0" />
         </header>
     )

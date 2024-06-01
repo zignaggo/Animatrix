@@ -116,7 +116,21 @@
     body {
         @apply bg-background text-foreground;
     }
-
+    h1 {
+        @apply font-bold text-[3rem] leading-[56px];
+    }
+    h2 {
+        @apply font-semibold text-[2rem] leading-10;
+    }
+    h3 {
+        @apply font-semibold text-[1.5rem] leading-8;
+    }
+    h4 {
+        @apply font-semibold text-[1.25rem] leading-7;
+    }
+    h5 {
+        @apply font-semibold text-[1.125rem] leading-[26px];
+    }
     .textsize-h1 {
         @apply font-bold text-[3rem] leading-[56px];
     }
@@ -161,9 +175,6 @@
 .custom-scroll::-webkit-scrollbar {
     width: 8px;
 }
-
-/* main::-webkit-scrollbar-track {
-} */
 
 .custom-scroll::-webkit-scrollbar-thumb {
     background-color: rgb(var(--black-600));

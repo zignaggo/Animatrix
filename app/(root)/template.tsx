@@ -9,7 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             transition={{
                 opacity: { ease: 'linear' },
             }}
-            className='section className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll'
+            className="flex flex-grow flex-col items-start justify-between max-h-screen overflow-y-auto custom-scroll"
         >
             {children}
         </motion.section>

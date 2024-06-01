@@ -1,5 +1,4 @@
 import { IconType } from "@/components/ui/icons"
-
 export const links: {
     href: string
     defaultIcon: IconType
@@ -13,27 +12,27 @@ export const links: {
         title: 'Animes',
     },
     {
-        href: '/kdrama',
-        defaultIcon: 'LoveLine',
-        activeIcon: 'LoveFill',
-        title: 'Doramas',
+        href: '/search',
+        defaultIcon: 'SearchThreeLine',
+        activeIcon: 'SearchThreeFill',
+        title: 'Pesquisar',
     },
-    {
-        href: '/calendar',
-        defaultIcon: 'CalendarLine',
-        activeIcon: 'CalendarFill',
-        title: 'Calendário',
-    },
-    {
-        href: '/movies',
-        defaultIcon: 'TvOneLine',
-        activeIcon: 'TvOneFill',
-        title: 'Filmes',
-    },
-    {
-        href: '/mangas',
-        defaultIcon: 'PaperLine',
-        activeIcon: 'PaperFill',
-        title: 'Mangás',
-    },
+    // {
+    //     href: '/calendar',
+    //     defaultIcon: 'CalendarLine',
+    //     activeIcon: 'CalendarFill',
+    //     title: 'Calendário',
+    // },
+    // {
+    //     href: '/kdrama',
+    //     defaultIcon: 'LoveLine',
+    //     activeIcon: 'LoveFill',
+    //     title: 'Doramas',
+    // },
+    // {
+    //     href: '/movies',
+    //     defaultIcon: 'TvOneLine',
+    //     activeIcon: 'TvOneFill',
+    //     title: 'Filmes',
+    // },
 ]

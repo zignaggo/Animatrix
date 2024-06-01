@@ -1,6 +1,8 @@
+'use server'
 import {
     ErrorSeasonalAnime,
     ResponseAnimeDetails,
+    ResponseAnimeList,
     ResponseSeasonalAnime,
 } from '@/lib/myanimelist/types'
 import { envServerSchema } from '@/types/serverEnvSchema'
@@ -36,6 +38,27 @@ export async function getAnimeDetails(
             return { error: true, text: 'Erro ao encontrar o anime' }
         }
         return { data, error: false }
+    } catch (error) {
+        return { error: true, text: 'Erro ao encontrar o anime' }
+    }
+}
+
+export async function getAnimeByName(
+    query: string,
+    limit = 48
+): Promise<ResponseAnimeList  | ErrorSeasonalAnime> {
+    try {
+        const response = await fetch(
+            `${api}/anime?q=${query}&limit=${limit}&fields=id,title,main_picture`,
+            {
+                headers,
+            }
+        )
+        const data = await response.json()
+        if (data.error) {
+            return { error: true, text: 'Erro ao encontrar o anime' }
+        }
+        return { data: data.data, error: false }
     } catch (error) {
         return { error: true, text: 'Erro ao encontrar o anime' }
     }

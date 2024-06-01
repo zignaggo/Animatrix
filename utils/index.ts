@@ -1,3 +1,4 @@
+import { ReadonlyURLSearchParams } from 'next/navigation'
 import { NextRequest, NextResponse } from 'next/server'
 
 export function getInitials(name: string) {
@@ -37,4 +38,14 @@ export const translations = {
             not_yet_aired: 'Em breve',
         },
     },
+}
+
+export const createQueryString = (
+    name: string,
+    value: string,
+    searchParams: ReadonlyURLSearchParams
+) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set(name, value)
+    return params.toString()
 }
