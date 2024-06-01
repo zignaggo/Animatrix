@@ -21,11 +21,11 @@ export function Loader() {
     const letters = 'Animatrix'.split('')
     return (
         <motion.div className="w-screen h-screen flex flex-col gap-6 items-center justify-center bg-black-950">
-            <Icon icon="LogoLoading" color="#6F4CE8" />
+            <Icon icon="Logo" color="#6F4CE8" className='w-[84px] h-[84px] md:w-[130px] md:h-[130px]'/>
             <div className="flex gap-1">
                 {letters.map((letter, index) => (
                     <motion.span
-                        className="textsize-h1 text-purple-500"
+                        className="text-[40px] font-bold md:textsize-h1 text-purple-500"
                         key={index}
                         animate="bounce"
                         variants={variants(index)}
