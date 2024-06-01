@@ -17,19 +17,22 @@ export function FirstLoading({ children }: { children: React.ReactNode }) {
             clearTimeout(timeout)
         }
     }, [])
-    return (
-        <motion.section
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-                opacity: {
-                    ease: 'linear',
-                    duration: 1,
-                },
-            }}
-        >
-            {loading && !isPublicRoute ? <Loader /> : children}
-        </motion.section>
-    )
+    if (loading && !isPublicRoute) {
+        return (
+            <motion.section
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                    opacity: {
+                        ease: 'linear',
+                        duration: 1,
+                    },
+                }}
+            >
+                <Loader />
+            </motion.section>
+        )
+    }
+    return children
 }

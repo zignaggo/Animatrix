@@ -23,6 +23,7 @@ import LogoLoading from './LogoLoading'
 import Discord from './Discord'
 import Github from './Github'
 import SearchThreeFill from './SearchThreeFill'
+import Logo from './Logo'
 
 export type IconType =
     | 'TvTwoFill'
@@ -48,6 +49,7 @@ export type IconType =
     | 'Discord'
     | 'Github'
     | 'LogoLoading'
+    | 'Logo'
     | 'SearchThreeFill'
 
 export interface IconProps extends SVGAttributes<SVGElement> {
@@ -79,6 +81,7 @@ const Icon = (props: IconProps) => {
         LeftLine: <LeftLine {...svgProps} />,
         Google: <Google {...svgProps} />,
         LogoLoading: <LogoLoading {...svgProps} />,
+        Logo: <Logo {...svgProps} />,
         Discord: <Discord {...svgProps} />,
         Github: <Github {...svgProps} />,
         SearchThreeFill: <SearchThreeFill {...svgProps} />,

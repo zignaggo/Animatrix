@@ -24,7 +24,7 @@ export function AnimeCard({
 }: AnimeCardProps) {
     return (
         <Link
-            className="relative flex flex-col justify-between w-[130px] h-[210px] sm:w-[250px] sm:h-[350px] rounded-lg bg-cover hover:outline outline-purple-500 cursor-pointer shadow-lg "
+            className="relative flex flex-col justify-between w-[140px] h-[220px] sm:w-[250px] sm:h-[350px] rounded-lg bg-cover hover:outline outline-purple-500 cursor-pointer shadow-lg "
             href={`animes/${id}`}
         >
             <Image
@@ -50,7 +50,7 @@ export function AnimeCard({
                 <h4 className="w-full text-xs/4 sm:text-lg/6  font-bold text-ellipsis line-clamp-2">
                     {title}
                 </h4>
-                <div className="text-[10px] sm:text-base/6 flex justify-between w-full">
+                <div className="textsize-p6 sm:textsize-p1 flex justify-between w-full">
                     <p className="text-black-400 text-ellipsis line-clamp-1">
                         {subtitle}
                     </p>

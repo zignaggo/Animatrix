@@ -15,7 +15,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
         router.push('/animes')
     }
     return (
-        <div className="w-full h-full bg-black-950 flex items-center justify-center gap-6 p-10 flex-col">
+        <div className="w-full bg-black-950 flex items-center justify-center gap-6 p-10 flex-col">
             <h2 className="textsize-h2 text-purple-100 text-center sm:text-start">
                 Quem está assistindo?
             </h2>
