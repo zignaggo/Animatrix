@@ -8,7 +8,7 @@ export default function Search({
     searchParams: { query: string }
 }) {
     return (
-        <section className="flex-grow flex flex-col md:justify-center gap-2 w-full p-6 sm:p-10">
+        <section className="flex-grow flex flex-col md:justify-center gap-3 w-full p-6 sm:p-10">
             <SearchHeader />
             <SearchInput
                 placeholder="Pesquise por algo"

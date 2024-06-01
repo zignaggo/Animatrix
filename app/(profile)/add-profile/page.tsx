@@ -59,7 +59,7 @@ export default function AddProfile() {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col h-fit w-fit gap-6"
+                className="flex flex-col h-fit w-fit gap-6 p-6"
             >
                 <h2 className="textsize-h2 text-black-400">Criar Perfil</h2>
                 <div className="flex flex-col gap-2">
@@ -95,7 +95,7 @@ export default function AddProfile() {
                                     value={field.value}
                                 >
                                     <FormControl>
-                                        <SelectTrigger className="min-w-[384px]">
+                                        <SelectTrigger className="sm:min-w-[384px]">
                                             <SelectValue placeholder="Selecionar Linguagem" />
                                         </SelectTrigger>
                                     </FormControl>
@@ -113,7 +113,7 @@ export default function AddProfile() {
                         )}
                     />
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap sm:flex-nowrap gap-4">
                     <Button
                         size="lg"
                         variant="secondary"
