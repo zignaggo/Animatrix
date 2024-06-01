@@ -34,7 +34,7 @@ export default function Details({
             )}
             <div className="flex flex-col gap-2">
                 {genders.length && (
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                         {genders.map((gender) => (
                             <Badge key={gender} variant={'secondary'}>
                                 {gender}

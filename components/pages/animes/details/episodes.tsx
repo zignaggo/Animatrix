@@ -4,7 +4,7 @@ export default function Episodes() {
     return (
         <div className="p-4 mt-4 grid w-full grid-rows-[auto_1fr] bg-black-900 rounded-md min-h-64">
             <Select>
-                <SelectTrigger className="w-[320px]">
+                <SelectTrigger className="max-w-[320px]">
                     <SelectValue placeholder="Selecionar temporada" />
                 </SelectTrigger>
                 <SelectContent>
