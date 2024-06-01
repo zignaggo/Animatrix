@@ -17,22 +17,22 @@ export const links: {
         activeIcon: 'SearchThreeFill',
         title: 'Pesquisar',
     },
-    {
-        href: '/calendar',
-        defaultIcon: 'CalendarLine',
-        activeIcon: 'CalendarFill',
-        title: 'Calendário',
-    },
-    {
-        href: '/kdrama',
-        defaultIcon: 'LoveLine',
-        activeIcon: 'LoveFill',
-        title: 'Doramas',
-    },
-    {
-        href: '/movies',
-        defaultIcon: 'TvOneLine',
-        activeIcon: 'TvOneFill',
-        title: 'Filmes',
-    },
+    // {
+    //     href: '/calendar',
+    //     defaultIcon: 'CalendarLine',
+    //     activeIcon: 'CalendarFill',
+    //     title: 'Calendário',
+    // },
+    // {
+    //     href: '/kdrama',
+    //     defaultIcon: 'LoveLine',
+    //     activeIcon: 'LoveFill',
+    //     title: 'Doramas',
+    // },
+    // {
+    //     href: '/movies',
+    //     defaultIcon: 'TvOneLine',
+    //     activeIcon: 'TvOneFill',
+    //     title: 'Filmes',
+    // },
 ]
