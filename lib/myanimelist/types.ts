@@ -6,6 +6,16 @@ export type Days =
     | 'wednesday'
     | 'friday'
     | 'saturday'
+export type RankingType =
+    | 'all'
+    | 'airing'
+    | 'upcoming'
+    | 'tv'
+    | 'ova'
+    | 'movie'
+    | 'special'
+    | 'bypopularity'
+    | 'favorite'
 export type seasons = 'winter' | 'spring' | 'summer' | 'fall'
 export type genders =
     | 'romance'
@@ -60,13 +70,16 @@ export type Anime = BaseAnime & {
     broadcast: { day_of_the_week: Days; start_time: string } // Dia e hora do lançamento do anime no japão
     recommendations: { node: BaseAnime; num_recommendations: number }
     studios: Studio[]
+    ranking: { rank: number }
 }
-export type ResponseSeasonalAnime = {
-    data: { node: Anime }[]
+
+export type RankAnime = BaseAnime & Pick<Anime, 'ranking' | 'synopsis'>
+export type ResponseAnime<T = Anime> = {
+    data: { node: T }[]
     error: false
     paging: string
 }
-export type ErrorSeasonalAnime = { error: true; text: string }
+export type ErrorAnime = { error: true; text: string }
 
 export type ResponseAnimeDetails = {
     data: Anime

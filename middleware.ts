@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
     const { auth, response } = await updateSession(request)
     const isSelectedProfile = cookies().get('profile')?.value
     const isAuth = auth.data?.user
-    if (auth.error && !isPublicRoute) {
+    if (!isAuth && !isPublicRoute) {
         return redirectTo(request, '/auth/sign')
     }
     if (isAuth) {

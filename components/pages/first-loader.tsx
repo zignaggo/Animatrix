@@ -8,7 +8,7 @@ import { publicRoutes } from '@/utils'
 export function FirstLoading({ children }: { children: React.ReactNode }) {
     const path = usePathname()
     const isPublicRoute = publicRoutes.includes(path)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const timeout = setTimeout(() => {
             setLoading(false)
