@@ -6,7 +6,7 @@ import Icon from '@/components/ui/icons'
 
 type DetailsProps = {
     image: string
-    title: string
+    titles: { type: string; title: string }[]
     releaseDate: string
     description: string
     genders: genders
@@ -14,10 +14,11 @@ type DetailsProps = {
 export default function Details({
     image,
     genders,
-    title,
+    titles,
     description,
     releaseDate,
 }: DetailsProps) {
+    const defaultTitle = titles.find((title) => title.type === 'Default')
     return (
         <section className="grid grid-cols-1 sm:grid-cols-[250px_1fr] gap-6">
             {image && (
@@ -44,7 +45,7 @@ export default function Details({
                 )}
                 <div className="flex flex-col gap-2">
                     <p className="text-lemon-500 textsize-p1">{releaseDate}</p>
-                    <h1 className="text-white textsize-h2">{title}</h1>
+                    <h1 className="text-white textsize-h2">{defaultTitle?.title}</h1>
                     <p className="text-gray-500 textsize-subtitle2 max-w-[1080px] whitespace-pre-line">
                         {description}
                     </p>

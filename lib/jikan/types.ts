@@ -98,6 +98,7 @@ export type JikanAnime = {
         youtube_id: string | null
         url: string | null
         embed_url: string | null
+        images: JikanAnimeImage
     }
     approved: boolean
     titles: { type: string; title: string }[]
