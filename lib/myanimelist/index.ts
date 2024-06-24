@@ -70,7 +70,7 @@ export async function getAnimeByName(
 /**
  * Returns a ordered anime ranking array.
  * 
- * @param {RankingType} rankingType
+ * @param RankingType rankingType
  * -
  * - all          - Top Anime Series
  * - airing	      - Top Airing Anime
@@ -81,7 +81,8 @@ export async function getAnimeByName(
  * - special	  - Top Anime Specials
  * - bypopularity - Top Anime by Popularity
  * - favorite	  - Top Favorited Anime
- * @param {number} limit - The limit of results.
+ * @param number limit - The limit of results.
+ * @returns Promise<ResponseAnime<RankAnime>>
  */
 export async function getAnimeRanking(
     rankingType: RankingType = 'all',

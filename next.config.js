@@ -9,6 +9,11 @@ const remotePatterns = [
         hostname: "blogger.googleusercontent.com",
         pathname: '/img/**'
     },
+    {
+        protocol: "https",
+        hostname: "img1.ak.crunchyroll.com",
+        pathname: '/**'
+    },
 ]
 /** @type {import('next').NextConfig} */
 const nextConfig = {
