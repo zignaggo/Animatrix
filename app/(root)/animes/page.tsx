@@ -1,6 +1,13 @@
 import Banner from '@/components/pages/animes/banner'
 import { Seasons } from '@/components/pages/animes/seasons'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 export default async function Animes() {
+    const client = createClient()
+    const { data } = await client.auth.getUser()
+    if (!data.user) {
+        return redirect('/auth/sign')
+    }
     return (
         <section className="w-full flex flex-col">
             <Banner

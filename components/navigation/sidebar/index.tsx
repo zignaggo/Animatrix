@@ -1,12 +1,34 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SidebarItem } from '@/components/navigation/sidebar/Item'
 import { links } from '@/utils/listLinks'
-import { UserInfo } from './User'
 import { Notification } from '@/components/ui/notification'
 import { IconButton } from '@/components/ui/icon-button'
 import Icon from '@/components/ui/icons'
-export function Sidebar() {
+// import { createClient } from '@/lib/supabase/cliente'
+import { ReactNode, useEffect } from 'react'
+export function Sidebar({ children }: { children: ReactNode }) {
+    // const client = createClient()
+    // useEffect(() => {
+    //     const { data } = client.auth.onAuthStateChange((event, session) => {
+    //         if (event === 'INITIAL_SESSION') {
+    //             // handle initial session
+    //         } else if (event === 'SIGNED_IN') {
+    //             // handle sign in event
+    //         } else if (event === 'SIGNED_OUT') {
+    //             // handle sign out event
+    //         } else if (event === 'PASSWORD_RECOVERY') {
+    //             // handle password recovery event
+    //         } else if (event === 'TOKEN_REFRESHED') {
+    //             // handle token refreshed event
+    //         } else if (event === 'USER_UPDATED') {
+    //             // handle user updated event
+    //         }
+    //     })
+    //     // call unsubscribe to remove the callback
+    //     return () => data.subscription.unsubscribe()
+    // }, [client])
     return (
         <header className="flex flex-row-reverse md:flex-col p-3 gap-2 items-center">
             <Link href={'/animes'} className="hidden md:flex mb-2">
@@ -45,7 +67,7 @@ export function Sidebar() {
                 defaultIcon={'HeartLine'}
                 activeIcon={'HeartFill'}
             /> */}
-            <UserInfo className="mr-auto md:mr-0" />
+            {children}
         </header>
     )
 }

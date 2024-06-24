@@ -45,7 +45,7 @@ export default function Details({
                 <div className="flex flex-col gap-2">
                     <p className="text-lemon-500 textsize-p1">{releaseDate}</p>
                     <h1 className="text-white textsize-h2">{title}</h1>
-                    <p className="text-gray-500 textsize-subtitle2 max-w-[1080px]">
+                    <p className="text-gray-500 textsize-subtitle2 max-w-[1080px] whitespace-pre-line">
                         {description}
                     </p>
                     <div className="flex gap-2">

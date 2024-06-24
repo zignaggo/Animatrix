@@ -54,6 +54,7 @@ export type Anime = BaseAnime & {
     end_date: string
     genres: { id: number; name: genders }[]
     status: status // Finalizado, Ocorrendo, Vai lançar
+    nsfw: 'white' | 'gray' | 'black'
     pictures: picture[]
     mean: number // avaliação 7.87
     broadcast: { day_of_the_week: Days; start_time: string } // Dia e hora do lançamento do anime no japão
