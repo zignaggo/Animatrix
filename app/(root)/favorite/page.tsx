@@ -1,3 +1,9 @@
+import { Player } from '@/components/player'
+
 export default function Favorite() {
-    return <div>Favorite</div>
+    return (
+        <div>
+            <Player />
+        </div>
+    )
 }
