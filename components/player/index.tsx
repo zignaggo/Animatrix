@@ -25,7 +25,7 @@ export function Player({ title, subtitle }: PlayerProps) {
     return (
         <div
             className={`w-[1080px] h-[720px] group/player relative bg-[#000] ${
-                playing && 'playing'
+                playing ? 'playing' : ''
             }`}
         >
             {hasWindow && (
@@ -37,6 +37,7 @@ export function Player({ title, subtitle }: PlayerProps) {
                     height="100%"
                     onProgress={(state) => setCurrentTime(state.playedSeconds)}
                     onDuration={(value) => setDuration(value)}
+                    onEnded={() => setPlaying(false)}
                     volume={volume}
                     playing={playing}
                     progressInterval={100}
@@ -57,7 +58,9 @@ export function Player({ title, subtitle }: PlayerProps) {
                     onPlay={(value) => setPlaying(value)}
                 />
                 <Controls
-                    className="w-full"
+                    className={`w-full group/controls  ${
+                        playing ? 'playing-control' : ''
+                    }`}
                     currentTime={currentTime}
                     duration={duration}
                     onChangeScrubber={(newCurrentTime) => {
