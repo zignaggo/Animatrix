@@ -1,7 +1,7 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useMouse } from 'react-use'
-import { inRange, secondsToHMS } from '@/utils'
+import { inRange } from '@/utils'
 interface ScrubberProps {
     duration: number
     currentTime: number
@@ -31,7 +31,7 @@ export function Scrubber({ currentTime, duration, onChange }: ScrubberProps) {
     return (
         <div
             ref={scrubber}
-            className="group pt-3 w-full cursor-pointer"
+            className="group/hover pt-3 w-full cursor-pointer h-6"
             data-pressed="false"
             onMouseDown={(e) => {
                 e.currentTarget.setAttribute('data-pressed', 'true')
@@ -42,15 +42,16 @@ export function Scrubber({ currentTime, duration, onChange }: ScrubberProps) {
                 onChange && onChange(slidePositionValue * -1)
             }}
         >
-            <div className="relative w-full bg-gray-300 h-1.5 transition-all group-hover:h-2 ">
-                <div
-                    className="absolute rounded-tl-none left-0 h-full bg-purple-500 transition-all"
-                    style={{ right: `${slidePosition}%` }}
-                >
-                    <div className="absolute invisible w-3 aspect-square rounded-full top-1/2 -right-2 bg-purple-500 -translate-y-1/2 group-data-[pressed=true]:visible group-hover:w-4 group-hover:visible transition-all"></div>
+            <div className="h-3">
+                <div className="relative w-full bg-gray-300 h-1.5 transition-all group-hover/hover:h-2">
+                    <div
+                        className="absolute rounded-tl-none left-0 h-full bg-purple-500 transition-all"
+                        style={{ right: `${slidePosition}%` }}
+                    >
+                        <div className="absolute invisible w-3 aspect-square rounded-full top-1/2 -right-2 bg-purple-500 -translate-y-1/2 group-data-[pressed=true]:visible group-hover/hover:w-4 group-hover/hover:visible transition-all"></div>
+                    </div>
                 </div>
             </div>
-            {secondsToHMS(currentTime)}
         </div>
     )
 }

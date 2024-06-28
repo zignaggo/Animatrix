@@ -12,7 +12,7 @@ export interface FloatInput extends InputHTMLAttributes<HTMLInputElement> {
     reset?: boolean
     always?: boolean
     redirect?: boolean
-    value?: string;
+    value?: string
 }
 
 const SearchInput = forwardRef<HTMLInputElement, FloatInput>(
@@ -48,7 +48,7 @@ const SearchInput = forwardRef<HTMLInputElement, FloatInput>(
             reset && setSearch('')
         }
         const to = '/search?' + createQueryString('query', search, searchParams)
-        useKeyboard('Enter', 'keydown', handleSubmit, false)
+        useKeyboard({ key: 'Enter' }, 'keydown', handleSubmit, false)
         return (
             <div
                 className={cn(

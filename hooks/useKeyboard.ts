@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 
 export function useKeyboard<T>(
-    key: string,
+    key: {
+        code?: string,
+        key?: string,
+    },
     event: keyof GlobalEventHandlersEventMap,
     callback: () => T,
     pressControl = true
@@ -9,13 +12,13 @@ export function useKeyboard<T>(
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
             if (pressControl) {
-                if (e.key === key && (e.metaKey || e.ctrlKey)) {
+                if (e.key === key.key && (e.metaKey || e.ctrlKey)) {
                     e.preventDefault()
                     callback()
                 }
                 return
             }
-            if (e.key === key) {
+            if (e.key === key.key || e.code === key.code) {
                 callback()
             }
         }

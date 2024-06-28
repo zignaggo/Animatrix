@@ -1,10 +1,20 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
 import { Controls } from './controls'
-export function Player() {
+import ReactPlayer from 'react-player'
+import { Button } from '../ui/button'
+import { Header } from './header'
+import { InnerControls } from './inner-controls'
+
+type PlayerProps = {
+    title?: string
+    subtitle?: string
+}
+export function Player({ title, subtitle }: PlayerProps) {
     const [hasWindow, setHasWindow] = useState(false)
+    const [playing, setPlaying] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
+    const [volume, setVolume] = useState(0.5)
     const [duration, setDuration] = useState(1)
     const player = useRef<ReactPlayer | null>(null)
     useEffect(() => {
@@ -13,30 +23,56 @@ export function Player() {
         }
     }, [])
     return (
-        <div className="w-[1080px] h-[720px] p-2">
+        <div
+            className={`w-[1080px] h-[720px] group/player relative bg-[#000] ${
+                playing && 'playing'
+            }`}
+        >
             {hasWindow && (
                 <ReactPlayer
                     ref={player}
                     className="react-player"
-                    url="https://www.youtube.com/watch?v=2j0HFjPmCWc"
+                    url={'content_warning_kkkkkkkkkkkkkk.mp4'} // https://www.youtube.com/watch?v=ZMA83807Ixk
                     width="100%"
                     height="100%"
-                    onProgress={(state) => {
-                        setCurrentTime(state.playedSeconds)
-                    }}
+                    onProgress={(state) => setCurrentTime(state.playedSeconds)}
                     onDuration={(value) => setDuration(value)}
-                    volume={0.5}
+                    volume={volume}
+                    playing={playing}
                     progressInterval={100}
                 />
             )}
-            <Controls
-                currentTime={currentTime}
-                duration={duration}
-                onChangeScrubber={(newCurrentTime) => {
-                    player.current?.seekTo(newCurrentTime, 'seconds')
-                    setCurrentTime(newCurrentTime)
-                }}
-            />
+            <div className="group-[:not(.playing)]/player:flex group-has-[.playing]/player:hidden group-hover/player:flex group-[:not(:hover)&.playing]/player:hidden flex-col p-6 absolute top-0 left-0 w-full bg-gradient-to-b h-full from-[#0008] via-[#0000] to-[#0008]">
+                <Header
+                    className="min-h-[76px]"
+                    title={title}
+                    subtitle={subtitle}
+                    noClose
+                    noFullscreen
+                    noSettings
+                />
+                <InnerControls
+                    className="w-full h-full"
+                    playing={playing}
+                    onPlay={(value) => setPlaying(value)}
+                />
+                <Controls
+                    className="w-full"
+                    currentTime={currentTime}
+                    duration={duration}
+                    onChangeScrubber={(newCurrentTime) => {
+                        player.current?.seekTo(newCurrentTime, 'seconds')
+                        setCurrentTime(newCurrentTime)
+                    }}
+                    onChangeVolume={(volume) => setVolume(volume)}
+                    defaultVolume={volume}
+                >
+                    <Button variant="text" className="ml-auto">
+                        Voltar episódio
+                    </Button>
+                    <Button variant="text">Proximo episódio</Button>
+                </Controls>
+            </div>
         </div>
     )
 }

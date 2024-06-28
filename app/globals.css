@@ -202,3 +202,7 @@
 .banner-shadow::after {
     --deg-gradient: 0deg;
 }
+
+.font-tabular-nums {
+    font-variant-numeric: tabular-nums;
+}

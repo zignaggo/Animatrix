@@ -11,7 +11,7 @@ export function SearchCommand() {
     const [open, setOpen] = useState(false)
     const [search, setSearch] = useState('')
     const ref = useRef<HTMLInputElement | null>(null)
-    useKeyboard('k', 'keydown', () => setOpen((open) => !open))
+    useKeyboard({ key: 'k' }, 'keydown', () => setOpen((open) => !open))
     useOnStopTyping(search, () => {}, 500)
     return (
         <Dialog open={open} onOpenChange={setOpen}>
