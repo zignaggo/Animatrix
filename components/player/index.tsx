@@ -17,6 +17,14 @@ export function Player({ title, subtitle }: PlayerProps) {
     const [volume, setVolume] = useState(0.5)
     const [duration, setDuration] = useState(1)
     const player = useRef<ReactPlayer | null>(null)
+    const setNewTime = (newTime: number) => {
+        let newTimeValidated = newTime > duration ? duration : newTime
+        if (newTime < 0) {
+            newTimeValidated = 0
+        }
+        player.current?.seekTo(newTimeValidated, 'seconds')
+        setCurrentTime(newTimeValidated)
+    }
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setHasWindow(true)
@@ -32,7 +40,7 @@ export function Player({ title, subtitle }: PlayerProps) {
                 <ReactPlayer
                     ref={player}
                     className="react-player"
-                    url={'content_warning_kkkkkkkkkkkkkk.mp4'} // https://www.youtube.com/watch?v=ZMA83807Ixk
+                    url={'content_warning_kkkkkkkkkkkkkk.mp4'}
                     width="100%"
                     height="100%"
                     onProgress={(state) => setCurrentTime(state.playedSeconds)}
@@ -56,6 +64,8 @@ export function Player({ title, subtitle }: PlayerProps) {
                     className="w-full h-full"
                     playing={playing}
                     onPlay={(value) => setPlaying(value)}
+                    onSkip={() => setNewTime(currentTime + 10)}
+                    onPrev={() => setNewTime(currentTime - 10)}
                 />
                 <Controls
                     className={`w-full group/controls  ${
@@ -63,10 +73,9 @@ export function Player({ title, subtitle }: PlayerProps) {
                     }`}
                     currentTime={currentTime}
                     duration={duration}
-                    onChangeScrubber={(newCurrentTime) => {
-                        player.current?.seekTo(newCurrentTime, 'seconds')
-                        setCurrentTime(newCurrentTime)
-                    }}
+                    onChangeScrubber={(newCurrentTime) =>
+                        setNewTime(newCurrentTime)
+                    }
                     onChangeVolume={(volume) => setVolume(volume)}
                     defaultVolume={volume}
                 >

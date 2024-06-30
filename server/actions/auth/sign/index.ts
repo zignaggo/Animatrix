@@ -38,20 +38,7 @@ export const signSocialAuthSafer = action(socialAuthSchema, async ({ provider })
         throw new AuthApiError(error.message, error.status!, error.code)
     }
 })
-// export const signWithGoogle = async () => {
-//     const supabase = createClient()
-//     const host = getURL()
-//     const { data, error } = await supabase.auth.signInWithOAuth({
-//         provider: 'google',
-//         options: {
-//             redirectTo: `${host}api/auth/callback`,
-//         },
-//     })
-//     if (data.url) {
-//         redirect(data.url)
-//     }
-//     return error
-// }
+
 export const signOut = async () => {
     const client = createClient()
     const cookie = cookies()

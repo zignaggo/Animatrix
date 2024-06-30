@@ -1,7 +1,6 @@
 import { Pause, Play, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { IconButton } from '../ui/icon-button'
-import { useEffect } from 'react'
 import { useKeyboard } from '@/hooks/useKeyboard'
 
 type InnerControlsProps = {
