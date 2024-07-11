@@ -1,4 +1,4 @@
-import { TProfile } from "@/types/profile"
+import { TProfile } from '@/lib/supabase/profile'
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 

@@ -23,7 +23,7 @@ export function ProfileAvatar({
             }`}
         >
             <Avatar
-                className="group-hover:border-[3px] cursor-pointer group-hover:border-black-100 h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] group-[.selected]:border-error group-[.selected]:border-[3px] group-[.selected]:scale-[1.05] group-focus-visible:border-[3px]"
+                className="group-hover:outline-[3px] group-hover:outline cursor-pointer group-hover:outline-black-100 h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] group-[.selected]:outline-error group-[.selected]:border-[3px] group-[.selected]:scale-[1.05] group-focus-visible:outline-[3px]"
                 onClick={edit ? onEdit : onSubmit}
             >
                 <AvatarImage src={image} sizes="120" />

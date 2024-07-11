@@ -8,19 +8,16 @@ export async function middleware(request: NextRequest) {
     const isPublicRoute = publicRoutes.includes(path)
     const isProfileRoute = path.includes('-profile')
     const { auth, response } = await updateSession(request)
-    const isSelectedProfile = cookies().get('profile')?.value
+    const wasSelectedProfile = cookies().get('profile')?.value
     const isAuth = auth.data?.user
     if (!isAuth && !isPublicRoute) {
         return redirectTo(request, '/auth/sign')
     }
     if (isAuth) {
-        if (
-            isPublicRoute ||
-            (isSelectedProfile && path === '/choose-profile')
-        ) {
+        if (isPublicRoute) {
             return redirectTo(request, '/animes')
         }
-        if (!isSelectedProfile && !isProfileRoute) {
+        if (!wasSelectedProfile && !isProfileRoute && !isPublicRoute) {
             return redirectTo(request, '/choose-profile')
         }
     }

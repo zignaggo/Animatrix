@@ -2,7 +2,6 @@
 import { PasswordInput } from '@/components/inputs/password'
 import { AuthLayout } from '@/components/pages/auth/auth-layout'
 import {
-    Form,
     FormControl,
     FormField,
     FormItem,
@@ -18,9 +17,12 @@ import { useAction } from 'next-safe-action/hooks'
 import { useRouter } from 'next-nprogress-bar'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export default function Sign() {
     const { toast } = useToast()
+    const params = useSearchParams()
     const route = useRouter()
     const form = useForm<z.infer<typeof signSchema>>({
         resolver: zodResolver(signSchema),
@@ -48,6 +50,18 @@ export default function Sign() {
     const onSubmit = (values: z.infer<typeof signSchema>) => {
         execute(values)
     }
+    useEffect(() => {
+        const error = params.get('error')
+        if (error === 'server_error') {
+            setTimeout(() => {
+                toast({
+                    title: 'Ocorreu um erro',
+                    description: 'Erro no servidor',
+                    variant: 'destructive',
+                })
+            }, 300)
+        }
+    }, [params, toast])
     return (
         <AuthLayout
             subtitle="Entre em sua conta e veja seus animes preferidos"

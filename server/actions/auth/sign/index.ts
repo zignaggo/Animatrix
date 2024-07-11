@@ -41,10 +41,10 @@ export const signSocialAuthSafer = action(socialAuthSchema, async ({ provider })
 
 export const signOut = async () => {
     const client = createClient()
-    const cookie = cookies()
-    cookie.delete('profile')
     const { error } = await client.auth.signOut()
     if (!error) {
+        const cookie = cookies()
+        cookie.delete('profile')
         revalidatePath('/auth/sign')
         redirect('/auth/sign')
     }

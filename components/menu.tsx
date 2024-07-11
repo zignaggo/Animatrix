@@ -13,7 +13,7 @@ import {
     DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import { LogOut, User } from 'lucide-react'
-import { TProfile } from '@/types/profile'
+import { TProfile } from '@/lib/supabase/profile'
 import { getInitials } from '@/utils'
 import { ConfirmExit } from './dialogs/confirm-exit'
 
@@ -48,6 +48,7 @@ export function Menu({
                             <DropdownMenuProfileItem
                                 value={String(profile.id)}
                                 key={profile.id}
+                                src={profile.avatar_url}
                                 initials={getInitials(profile.name)}
                                 className='mt-1'
                             >

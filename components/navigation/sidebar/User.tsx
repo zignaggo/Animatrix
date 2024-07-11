@@ -13,7 +13,7 @@ export async function UserInfo({ className }: UserInfoProps) {
     return (
         <Menu profiles={profiles} currentProfileID={profile.id}>
             <Avatar className={cn('cursor-pointer', className)}>
-                <AvatarImage />
+                <AvatarImage src={profile.avatar_url} />
                 <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
         </Menu>
