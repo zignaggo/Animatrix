@@ -1,39 +1,76 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { IconButton } from '@/components/ui/icon-button'
+import { cn } from '@/lib/utils'
 import { getInitials } from '@/utils'
+import { Edit2, Trash2 } from 'lucide-react'
 
 type ProfileProps = {
-    name: string
+    name?: string
     image?: string
+    edit?: boolean
+    hover?: boolean
     onSubmit?: () => unknown
     onEdit?: () => unknown
-    edit?: boolean;
+    onDelete?: () => unknown
+    className?: string
 }
 export function ProfileAvatar({
     name,
     image,
     onSubmit,
     onEdit,
-    edit = false
+    edit = false,
+    hover = true,
+    onDelete,
+    className,
 }: ProfileProps) {
-    const initials = getInitials(name)
+    const initials = name ? getInitials(name) : undefined
     return (
         <div
-            className={`relative flex items-center justify-center flex-col gap-2 group ${
-                edit && 'selected'
-            }`}
+            className={cn(
+                `relative flex items-center justify-center flex-col gap-2 ${
+                    hover && 'group'
+                } ${edit && 'selected'}`,
+                className
+            )}
         >
+            {edit && (
+                <>
+                    <IconButton
+                        className="absolute -top-1 -right-1 z-10"
+                        variant="secondary"
+                        size="sm"
+                        type="button"
+                        onClick={onEdit}
+                    >
+                        <Edit2 size={16} />
+                    </IconButton>
+                    <IconButton
+                        className="absolute -bottom-1 -left-1 z-10"
+                        variant="danger"
+                        size="sm"
+                        type="button"
+                        onClick={onDelete}
+                    >
+                        <Trash2 size={16} />
+                    </IconButton>
+                </>
+            )}
+
             <Avatar
-                className="group-hover:outline-[3px] group-hover:outline cursor-pointer group-hover:outline-black-100 h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] group-[.selected]:outline-error group-[.selected]:border-[3px] group-[.selected]:scale-[1.05] group-focus-visible:outline-[3px]"
-                onClick={edit ? onEdit : onSubmit}
+                className="group-hover:outline-[3px] group-hover:outline cursor-pointer group-hover:outline-black-100 h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] group-[.selected]:outline-[3px] group-[.selected]:outline-black-700 group-focus-visible:outline-[3px]"
+                onClick={onSubmit}
             >
                 <AvatarImage src={image} sizes="120" />
                 <AvatarFallback className="textsize-h2 sm:textsize-h1 text-purple-100">
                     {initials}
                 </AvatarFallback>
             </Avatar>
-            <p className="textsize-p1 text-black-400 group-hover:text-black-100 group-[.selected]:text-error">
-                {name}
-            </p>
+            {name && (
+                <p className="textsize-p1 text-black-400 group-hover:text-black-100 group-[.selected]:text-error">
+                    {name}
+                </p>
+            )}
         </div>
     )
 }

@@ -25,15 +25,17 @@ import { useRouter } from 'next-nprogress-bar'
 import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { SelectAvatar } from '../select-avatar'
+import { ReactNode } from 'react'
 
-export function AddProfileForm() {
+export function AddProfileForm({ children }: { children?: ReactNode }) {
     const router = useRouter()
     const { toast } = useToast()
     const form = useForm<z.infer<typeof createProfileSchema>>({
         resolver: zodResolver(createProfileSchema),
         defaultValues: {
             name: '',
-            language: 'pt-br',
+            language: 'pt',
         },
     })
     const { status, execute } = useAction(createProfileSafer, {
@@ -59,9 +61,10 @@ export function AddProfileForm() {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col h-fit w-fit gap-6 p-6"
+                className="flex flex-col h-fit w-fit gap-6 p-6 items-center"
             >
-                <h2 className="textsize-h2 text-black-400">Criar Perfil</h2>
+                <h2 className="textsize-h2 text-black-400">Novo Perfil</h2>
+                <SelectAvatar>{children}</SelectAvatar>
                 <div className="flex flex-col gap-2">
                     <FormField
                         control={form.control}
@@ -100,7 +103,7 @@ export function AddProfileForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="pt-br">
+                                        <SelectItem value="pt">
                                             Português
                                         </SelectItem>
                                         <SelectItem value="en">
@@ -113,7 +116,7 @@ export function AddProfileForm() {
                         )}
                     />
                 </div>
-                <div className="flex flex-wrap sm:flex-nowrap gap-4">
+                <div className="flex flex-wrap sm:flex-nowrap gap-4 w-full">
                     <Button
                         size="lg"
                         variant="secondary"

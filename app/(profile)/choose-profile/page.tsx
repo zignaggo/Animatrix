@@ -1,5 +1,5 @@
 import { getProfiles } from '@/components/pages/profiles/mutations'
-import { SelectProfile } from '@/components/pages/profiles/select-profile'
+import { SelectProfile } from '@/components/pages/profiles/choose-profile/select-profile'
 import { createClient } from '@/lib/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'

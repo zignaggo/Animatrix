@@ -1,7 +1,7 @@
 'use client'
-import { TProfile } from '@/lib/supabase/profile'
-import { Add } from './add'
-import { ProfileAvatar } from './profile-avatar'
+import { TProfile } from '@/lib/supabase/types'
+import { Add } from '../add'
+import { ProfileAvatar } from '../profile-avatar'
 import { setCookie } from 'cookies-next'
 import { useRouter } from 'next-nprogress-bar'
 export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
