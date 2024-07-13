@@ -7,7 +7,7 @@ export type TProfile = {
     id: number
     name: string
     language: ValueOf<typeof Languages>
-    avatar_url?: string
+    avatar?: TAvatar | null
 }
 
 export type TAvatar = {

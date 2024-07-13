@@ -14,7 +14,7 @@ export const createProfileSafer = action(createProfileSchema, async (data) => {
     }
     const response = await supabase
         .from('profile')
-        .insert({ ...data, userID: user.id })
+        .insert({ ...data, user_id: user.id })
     if (response.error) {
         throw new AuthApiError(
             response.error.message,

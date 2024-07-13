@@ -26,11 +26,13 @@ import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { SelectAvatar } from '../select-avatar'
-import { ReactNode } from 'react'
+import { useAtomValue } from 'jotai'
+import { selectedAvatar } from '../select-avatar/store'
 
-export function AddProfileForm({ children }: { children?: ReactNode }) {
+export function AddProfileForm() {
     const router = useRouter()
     const { toast } = useToast()
+    const avatar = useAtomValue(selectedAvatar)
     const form = useForm<z.infer<typeof createProfileSchema>>({
         resolver: zodResolver(createProfileSchema),
         defaultValues: {
@@ -55,7 +57,7 @@ export function AddProfileForm({ children }: { children?: ReactNode }) {
         },
     })
     const onSubmit = (values: z.infer<typeof createProfileSchema>) => {
-        execute(values)
+        execute({ ...values, ...(avatar && { selected_avatar: avatar?.id }) })
     }
     return (
         <Form {...form}>
@@ -64,7 +66,7 @@ export function AddProfileForm({ children }: { children?: ReactNode }) {
                 className="flex flex-col h-fit w-fit gap-6 p-6 items-center"
             >
                 <h2 className="textsize-h2 text-black-400">Novo Perfil</h2>
-                <SelectAvatar>{children}</SelectAvatar>
+                <SelectAvatar />
                 <div className="flex flex-col gap-2">
                     <FormField
                         control={form.control}

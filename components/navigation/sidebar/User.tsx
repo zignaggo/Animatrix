@@ -2,7 +2,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { getInitials } from '@/utils'
 import { getSelectedProfile } from './profile'
 import { cn } from '@/lib/utils'
-import { getProfiles } from '@/components/pages/profiles/mutations'
+import { getProfiles } from '@/components/pages/profiles/mutations/server'
 import { Menu } from '@/components/menu'
 
 type UserInfoProps = { className?: string }
@@ -13,7 +13,7 @@ export async function UserInfo({ className }: UserInfoProps) {
     return (
         <Menu profiles={profiles} currentProfileID={profile.id}>
             <Avatar className={cn('cursor-pointer', className)}>
-                <AvatarImage src={profile.avatar_url} />
+                <AvatarImage src={profile.avatar?.url} />
                 <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
         </Menu>

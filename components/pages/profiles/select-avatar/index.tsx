@@ -10,16 +10,33 @@ import {
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ReactNode, useState } from 'react'
+import { Suspense, useState } from 'react'
+import { ListAvatars } from './list-avatars'
+import { TAvatar } from '@/lib/supabase/types'
+import { Skeleton } from '@/components/ui/skeleton'
+import { selectedAvatar } from './store'
+import { useAtom } from 'jotai'
 
-export function SelectAvatar({ children }: { children?: ReactNode }) {
-    const [image, setImage] = useState<string | null>(null)
+export function SelectAvatar() {
     const [open, setOpen] = useState<boolean>(false)
+    const [image, setImage] = useState<string | null>(null)
+    const [avatar, setAvatar] = useAtom(selectedAvatar)
+    const handleSetImage = () => {
+        if (avatar) {
+            setImage(avatar.url)
+        }
+        setOpen(false)
+    }
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <ImageInput
                 image={image}
-                setImage={setImage}
+                setImage={(image) => {
+                    if(!image) {
+                        setAvatar(null)
+                    }
+                    setImage(image)
+                }}
                 onClick={() => setOpen(true)}
             />
             <AlertDialogContent className="max-w-[720px]">
@@ -32,13 +49,27 @@ export function SelectAvatar({ children }: { children?: ReactNode }) {
                         <TabsTrigger value="others">Outros</TabsTrigger>
                     </TabsList>
                     <TabsContent value="myAccount" className="px-2">
-                        {children}
+                        <Suspense
+                            fallback={
+                                <div className="flex gap-2">
+                                    <Skeleton className="h-16 w-16 rounded-full" />
+                                    <Skeleton className="h-16 w-16 rounded-full" />
+                                    <Skeleton className="h-16 w-16 rounded-full" />
+                                </div>
+                            }
+                        >
+                            <ListAvatars
+                                onValueChange={(value) => {
+                                    const avatar = JSON.parse(value) as TAvatar
+                                    setAvatar(avatar)
+                                }}
+                            />
+                        </Suspense>
                     </TabsContent>
                 </Tabs>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => setOpen(false)}>
-                        {/* 'https://lh3.googleusercontent.com/a/ACg8ocJIn2-nP5dFK3ixbjzhy_xmXTFYhToayX1vYzcr-piqQvykJOvU=s96-c' */}
+                    <AlertDialogAction onClick={() => handleSetImage()}>
                         Selecionar
                     </AlertDialogAction>
                 </AlertDialogFooter>

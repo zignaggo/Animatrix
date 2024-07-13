@@ -25,7 +25,7 @@ export function SelectProfile({ profiles }: { profiles: TProfile[] }) {
                     <ProfileAvatar
                         key={profile.id}
                         name={profile.name}
-                        image={profile.avatar_url}
+                        image={profile.avatar?.url}
                         onSubmit={() => saveProfile(profile)}
                     />
                 ))}

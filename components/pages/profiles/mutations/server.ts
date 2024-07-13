@@ -8,24 +8,24 @@ export async function getProfiles() {
     if (!user) return []
     const profiles = supabase
         .from('profile')
-        .select(`id, name, language, avatar_url`)
+        .select(`id, name, language, avatar ( url )`)
         .filter('user_id', 'eq', user.id)
     const { data, error } = await profiles
     if (error) throw error
-    return data as TProfile[]
+    return data as unknown as TProfile[]
 }
 
-export async function getAvatars(justUserAvatars = true) {
+export async function getAvatars(all = false) {
     const supabase = createClient()
     const {
         data: { user },
     } = await supabase.auth.getUser()
     if (!user) return []
-    const profiles = supabase
+    const avatars = supabase
         .from('avatar')
-        .select(`id, url`)
-        .filter('user_id', 'eq', justUserAvatars ? user.id : null)
-    const { data, error } = await profiles
+        .select('id, url')
+        .filter('user_id', !all ? 'eq' : 'is', !all ? user.id : null)
+    const { data, error } = await avatars
     if (error) throw error
     return data as TAvatar[]
 }
