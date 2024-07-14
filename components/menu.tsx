@@ -61,7 +61,7 @@ export function Menu({
                     </DropdownMenuRadioGroup>
                     <DropdownMenuSeparator />
                 </DropdownMenuGroup>
-                <DropdownMenuItem onClick={() => router.replace('/choose-profile')}>
+                <DropdownMenuItem onClick={() => router.replace('/choose-profile?edit=true')}>
                     <Edit2 size={16} className="mr-2" />
                     <span>Gerenciar perfils</span>
                 </DropdownMenuItem>
