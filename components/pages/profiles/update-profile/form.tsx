@@ -17,8 +17,6 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
-import { createProfileSafer } from '@/server/actions/profile/create'
-import { createProfileSchema } from '@/server/actions/profile/create/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus, X } from 'lucide-react'
 import { useRouter } from 'next-nprogress-bar'
@@ -26,46 +24,72 @@ import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { SelectAvatar } from '../select-avatar'
-import { useAtomValue } from 'jotai'
-import { avatarProfileStore } from '../select-avatar/store'
+import { useAtom } from 'jotai'
+import {
+    selectedAvatarModalStore,
+    avatarProfileStore,
+} from '../select-avatar/store'
+import { TProfile } from '@/lib/supabase/types'
+import { updateProfileSafer } from '@/server/actions/profile/update'
+import { useEffect } from 'react'
+import { updateProfileSchema } from '@/server/actions/profile/update/schema'
 
-export function AddProfileForm() {
+type UpdateProfileFormProps = {
+    profile?: TProfile
+}
+export function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
     const router = useRouter()
     const { toast } = useToast()
-    const avatar = useAtomValue(avatarProfileStore)
-    const form = useForm<z.infer<typeof createProfileSchema>>({
-        resolver: zodResolver(createProfileSchema),
+    const [avatar, setAvatar] = useAtom(avatarProfileStore)
+    const [_, setSelectedAvatarModal] = useAtom(selectedAvatarModalStore)
+    const form = useForm<z.infer<typeof updateProfileSchema>>({
+        resolver: zodResolver(updateProfileSchema),
         defaultValues: {
-            name: '',
-            language: 'pt',
+            id: profile?.id,
+            name: profile?.name,
+            language: profile?.language,
         },
     })
-    const { status, execute } = useAction(createProfileSafer, {
+    const { status, execute } = useAction(updateProfileSafer, {
         onSuccess() {
             toast({
-                title: 'Perfil criado',
-                description: 'Entre e acesse a plataforma',
+                title: 'Perfil atualizado com sucesso',
+                description: 'vlw comparsa',
             })
             router.replace('/choose-profile')
         },
         onError({ serverError }) {
             toast({
-                title: 'Ocorreu um erro',
+                title: 'Ocorreu um erraao',
                 description: serverError,
                 variant: 'destructive',
             })
         },
     })
-    const onSubmit = (values: z.infer<typeof createProfileSchema>) => {
-        execute({ ...values, ...(avatar && { selected_avatar: avatar?.id }) })
+    const onSubmit = (values: z.infer<typeof updateProfileSchema>) => {
+        execute({
+            ...values,
+            ...{
+                selected_avatar: avatar?.id || null,
+            },
+        })
+        if (!avatar) {
+            setAvatar(null)
+            setSelectedAvatarModal(null)
+        }
     }
+    useEffect(() => {
+        setAvatar(profile?.avatar || null)
+        setSelectedAvatarModal(profile?.avatar || null)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [profile])
     return (
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="flex flex-col h-fit w-fit gap-6 p-6 items-center"
             >
-                <h2 className="textsize-h2 text-black-400">Novo Perfil</h2>
+                <h2 className="textsize-h2 text-black-400">Atualizar Perfil</h2>
                 <SelectAvatar />
                 <div className="flex flex-col gap-2">
                     <FormField
@@ -123,7 +147,7 @@ export function AddProfileForm() {
                         size="lg"
                         variant="secondary"
                         className="w-full"
-                        onClick={() => router.replace('/choose-profile')}
+                        onClick={() => router.replace('/choose-profile?edit=true')}
                         type="button"
                     >
                         <X /> Cancelar
@@ -131,12 +155,13 @@ export function AddProfileForm() {
                     <Button
                         size="lg"
                         className="w-full"
+                        variant="success"
                         loading={status === 'executing'}
                         loadingText="Carregando"
                         type="submit"
                         disabled={status === 'hasSucceeded'}
                     >
-                        <Plus /> Criar
+                        Salvar
                     </Button>
                 </div>
             </form>

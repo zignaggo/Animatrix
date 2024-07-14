@@ -20,7 +20,7 @@ export function ListAvatars({ avatars, ...props }: ListAvatarsProps) {
                 {data?.map((avatar) => (
                     <RadioAvatarItem
                         key={avatar.id}
-                        value={JSON.stringify(avatar)}
+                        value={avatar ? JSON.stringify(avatar) : ''}
                         id={`avatar-${avatar.id}`}
                         src={avatar.url}
                     />

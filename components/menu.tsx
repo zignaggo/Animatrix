@@ -12,10 +12,11 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { LogOut, User } from 'lucide-react'
+import { Edit2, LogOut, User } from 'lucide-react'
 import { TProfile } from '@/lib/supabase/types'
 import { getInitials } from '@/utils'
 import { ConfirmExit } from './dialogs/confirm-exit'
+import { useRouter } from 'next-nprogress-bar'
 
 export function Menu({
     children,
@@ -27,9 +28,10 @@ export function Menu({
     profiles: TProfile[]
 }) {
     const [profile, setProfile] = useState(String(currentProfileID))
+    const router = useRouter()
     const [confirmOpen, setConfirmOpen] = useState(false)
     const handleExit = async () => {
-        setConfirmOpen(true);
+        setConfirmOpen(true)
     }
     return (
         <DropdownMenu>
@@ -39,6 +41,7 @@ export function Menu({
                     <User /> Minha conta
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
+
                 <DropdownMenuGroup>
                     <DropdownMenuRadioGroup
                         value={profile}
@@ -50,21 +53,25 @@ export function Menu({
                                 key={profile.id}
                                 src={profile.avatar?.url}
                                 initials={getInitials(profile.name)}
-                                className='mt-1'
+                                className="mt-1"
                             >
                                 {profile.name}
                             </DropdownMenuProfileItem>
                         ))}
                     </DropdownMenuRadioGroup>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="text-error" onClick={handleExit}>
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Sair</span>
-                        <DropdownMenuShortcut>⌘W</DropdownMenuShortcut>
-                    </DropdownMenuItem>
                 </DropdownMenuGroup>
+                <DropdownMenuItem onClick={() => router.replace('/choose-profile')}>
+                    <Edit2 size={16} className="mr-2" />
+                    <span>Gerenciar perfils</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-error" onClick={handleExit}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sair</span>
+                    <DropdownMenuShortcut>⌘W</DropdownMenuShortcut>
+                </DropdownMenuItem>
             </DropdownMenuContent>
-            <ConfirmExit open={confirmOpen} onOpenChange={setConfirmOpen}/>
+            <ConfirmExit open={confirmOpen} onOpenChange={setConfirmOpen} />
         </DropdownMenu>
     )
 }

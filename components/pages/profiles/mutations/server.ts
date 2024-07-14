@@ -15,6 +15,21 @@ export async function getProfiles() {
     return data as unknown as TProfile[]
 }
 
+export async function getProfile(id: number) {
+    const supabase = createClient()
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
+    if (!user) return []
+    const profiles = supabase
+        .from('profile')
+        .select(`id, name, language, avatar ( id, url )`)
+        .filter('id', 'eq', id)
+    const { data, error } = await profiles
+    if (error) throw error
+    return data as unknown as TProfile[]
+}
+
 export async function getAvatars(all = false) {
     const supabase = createClient()
     const {

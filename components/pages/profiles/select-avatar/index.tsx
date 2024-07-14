@@ -10,32 +10,36 @@ import {
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { ListAvatars } from './list-avatars'
 import { TAvatar } from '@/lib/supabase/types'
 import { Skeleton } from '@/components/ui/skeleton'
-import { selectedAvatar } from './store'
+import { selectedAvatarModalStore, avatarProfileStore } from './store'
 import { useAtom } from 'jotai'
 
 export function SelectAvatar() {
     const [open, setOpen] = useState<boolean>(false)
-    const [image, setImage] = useState<string | null>(null)
-    const [avatar, setAvatar] = useAtom(selectedAvatar)
-    const handleSetImage = () => {
-        if (avatar) {
-            setImage(avatar.url)
+    const [avatar, setAvatar] = useAtom(avatarProfileStore)
+    const [selectedAvatar, setSelectedAvatar] = useAtom(
+        selectedAvatarModalStore
+    )
+    const handleSetAvatar= () => {
+        if (selectedAvatar) {
+            setAvatar(selectedAvatar)
         }
         setOpen(false)
     }
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <ImageInput
-                image={image}
+                image={avatar?.url}
                 setImage={(image) => {
-                    if(!image) {
+                    if (!image) {
                         setAvatar(null)
+                        setSelectedAvatar(null)
+                        return
                     }
-                    setImage(image)
+                    setAvatar(avatar)
                 }}
                 onClick={() => setOpen(true)}
             />
@@ -59,9 +63,10 @@ export function SelectAvatar() {
                             }
                         >
                             <ListAvatars
+                                defaultValue={JSON.stringify(selectedAvatar)}
                                 onValueChange={(value) => {
                                     const avatar = JSON.parse(value) as TAvatar
-                                    setAvatar(avatar)
+                                    setSelectedAvatar(avatar)
                                 }}
                             />
                         </Suspense>
@@ -69,7 +74,7 @@ export function SelectAvatar() {
                 </Tabs>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => handleSetImage()}>
+                    <AlertDialogAction onClick={() => handleSetAvatar()}>
                         Selecionar
                     </AlertDialogAction>
                 </AlertDialogFooter>

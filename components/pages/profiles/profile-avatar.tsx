@@ -8,11 +8,12 @@ type ProfileProps = {
     name?: string
     image?: string
     edit?: boolean
-    hover?: boolean
+    noHover?: boolean
+    className?: string
+    noDelete?: boolean
     onSubmit?: () => unknown
     onEdit?: () => unknown
     onDelete?: () => unknown
-    className?: string
 }
 export function ProfileAvatar({
     name,
@@ -20,7 +21,8 @@ export function ProfileAvatar({
     onSubmit,
     onEdit,
     edit = false,
-    hover = true,
+    noHover = false,
+    noDelete = false,
     onDelete,
     className,
 }: ProfileProps) {
@@ -29,7 +31,7 @@ export function ProfileAvatar({
         <div
             className={cn(
                 `relative flex items-center justify-center flex-col gap-2 ${
-                    hover && 'group'
+                    !noHover && !edit && 'group'
                 } ${edit && 'selected'}`,
                 className
             )}
@@ -45,15 +47,17 @@ export function ProfileAvatar({
                     >
                         <Edit2 size={16} />
                     </IconButton>
-                    <IconButton
-                        className="absolute -bottom-1 -left-1 z-10"
-                        variant="danger"
-                        size="sm"
-                        type="button"
-                        onClick={onDelete}
-                    >
-                        <Trash2 size={16} />
-                    </IconButton>
+                    {!noDelete && (
+                        <IconButton
+                            className="absolute -bottom-1 -left-1 z-10"
+                            variant="danger"
+                            size="sm"
+                            type="button"
+                            onClick={onDelete}
+                        >
+                            <Trash2 size={16} />
+                        </IconButton>
+                    )}
                 </>
             )}
 
@@ -67,7 +71,7 @@ export function ProfileAvatar({
                 </AvatarFallback>
             </Avatar>
             {name && (
-                <p className="textsize-p1 text-black-400 group-hover:text-black-100 group-[.selected]:text-error">
+                <p className="textsize-p1 text-black-400 group-hover:text-black-100">
                     {name}
                 </p>
             )}
