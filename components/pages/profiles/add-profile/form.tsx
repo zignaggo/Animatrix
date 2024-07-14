@@ -26,13 +26,14 @@ import { useAction } from 'next-safe-action/hooks'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { SelectAvatar } from '../select-avatar'
-import { useAtomValue } from 'jotai'
+import { useAtom } from 'jotai'
 import { avatarProfileStore } from '../select-avatar/store'
+import { useEffect } from 'react'
 
 export function AddProfileForm() {
     const router = useRouter()
     const { toast } = useToast()
-    const avatar = useAtomValue(avatarProfileStore)
+    const [avatar, setAvatar] = useAtom(avatarProfileStore)
     const form = useForm<z.infer<typeof createProfileSchema>>({
         resolver: zodResolver(createProfileSchema),
         defaultValues: {
@@ -59,6 +60,9 @@ export function AddProfileForm() {
     const onSubmit = (values: z.infer<typeof createProfileSchema>) => {
         execute({ ...values, ...(avatar && { selected_avatar: avatar?.id }) })
     }
+    useEffect(() => {
+        setAvatar(null)
+    }, [setAvatar])
     return (
         <Form {...form}>
             <form

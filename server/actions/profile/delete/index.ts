@@ -2,10 +2,9 @@
 import { action } from '@/server/safeactions'
 import { createClient } from '@/lib/supabase/server'
 import { AuthApiError } from '@supabase/supabase-js'
-import { updateProfileSchema } from './schema'
+import { deleteProfileSchema } from './schema'
 import { revalidatePath } from 'next/cache'
-export const updateProfileSafer = action(updateProfileSchema, async (data) => {
-    const { id, ...values } = data
+export const deleteProfileSafer = action(deleteProfileSchema, async (data) => {
     const supabase = createClient()
     const {
         data: { user },
@@ -15,8 +14,8 @@ export const updateProfileSafer = action(updateProfileSchema, async (data) => {
     }
     const response = await supabase
         .from('profile')
-        .update(values)
-        .eq('id', id)
+        .delete()
+        .eq('id', data.id)
     if (response.error) {
         throw new AuthApiError(
             response.error.message,
