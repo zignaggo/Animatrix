@@ -30,7 +30,7 @@ export async function getProfile(id: number) {
     return data as unknown as TProfile[]
 }
 
-export async function getAvatars(all = false) {
+export async function getAvatars() {
     const supabase = createClient()
     const {
         data: { user },
@@ -39,7 +39,7 @@ export async function getAvatars(all = false) {
     const avatars = supabase
         .from('avatar')
         .select('id, url')
-        .filter('user_id', !all ? 'eq' : 'is', !all ? user.id : null)
+        .or(`user_id.eq.${user.id},user_id.is.null`)
     const { data, error } = await avatars
     if (error) throw error
     return data as TAvatar[]
