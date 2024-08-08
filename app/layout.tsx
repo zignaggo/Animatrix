@@ -6,7 +6,7 @@ import { fontSans } from '@/components/font'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/toaster'
 import { ProgressProvider } from '@/components/progress-bar'
-import { FirstLoading } from '@/components/pages/first-loader'
+import { Provider } from 'jotai'
 export const metadata: Metadata = {
     title: 'Animatrix Stream',
     description: 'Stream anime app',
@@ -28,7 +28,7 @@ export default function RootLayout({
                 >
                     <TooltipProvider delayDuration={500}>
                         <ProgressProvider>
-                            <FirstLoading>{children}</FirstLoading>
+                            <Provider>{children}</Provider>
                         </ProgressProvider>
                     </TooltipProvider>
                     <Toaster />

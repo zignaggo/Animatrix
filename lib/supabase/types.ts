@@ -1,5 +1,5 @@
 export const Languages = {
-    Portuguese: 'pt-br',
+    Portuguese: 'pt',
     English: 'en',
 } as const
 export type ValueOf<T> = T[keyof T]

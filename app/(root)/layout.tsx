@@ -1,12 +1,16 @@
 import { SearchInput } from '@/components/inputs/search/input'
 import { Footer } from '@/components/navigation/mobile/Footer'
 import { Sidebar } from '@/components/navigation/sidebar'
+import { getSelectedProfile } from '@/components/navigation/sidebar/profile'
 import { UserInfo } from '@/components/navigation/sidebar/User'
+import { getProfiles } from '@/components/pages/profiles/mutations/server'
 export default async function Layout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    const profiles = await getProfiles()
+    const profile = await getSelectedProfile()
     return (
         <main
             className={
@@ -14,7 +18,11 @@ export default async function Layout({
             }
         >
             <Sidebar>
-                <UserInfo className="mr-auto md:mr-0" />
+                <UserInfo
+                    profile={profile}
+                    profiles={profiles}
+                    className="mr-auto md:mr-0"
+                />
             </Sidebar>
             <SearchInput
                 className="hidden md:flex md:absolute top-6 right-6 z-10"

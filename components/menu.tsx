@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,21 +17,33 @@ import { TProfile } from '@/lib/supabase/types'
 import { getInitials } from '@/utils'
 import { ConfirmExit } from './dialogs/confirm-exit'
 import { useRouter } from 'next-nprogress-bar'
+import { setCookie } from 'cookies-next'
+import { useAtom } from 'jotai'
+import { profileAtom } from '@/store/user'
 
 export function Menu({
     children,
-    currentProfileID,
+    currentProfile,
     profiles,
 }: {
     children: ReactNode
-    currentProfileID: number
+    currentProfile: TProfile | null
     profiles: TProfile[]
 }) {
-    const [profile, setProfile] = useState(String(currentProfileID))
+    const [profile, setProfile] = useAtom(profileAtom)
     const router = useRouter()
     const [confirmOpen, setConfirmOpen] = useState(false)
     const handleExit = async () => {
         setConfirmOpen(true)
+    }
+    const handleChangeProfile = (value: string) => {
+        const profileValue = profiles.find(
+            (profile) => String(profile.id) === value
+        )
+        if (profileValue) {
+            setCookie('profile', profile.currentProfile)
+            setProfile({ ...profile, currentProfile: profileValue })
+        }
     }
     return (
         <DropdownMenu>
@@ -44,8 +56,8 @@ export function Menu({
 
                 <DropdownMenuGroup>
                     <DropdownMenuRadioGroup
-                        value={profile}
-                        onValueChange={setProfile}
+                        value={String(profile.currentProfile?.id)}
+                        onValueChange={(value) => handleChangeProfile(value)}
                     >
                         {profiles.map((profile) => (
                             <DropdownMenuProfileItem
@@ -61,7 +73,9 @@ export function Menu({
                     </DropdownMenuRadioGroup>
                     <DropdownMenuSeparator />
                 </DropdownMenuGroup>
-                <DropdownMenuItem onClick={() => router.replace('/choose-profile?edit=true')}>
+                <DropdownMenuItem
+                    onClick={() => router.replace('/choose-profile?edit=true')}
+                >
                     <Edit2 size={16} className="mr-2" />
                     <span>Gerenciar perfils</span>
                 </DropdownMenuItem>
