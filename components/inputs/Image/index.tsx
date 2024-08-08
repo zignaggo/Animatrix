@@ -22,7 +22,7 @@ const ImageInput = forwardRef<HTMLButtonElement, ImageInputProps>(
             <ProfileAvatar
                 className={!image ? 'hidden' : undefined}
                 image={image}
-                hover={false}
+                noHover
                 edit
                 onEdit={onClick}
                 onDelete={() => setImage && setImage(null)}
