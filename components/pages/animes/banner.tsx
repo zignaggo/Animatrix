@@ -38,7 +38,7 @@ export default function Banner({ title, description, image }: Banner) {
                     </p>
                     <div className="flex items-center gap-2 flex-wrap">
                         <Button size={'lg'} className="w-fit">
-                            Assitir Agora <Icon icon="TvTwoLine" />
+                            Assistir Agora <Icon icon="TvTwoLine" />
                         </Button>
                         <Toggle
                             size={'lg'}
